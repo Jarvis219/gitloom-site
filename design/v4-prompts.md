@@ -18,7 +18,11 @@ Ba hướng thiết kế lấy từ skill, đã chỉnh cho hợp thương hiệ
 1. Dán **G0** kèm phần A, rồi ghi rõ hướng đã chọn (W, P hoặc C).
 2. Dán lần lượt G1–G6 cho từng trang.
 3. Sau mỗi trang, dán **G7** để công cụ tự chấm bản thiết kế theo checklist QA, rồi sửa theo kết quả.
-4. Nên đính kèm ảnh chụp GitLoom thật và ảnh mẫu của phong cách. Ảnh mẫu đã chép sẵn vào `design/refs/`:
+4. **Ảnh GitLoom thật** (chụp từ repo mẫu, 2026-11-18) nằm ở `design/shots/`, mỗi cảnh có `-dark` và `-light`:
+   `graph` (graph + chi tiết commit), `diff` (diff để stage từng dòng), `conflict` (trình giải xung đột),
+   `actions` (Actions run + PR/Issues ở sidebar, dữ liệu mock). Cảnh kéo-thả + menu merge/rebase cần chụp tay:
+   kéo một branch lên branch khác trong app rồi ⌘⇧4. Dặn công cụ AI: "use these screenshots as-is, do not redraw".
+5. Nên đính kèm thêm ảnh mẫu của phong cách. Ảnh mẫu đã chép sẵn vào `design/refs/`:
    `impeccable-marketing.png`, `premium-marketing.png`, `codex-marketing.png` (MIT, từ awesome-design-skills).
 
 Độ tương phản đã kiểm: W chữ/kem 16.5 · muted/kem 7.05 · kem/cam cháy 4.84 (đã chỉnh từ 4.33) · ink/amber 9.87 ·
