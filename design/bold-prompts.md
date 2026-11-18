@@ -1,3 +1,5 @@
+> **Đã thay bằng `v3-prompts.md` (2026-11-18).** File này giữ lại để tham khảo; phong cách ở đây đã cũ.
+
 # GitLoom landing page — bold prompt set (v2)
 
 Cách dùng: mỗi mục `## P…` là một prompt độc lập, copy nguyên khối (từ dòng `>>>` đến `<<<`) vào công cụ

@@ -1,3 +1,5 @@
+> **Phong cách: dùng `v3-prompts.md` (D0 + S1–S6).** File này vẫn đúng về cấu trúc trang và dữ kiện (đặc biệt bảng dữ liệu Privacy), nhưng phần mô tả giao diện đã cũ.
+
 # GitLoom site — prompts for the other pages (v1)
 
 ## Cách dùng

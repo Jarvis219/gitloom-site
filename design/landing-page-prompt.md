@@ -1,3 +1,5 @@
+> **Đã thay bằng `v3-prompts.md` (2026-11-18).** File này giữ lại để tham khảo; phong cách ở đây đã cũ.
+
 # Prompt: design the GitLoom landing page
 
 Paste everything below the line into an AI design tool (v0, Figma AI, Lovable, Galileo, Claude, …).
