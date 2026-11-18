@@ -1,42 +1,50 @@
 ---
+import { locales, type Locale } from '../i18n/locales';
+
 interface Props {
+  locale: Locale;
   title: string;
   description: string;
-  path?: string;
 }
-const { title, description, path = '' } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const canonical = new URL(base + path, Astro.site).href;
-const ogImage = new URL(base + 'og.jpg', Astro.site).href;
+const { locale, title, description } = Astro.props;
+const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
+const href = (l: Locale) => new URL(l.path ? `/${l.path}/` : '/', site).href;
+const canonical = href(locale);
+const ogImage = new URL('/og.jpg', site).href;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'GitLoom',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'macOS 14 or later',
+  inLanguage: locale.hreflang,
   description,
-  url: new URL(base, Astro.site).href,
+  url: canonical,
   image: ogImage,
   downloadUrl: 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 };
 ---
 <!doctype html>
-<html lang="en">
+<html lang={locale.hreflang} dir={locale.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/png" href={base + 'favicon.png'} />
-    <link rel="apple-touch-icon" href={base + 'apple-touch-icon.png'} />
-    <link rel="sitemap" href={base + 'sitemap-index.xml'} />
+    {locales.map((l) => <link rel="alternate" hreflang={l.hreflang} href={href(l)} />)}
+    <link rel="alternate" hreflang="x-default" href={href(locales[0])} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GitLoom" />
+    <meta property="og:locale" content={locale.og} />
+    {locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={l.og} />)}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -48,6 +56,7 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <slot name="head" />
     <style is:global>
       :root {
         --bg: #f7f8fa;
@@ -55,7 +64,7 @@ const jsonLd = {
         --text: #14161c;
         --muted: #5b6070;
         --line: #e3e6ec;
-        --accent: #3b82f6;
+        --accent: #2f6fe0;
         --accent-text: #ffffff;
         --code: #eef1f6;
       }
@@ -77,12 +86,11 @@ const jsonLd = {
         margin: 0;
         background: var(--bg);
         color: var(--text);
-        font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
       }
       a { color: var(--accent); }
       img { max-width: 100%; height: auto; }
       .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-      code { background: var(--code); padding: 1px 6px; border-radius: 5px; font-size: 0.92em; }
     </style>
   </head>
   <body>
