@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'AI może się mylić', html: '<p>Sugestie AI mogą być błędne. Sprawdź je, zanim je zatwierdzisz, wypchniesz lub uruchomisz.</p>' },
       warranty: { title: 'Brak gwarancji', html: '<p>GitLoom jest dostarczany „w stanie, w jakim jest”, bez jakiejkolwiek gwarancji, wyraźnej ani dorozumianej, w tym przydatności do określonego celu. W zakresie dozwolonym przez prawo jego autor nie odpowiada za żadne straty ani szkody wynikające z korzystania z niego.</p>' },
       'open-source': { title: 'Komponenty open source', html: '<p>GitLoom zawiera następujące komponenty open source, każdy na własnej licencji:</p>{list}' },
-      law: { title: 'Prawo właściwe', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'gramatyki tree-sitter dla Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript i YAML',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'Bezpieczne ustawienia domyślne', html: '<ul><li>Tokeny GitHuba i GitLaba oraz klucze AI są przechowywane w pęku kluczy.</li><li>Serwer MCP i AI są domyślnie wyłączone. Narzędzia podłączone przez MCP nie mogą wymuszać wypychania, resetować, odrzucać zmian, usuwać ani przepisywać historii.</li><li>Linki, które nie są stronami internetowymi, oraz foldery otwierane z linku najpierw pytają.</li><li>Zaimportowane ustawienia nie mogą przekierować Twoich tokenów ani kluczy na inny serwer.</li><li>Dziennik Git przechowuje polecenia uruchomione przez GitLoom, nigdy ich wyniki, dane wejściowe ani dane uwierzytelniające.</li></ul>' },
       trust: { title: 'Otwieraj tylko repozytoria, którym ufasz', html: '<p>Otwarcie repozytorium uruchamia programy wskazane w jego ustawieniach Gita (hooki, filtry, fsmonitor). Tak samo działa git w terminalu. Traktuj nieznane repozytorium jak nieznaną aplikację.</p>' },
       verify: { title: 'Sprawdź pobrany plik', html: '<p>Pobieraj GitLoom tylko z tej witryny lub z <a href="https://github.com/Jarvis219/gitloom-site/releases">jego wydań na GitHubie</a>. Po skopiowaniu go do folderu Aplikacje to polecenie sprawdza, czy żaden plik w aplikacji nie zmienił się od czasu podpisania:</p>{command}<p>Powinno wypisać <code>valid on disk</code> i <code>satisfies its Designated Requirement</code>. GitLoom nie jest jeszcze notaryzowany, więc potwierdza to, że aplikacja jest nienaruszona, a nie kto ją podpisał. Aktualizacje instalowane przez sam GitLoom są sprawdzane automatycznie.</p>' },
-      report: { title: 'Zgłoś lukę w zabezpieczeniach', html: '<p>Zgłaszaj prywatnie, nie w publicznym zgłoszeniu. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Kontakt w formacie do odczytu maszynowego: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Zgłoś lukę w zabezpieczeniach', html: '<p>Nie publikuj szczegółów. <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">Otwórz zgłoszenie</a>, w którym napiszesz tylko, że masz raport o bezpieczeństwie, bez szczegółów, a ustalimy prywatny sposób jego przekazania.</p>' },
     },
   },
   press: {

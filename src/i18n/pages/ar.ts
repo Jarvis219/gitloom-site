@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'قد يخطئ الذكاء الاصطناعي', html: '<p>قد تكون اقتراحات الذكاء الاصطناعي خاطئة. راجعها قبل أن تودعها أو تدفعها أو تشغّلها.</p>' },
       warranty: { title: 'لا ضمان', html: '<p>يُقدَّم GitLoom «كما هو»، دون أي ضمان من أي نوع، صريحًا كان أو ضمنيًا، بما في ذلك الملاءمة لغرض معيّن. وفي الحدود التي يسمح بها القانون، لا يتحمّل مؤلفه أي مسؤولية عن أي خسارة أو ضرر ينشأ عن استخدامه.</p>' },
       'open-source': { title: 'إقرارات المصادر المفتوحة', html: '<p>يتضمّن GitLoom مكوّنات المصادر المفتوحة التالية، كلٌّ منها بترخيصه الخاص:</p>{list}' },
-      law: { title: 'القانون الحاكم', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'قواعد tree-sitter للغات Bash وCSS وGo وHTML وJavaScript وJSON وPython وRust وSwift وTSX وTypeScript وYAML',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'إعدادات افتراضية آمنة', html: '<ul><li>تُخزَّن رموز GitHub وGitLab ومفاتيح الذكاء الاصطناعي في سلسلة المفاتيح.</li><li>خادم MCP والذكاء الاصطناعي متوقفان افتراضيًا. والأدوات المتصلة عبر MCP لا تستطيع الدفع القسري أو إعادة التعيين أو التجاهل أو الحذف أو إعادة كتابة السجل.</li><li>الروابط التي ليست صفحات ويب، والمجلدات المفتوحة من رابط، تسأل أولًا.</li><li>الإعدادات المستوردة لا تستطيع تحويل رموزك أو مفاتيحك إلى خادم آخر.</li><li>يحتفظ Git Log بأسطر الأوامر التي شغّلها GitLoom، لا بمخرجاتها ولا بمدخلاتها ولا ببيانات الاعتماد أبدًا.</li></ul>' },
       trust: { title: 'لا تفتح إلا المستودعات التي تثق بها', html: '<p>فتح مستودع يشغّل البرامج التي تسمّيها إعدادات Git فيه (الخطافات، والمرشّحات، وfsmonitor). وهكذا يعمل git في الطرفية أيضًا. تعامل مع المستودع المجهول كما تتعامل مع تطبيق مجهول.</p>' },
       verify: { title: 'تحقّق من التنزيل', html: '<p>لا تنزّل GitLoom إلا من هذا الموقع أو من <a href="https://github.com/Jarvis219/gitloom-site/releases">إصداراته على GitHub</a>. بعد نسخه إلى التطبيقات، يتحقق هذا الأمر من أن أي ملف في التطبيق لم يتغيّر منذ توقيعه:</p>{command}<p>ينبغي أن يطبع <code>valid on disk</code> و<code>satisfies its Designated Requirement</code>. لم يُوثَّق GitLoom بعد، لذا يؤكد هذا أن التطبيق سليم، لا هوية من وقّعه. أما التحديثات التي يثبّتها GitLoom بنفسه فيُتحقق منها تلقائيًا.</p>' },
-      report: { title: 'الإبلاغ عن ثغرة', html: '<p>يُرجى الإبلاغ بشكل خاص، لا في مشكلة علنية. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>جهة اتصال قابلة للقراءة آليًا: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'الإبلاغ عن ثغرة', html: '<p>يُرجى عدم نشر التفاصيل علنًا. <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">افتح مشكلة</a> تذكر فيها فقط أن لديك بلاغًا أمنيًا، دون أي تفاصيل، وسنتفق معك على طريقة خاصة لإرساله.</p>' },
     },
   },
   press: {

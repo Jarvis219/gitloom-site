@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'Yapay zekâ yanılabilir', html: '<p>Yapay zekâ önerileri yanlış olabilir. Commit etmeden, itmeden veya çalıştırmadan önce onları kontrol et.</p>' },
       warranty: { title: 'Garanti yoktur', html: '<p>GitLoom, belirli bir amaca uygunluk dâhil, açık veya örtük hiçbir garanti olmaksızın “olduğu gibi” sunulur. Yasanın izin verdiği ölçüde, yazarı kullanımından doğan hiçbir kayıp veya zarardan sorumlu değildir.</p>' },
       'open-source': { title: 'Açık kaynak teşekkürleri', html: '<p>GitLoom, her biri kendi lisansına tabi olan şu açık kaynak bileşenleri içerir:</p>{list}' },
-      law: { title: 'Uygulanacak hukuk', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript ve YAML için tree-sitter grammar’ları',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'Güvenli varsayılanlar', html: '<ul><li>GitHub ve GitLab token’ları ile yapay zekâ anahtarları Anahtar Zinciri’nde saklanır.</li><li>MCP sunucusu ve yapay zekâ varsayılan olarak kapalıdır. MCP üzerinden bağlanan araçlar zorla itme, sıfırlama, atma, silme veya geçmişi yeniden yazma yapamaz.</li><li>Web sayfası olmayan bağlantılar ve bir bağlantıdan açılan klasörler önce sorar.</li><li>İçe aktarılan ayarlar token’larını veya anahtarlarını başka bir sunucuya yönlendiremez.</li><li>Git Günlüğü, GitLoom’un çalıştırdığı komut satırlarını tutar; çıktılarını, girdilerini veya kimlik bilgilerini asla tutmaz.</li></ul>' },
       trust: { title: 'Yalnızca güvendiğin depoları aç', html: '<p>Bir depoyu açmak, Git ayarlarında adı geçen programları (hook’lar, filtreler, bir fsmonitor) çalıştırır. Git terminalde de böyle çalışır. Bilmediğin bir depoya bilmediğin bir uygulama gibi davran.</p>' },
       verify: { title: 'İndirdiğin dosyayı doğrula', html: '<p>GitLoom’u yalnızca bu web sitesinden veya <a href="https://github.com/Jarvis219/gitloom-site/releases">GitHub sürümlerinden</a> indir. Uygulamalar’a kopyaladıktan sonra bu komut, uygulamadaki hiçbir dosyanın imzalandığından bu yana değişmediğini denetler:</p>{command}<p>Çıktıda <code>valid on disk</code> ve <code>satisfies its Designated Requirement</code> görünmelidir. GitLoom henüz notarize edilmediği için bu, uygulamanın bozulmadığını doğrular; kimin imzaladığını değil. GitLoom’un kendisinin kurduğu güncellemeler otomatik olarak denetlenir.</p>' },
-      report: { title: 'Güvenlik açığı bildir', html: '<p>Lütfen herkese açık bir issue’da değil, gizli olarak bildir. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Makine tarafından okunabilir iletişim: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Güvenlik açığı bildir', html: '<p>Lütfen ayrıntıları herkese açık paylaşma. Yalnızca bir güvenlik bildirimin olduğunu söyleyen, ayrıntı içermeyen <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">bir issue aç</a>; bildirimi göndermek için gizli bir yol üzerinde anlaşalım.</p>' },
     },
   },
   press: {

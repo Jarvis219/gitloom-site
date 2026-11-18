@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'AI は間違えることがあります', html: '<p>AI の提案は間違っていることがあります。コミット、プッシュ、実行の前に確認してください。</p>' },
       warranty: { title: '無保証', html: '<p>GitLoom は「現状のまま」提供され、特定目的への適合性を含め、明示または黙示を問わずいかなる保証もありません。法律で認められる範囲で、作者は GitLoom の使用から生じたいかなる損失や損害についても責任を負いません。</p>' },
       'open-source': { title: 'オープンソースの謝辞', html: '<p>GitLoom には次のオープンソースコンポーネントが含まれており、それぞれ独自のライセンスに従います:</p>{list}' },
-      law: { title: '準拠法', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'Bash、CSS、Go、HTML、JavaScript、JSON、Python、Rust、Swift、TSX、TypeScript、YAML 用の tree-sitter 文法',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: '安全なデフォルト', html: '<ul><li>GitHub と GitLab のトークン、AI のキーはキーチェーンに保存されます。</li><li>MCP サーバーと AI はデフォルトでオフです。MCP 経由で接続したツールは、強制プッシュ、リセット、破棄、削除、履歴の書き換えができません。</li><li>Web ページ以外へのリンクと、リンクから開くフォルダは、先に確認されます。</li><li>読み込んだ設定で、トークンやキーの送信先を別のサーバーに変えることはできません。</li><li>Git ログには GitLoom が実行したコマンドラインだけが残り、出力、入力、認証情報は残りません。</li></ul>' },
       trust: { title: '信頼できるリポジトリだけを開く', html: '<p>リポジトリを開くと、その Git 設定に指定されたプログラム(フック、フィルタ、fsmonitor)が実行されます。ターミナルで git を使う場合も同じです。知らないリポジトリは、知らないアプリと同じように扱ってください。</p>' },
       verify: { title: 'ダウンロードを検証する', html: '<p>GitLoom は、この Web サイトか <a href="https://github.com/Jarvis219/gitloom-site/releases">GitHub のリリース</a>からのみダウンロードしてください。「アプリケーション」にコピーした後、次のコマンドで、署名後にアプリ内のファイルが変更されていないことを確認できます:</p>{command}<p><code>valid on disk</code> と <code>satisfies its Designated Requirement</code> と表示されるはずです。GitLoom はまだ公証されていないため、これで確認できるのはアプリが改ざんされていないことであり、誰が署名したかではありません。GitLoom 自身がインストールするアップデートは自動的に検証されます。</p>' },
-      report: { title: '脆弱性を報告する', html: '<p>公開の Issue ではなく、非公開で報告してください。<span class="ph">[OWNER FILLS: address and response time]</span></p><p>機械可読の連絡先:<span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: '脆弱性を報告する', html: '<p>詳細を公開の場に書かないでください。セキュリティ報告があることだけを書いた <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">Issue を作成</a>してください（詳細は書かずに）。非公開の送付方法をこちらから相談します。</p>' },
     },
   },
   press: {

@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'AI 可能出錯', html: '<p>AI 的建議可能是錯的。在提交、推送或執行之前請先檢查。</p>' },
       warranty: { title: '不提供擔保', html: '<p>GitLoom 依「現狀」提供，不附帶任何明示或默示的擔保，包括對特定用途適用性的擔保。在法律允許的範圍內，其作者不對因使用本軟體而產生的任何損失或損害負責。</p>' },
       'open-source': { title: '開放原始碼致謝', html: '<p>GitLoom 包含以下開放原始碼元件，各自依其授權條款提供：</p>{list}' },
-      law: { title: '準據法', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: '適用於 Bash、CSS、Go、HTML、JavaScript、JSON、Python、Rust、Swift、TSX、TypeScript 和 YAML 的 tree-sitter 語法',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: '安全的預設設定', html: '<ul><li>GitHub 和 GitLab 權杖以及 AI 金鑰都儲存在你的鑰匙圈中。</li><li>MCP 伺服器和 AI 預設為關閉。透過 MCP 連線的工具不能強制推送、重置、丟棄、刪除或改寫歷史。</li><li>不是網頁的連結，以及透過連結打開的資料夾，都會先詢問。</li><li>匯入的設定無法把你的權杖或金鑰轉送到其他伺服器。</li><li>Git 記錄只保留 GitLoom 執行過的指令列，絕不保留其輸出、輸入或憑證。</li></ul>' },
       trust: { title: '只打開你信任的存放庫', html: '<p>打開存放庫會執行其 Git 設定中指定的程式（掛鉤、過濾器、fsmonitor）。在終端機中使用 git 也是如此。請像對待來路不明的 App 一樣對待來路不明的存放庫。</p>' },
       verify: { title: '驗證你的下載', html: '<p>只從本網站或<a href="https://github.com/Jarvis219/gitloom-site/releases">它的 GitHub 發佈頁面</a>下載 GitLoom。將它拷貝到「應用程式」後，以下指令會檢查 App 中的檔案自簽署以來都沒有被更改：</p>{command}<p>它應該輸出 <code>valid on disk</code> 和 <code>satisfies its Designated Requirement</code>。GitLoom 尚未經過公證，所以這只能確認 App 完好無損，而不能確認簽署者是誰。由 GitLoom 自己安裝的更新會自動檢查。</p>' },
-      report: { title: '回報漏洞', html: '<p>請私下回報，不要開公開議題。<span class="ph">[OWNER FILLS: address and response time]</span></p><p>機器可讀的聯絡方式：<span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: '回報漏洞', html: '<p>請不要公開張貼細節。<a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">開一個議題</a>，只說明你有一份安全性回報、不要寫任何細節，我們會和你約定私下傳送的方式。</p>' },
     },
   },
   press: {

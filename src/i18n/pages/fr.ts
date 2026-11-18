@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'L’IA peut se tromper', html: '<p>Les suggestions de l’IA peuvent être fausses. Vérifiez-les avant de commiter, de pousser ou de les exécuter.</p>' },
       warranty: { title: 'Absence de garantie', html: '<p>GitLoom est fourni « en l’état », sans garantie d’aucune sorte, expresse ou implicite, y compris d’adéquation à un usage particulier. Dans la mesure permise par la loi, son auteur n’est responsable d’aucune perte ni d’aucun dommage résultant de son utilisation.</p>' },
       'open-source': { title: 'Composants open source', html: '<p>GitLoom inclut les composants open source suivants, chacun sous sa propre licence :</p>{list}' },
-      law: { title: 'Droit applicable', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'grammaires tree-sitter pour Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript et YAML',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'Réglages par défaut sûrs', html: '<ul><li>Les jetons GitHub et GitLab et les clés d’IA sont stockés dans votre trousseau.</li><li>Le serveur MCP et l’IA sont désactivés par défaut. Les outils connectés via MCP ne peuvent ni forcer un push, ni faire de reset, ni abandonner, supprimer ou réécrire l’historique.</li><li>Les liens qui ne sont pas des pages web, et les dossiers ouverts depuis un lien, demandent d’abord confirmation.</li><li>Des réglages importés ne peuvent pas rediriger vos jetons ou vos clés vers un autre serveur.</li><li>Le journal Git conserve les lignes de commande exécutées par GitLoom, jamais leur sortie, leur entrée ni les identifiants.</li></ul>' },
       trust: { title: 'N’ouvrez que des dépôts de confiance', html: '<p>Ouvrir un dépôt exécute les programmes indiqués dans ses réglages Git (hooks, filtres, un fsmonitor). C’est aussi le cas de git dans un terminal. Traitez un dépôt inconnu comme une app inconnue.</p>' },
       verify: { title: 'Vérifier votre téléchargement', html: '<p>Ne téléchargez GitLoom que depuis ce site ou <a href="https://github.com/Jarvis219/gitloom-site/releases">ses versions sur GitHub</a>. Une fois l’app copiée dans Applications, cette commande vérifie qu’aucun fichier de l’app n’a changé depuis sa signature :</p>{command}<p>Elle doit afficher <code>valid on disk</code> et <code>satisfies its Designated Requirement</code>. GitLoom n’est pas encore notarié : cela confirme que l’app est intacte, pas qui l’a signée. Les mises à jour installées par GitLoom lui-même sont vérifiées automatiquement.</p>' },
-      report: { title: 'Signaler une vulnérabilité', html: '<p>Merci de signaler en privé, pas dans un ticket public. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Contact lisible par machine : <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Signaler une vulnérabilité', html: '<p>Merci de ne pas publier de détails. <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">Ouvrez un ticket</a> indiquant seulement que vous avez un signalement de sécurité, sans aucun détail, et nous conviendrons d’un moyen privé de nous l’envoyer.</p>' },
     },
   },
   press: {

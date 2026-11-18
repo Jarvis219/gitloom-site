@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'AI 可能出错', html: '<p>AI 的建议可能是错误的。在提交、推送或运行之前请先检查。</p>' },
       warranty: { title: '无担保', html: '<p>GitLoom 按“原样”提供，不附带任何明示或暗示的担保，包括对特定用途适用性的担保。在法律允许的范围内，其作者不对因使用本软件而产生的任何损失或损害承担责任。</p>' },
       'open-source': { title: '开源致谢', html: '<p>GitLoom 包含以下开源组件，各自遵循其许可：</p>{list}' },
-      law: { title: '适用法律', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: '适用于 Bash、CSS、Go、HTML、JavaScript、JSON、Python、Rust、Swift、TSX、TypeScript 和 YAML 的 tree-sitter 语法',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: '安全的默认设置', html: '<ul><li>GitHub 和 GitLab 令牌以及 AI 密钥存储在你的钥匙串中。</li><li>MCP 服务器和 AI 默认关闭。通过 MCP 连接的工具不能强制推送、重置、丢弃、删除或改写历史。</li><li>不是网页的链接，以及通过链接打开的文件夹，都会先询问。</li><li>导入的设置无法把你的令牌或密钥转发到其他服务器。</li><li>Git 日志只保留 GitLoom 运行过的命令行，绝不保留其输出、输入或凭据。</li></ul>' },
       trust: { title: '只打开你信任的仓库', html: '<p>打开仓库会运行其 Git 设置中指定的程序（钩子、过滤器、fsmonitor）。在终端中使用 git 也是如此。请像对待来历不明的应用一样对待来历不明的仓库。</p>' },
       verify: { title: '验证你的下载', html: '<p>只从本网站或<a href="https://github.com/Jarvis219/gitloom-site/releases">它的 GitHub 发布页面</a>下载 GitLoom。将它拷贝到“应用程序”后，以下命令会检查应用中的文件自签名以来都没有被更改：</p>{command}<p>它应当输出 <code>valid on disk</code> 和 <code>satisfies its Designated Requirement</code>。GitLoom 尚未经过公证，所以这只能确认应用完好无损，而不能确认签名者是谁。由 GitLoom 自己安装的更新会自动检查。</p>' },
-      report: { title: '报告漏洞', html: '<p>请私下报告，不要提交公开议题。<span class="ph">[OWNER FILLS: address and response time]</span></p><p>机器可读的联系方式：<span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: '报告漏洞', html: '<p>请不要公开发布细节。<a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">新建一个议题</a>，只说明你有一份安全报告、不要写任何细节，我们会与你商定私下发送的方式。</p>' },
     },
   },
   press: {

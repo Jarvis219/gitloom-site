@@ -177,7 +177,6 @@ export const en = {
       ai: { title: 'AI can be wrong', html: '<p>AI suggestions can be wrong. Check them before you commit, push or run them.</p>' },
       warranty: { title: 'No warranty', html: '<p>GitLoom is provided “as is”, without warranty of any kind, express or implied, including fitness for a particular purpose. To the extent the law allows, its author isn’t liable for any loss or damage arising from its use.</p>' },
       'open-source': { title: 'Open-source acknowledgements', html: '<p>GitLoom includes these open-source components, each under its own licence:</p>{list}' },
-      law: { title: 'Governing law', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'tree-sitter grammars for Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript and YAML',
   },
@@ -192,7 +191,7 @@ export const en = {
       defaults: { title: 'Safe defaults', html: '<ul><li>GitHub and GitLab tokens and AI keys are stored in your Keychain.</li><li>The MCP server and AI are off by default. Tools connected through MCP can’t force-push, reset, discard, delete or rewrite history.</li><li>Links that aren’t web pages, and folders opened from a link, ask first.</li><li>Imported settings can’t redirect your tokens or keys to another server.</li><li>The Git Log keeps the command lines GitLoom ran, never their output, input or credentials.</li></ul>' },
       trust: { title: 'Open only repositories you trust', html: '<p>Opening a repository runs the programs its Git settings name (hooks, filters, an fsmonitor). That’s how git works in a terminal too. Treat an unknown repository like an unknown app.</p>' },
       verify: { title: 'Verify your download', html: '<p>Download GitLoom only from this website or <a href="https://github.com/Jarvis219/gitloom-site/releases">its GitHub releases</a>. After you’ve copied it to Applications, this command checks that no file in the app has changed since it was signed:</p>{command}<p>It should print <code>valid on disk</code> and <code>satisfies its Designated Requirement</code>. GitLoom isn’t notarized yet, so this confirms the app is intact, not who signed it. Updates installed by GitLoom itself are checked automatically.</p>' },
-      report: { title: 'Report a vulnerability', html: '<p>Please report privately, not in a public issue. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Machine-readable contact: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Report a vulnerability', html: '<p>Please don’t post details in public. <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">Open an issue</a> that only says you have a security report, with no details, and we’ll agree on a private way to send it.</p>' },
     },
   },
   press: {

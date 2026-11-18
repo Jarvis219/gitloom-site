@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'KI kann sich irren', html: '<p>KI-Vorschläge können falsch sein. Prüfe sie, bevor du sie committest, pushst oder ausführst.</p>' },
       warranty: { title: 'Keine Gewährleistung', html: '<p>GitLoom wird „wie besehen“ bereitgestellt, ohne ausdrückliche oder stillschweigende Gewährleistung jeglicher Art, einschließlich der Eignung für einen bestimmten Zweck. Soweit gesetzlich zulässig, haftet der Autor nicht für Verluste oder Schäden, die aus der Nutzung entstehen.</p>' },
       'open-source': { title: 'Open-Source-Komponenten', html: '<p>GitLoom enthält diese Open-Source-Komponenten, jeweils unter ihrer eigenen Lizenz:</p>{list}' },
-      law: { title: 'Anwendbares Recht', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'tree-sitter-Grammatiken für Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript und YAML',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'Sichere Standards', html: '<ul><li>Tokens für GitHub und GitLab sowie KI-Schlüssel werden in deinem Schlüsselbund gespeichert.</li><li>Der MCP-Server und KI sind standardmäßig aus. Über MCP verbundene Werkzeuge können weder force-pushen, zurücksetzen, verwerfen, löschen noch die Historie umschreiben.</li><li>Links, die keine Webseiten sind, und per Link geöffnete Ordner fragen zuerst nach.</li><li>Importierte Einstellungen können deine Tokens oder Schlüssel nicht an einen anderen Server umleiten.</li><li>Das Git-Log speichert die Befehlszeilen, die GitLoom ausgeführt hat, aber nie deren Ausgabe, Eingabe oder Zugangsdaten.</li></ul>' },
       trust: { title: 'Öffne nur Repositorys, denen du vertraust', html: '<p>Beim Öffnen eines Repositorys laufen die Programme, die seine Git-Einstellungen nennen (Hooks, Filter, ein fsmonitor). So funktioniert git auch im Terminal. Behandle ein unbekanntes Repository wie eine unbekannte App.</p>' },
       verify: { title: 'Download prüfen', html: '<p>Lade GitLoom nur von dieser Website oder <a href="https://github.com/Jarvis219/gitloom-site/releases">ihren GitHub-Releases</a>. Nachdem du es in „Programme“ kopiert hast, prüft dieser Befehl, dass sich keine Datei der App seit dem Signieren geändert hat:</p>{command}<p>Er sollte <code>valid on disk</code> und <code>satisfies its Designated Requirement</code> ausgeben. GitLoom ist noch nicht notarisiert, daher bestätigt das, dass die App unverändert ist, nicht, wer sie signiert hat. Updates, die GitLoom selbst installiert, werden automatisch geprüft.</p>' },
-      report: { title: 'Sicherheitslücke melden', html: '<p>Bitte melde sie vertraulich, nicht in einem öffentlichen Issue. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Maschinenlesbarer Kontakt: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Sicherheitslücke melden', html: '<p>Bitte veröffentliche keine Details. <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">Eröffne ein Issue</a>, das nur sagt, dass du eine Sicherheitsmeldung hast – ohne Details –, und wir vereinbaren einen vertraulichen Weg für die Übermittlung.</p>' },
     },
   },
   press: {

@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'L’IA può sbagliare', html: '<p>I suggerimenti dell’IA possono essere sbagliati. Controllali prima di fare commit, push o di eseguirli.</p>' },
       warranty: { title: 'Nessuna garanzia', html: '<p>GitLoom è fornito “così com’è”, senza garanzie di alcun tipo, esplicite o implicite, inclusa l’idoneità a uno scopo particolare. Nei limiti consentiti dalla legge, il suo autore non è responsabile di perdite o danni derivanti dal suo uso.</p>' },
       'open-source': { title: 'Componenti open source', html: '<p>GitLoom include questi componenti open source, ciascuno con la propria licenza:</p>{list}' },
-      law: { title: 'Legge applicabile', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'grammatiche tree-sitter per Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript e YAML',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'Impostazioni predefinite sicure', html: '<ul><li>I token di GitHub e GitLab e le chiavi IA sono conservati nel Portachiavi.</li><li>Il server MCP e l’IA sono disattivati di default. Gli strumenti collegati tramite MCP non possono fare force push, reset, scartare modifiche, eliminare o riscrivere la cronologia.</li><li>I link che non sono pagine web, e le cartelle aperte da un link, chiedono prima conferma.</li><li>Le impostazioni importate non possono reindirizzare i tuoi token o le tue chiavi verso un altro server.</li><li>Il Log Git conserva le righe di comando eseguite da GitLoom, mai il loro output, l’input o le credenziali.</li></ul>' },
       trust: { title: 'Apri solo repository di cui ti fidi', html: '<p>Aprire un repository esegue i programmi indicati nelle sue impostazioni Git (hook, filtri, un fsmonitor). È così che funziona git anche nel terminale. Tratta un repository sconosciuto come un’app sconosciuta.</p>' },
       verify: { title: 'Verifica il download', html: '<p>Scarica GitLoom solo da questo sito o dalle <a href="https://github.com/Jarvis219/gitloom-site/releases">sue release su GitHub</a>. Dopo averlo copiato in Applicazioni, questo comando verifica che nessun file dell’app sia cambiato dalla firma:</p>{command}<p>Dovrebbe stampare <code>valid on disk</code> e <code>satisfies its Designated Requirement</code>. GitLoom non è ancora autenticato da Apple, quindi questo conferma che l’app è integra, non chi l’ha firmata. Gli aggiornamenti installati da GitLoom stesso vengono verificati automaticamente.</p>' },
-      report: { title: 'Segnala una vulnerabilità', html: '<p>Segnalala in privato, non in una issue pubblica. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Contatto leggibile dalle macchine: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Segnala una vulnerabilità', html: '<p>Non pubblicare dettagli. <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">Apri una issue</a> che dica solo che hai una segnalazione di sicurezza, senza dettagli, e concorderemo un canale privato per inviarla.</p>' },
     },
   },
   press: {

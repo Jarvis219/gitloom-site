@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'AI có thể sai', html: '<p>Gợi ý của AI có thể sai. Hãy kiểm tra trước khi commit, push hay chạy chúng.</p>' },
       warranty: { title: 'Không bảo đảm', html: '<p>GitLoom được cung cấp “nguyên trạng”, không kèm bất kỳ bảo đảm nào, dù rõ ràng hay ngụ ý, kể cả sự phù hợp cho một mục đích cụ thể. Trong phạm vi pháp luật cho phép, tác giả không chịu trách nhiệm cho bất kỳ mất mát hay thiệt hại nào phát sinh từ việc sử dụng nó.</p>' },
       'open-source': { title: 'Ghi nhận mã nguồn mở', html: '<p>GitLoom có dùng các thành phần mã nguồn mở sau, mỗi thành phần theo giấy phép riêng:</p>{list}' },
-      law: { title: 'Luật áp dụng', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'grammar tree-sitter cho Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript và YAML',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: 'Mặc định an toàn', html: '<ul><li>Token GitHub, GitLab và key AI được lưu trong Chuỗi khoá.</li><li>MCP server và AI tắt theo mặc định. Công cụ kết nối qua MCP không thể force-push, reset, huỷ thay đổi, xoá hay viết lại lịch sử.</li><li>Liên kết không phải trang web, và thư mục được mở từ liên kết, đều hỏi trước.</li><li>Cài đặt được nhập vào không thể chuyển hướng token hay key của bạn sang máy chủ khác.</li><li>Git Log chỉ giữ các dòng lệnh GitLoom đã chạy, không bao giờ giữ đầu ra, đầu vào hay thông tin đăng nhập.</li></ul>' },
       trust: { title: 'Chỉ mở những repository bạn tin tưởng', html: '<p>Mở một repository sẽ chạy các chương trình mà cài đặt Git của nó chỉ định (hook, filter, fsmonitor). Git trong terminal cũng hoạt động như vậy. Hãy đối xử với một repository lạ như với một app lạ.</p>' },
       verify: { title: 'Kiểm tra bản tải về', html: '<p>Chỉ tải GitLoom từ website này hoặc <a href="https://github.com/Jarvis219/gitloom-site/releases">các bản phát hành trên GitHub</a>. Sau khi đã sao chép vào Applications, lệnh sau kiểm tra rằng không file nào trong app bị thay đổi kể từ khi được ký:</p>{command}<p>Kết quả phải có <code>valid on disk</code> và <code>satisfies its Designated Requirement</code>. GitLoom chưa được notarize, nên lệnh này xác nhận app còn nguyên vẹn, chứ không xác nhận ai đã ký nó. Các bản cập nhật do chính GitLoom cài được kiểm tra tự động.</p>' },
-      report: { title: 'Báo cáo lỗ hổng', html: '<p>Vui lòng báo cáo riêng tư, không qua issue công khai. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Thông tin liên hệ cho máy đọc: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: 'Báo cáo lỗ hổng', html: '<p>Vui lòng không đăng chi tiết công khai. Hãy <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">mở một issue</a> chỉ ghi rằng bạn có một báo cáo bảo mật, không kèm chi tiết, rồi hai bên sẽ thống nhất một kênh riêng để gửi.</p>' },
     },
   },
   press: {

@@ -173,7 +173,6 @@ const copy: PagesCopy = {
       ai: { title: 'AI는 틀릴 수 있습니다', html: '<p>AI의 제안은 틀릴 수 있습니다. 커밋, 푸시, 실행하기 전에 확인하세요.</p>' },
       warranty: { title: '보증 없음', html: '<p>GitLoom은 특정 목적에의 적합성을 포함하여 명시적이든 묵시적이든 어떠한 보증도 없이 “있는 그대로” 제공됩니다. 법이 허용하는 범위에서 제작자는 사용으로 인해 발생하는 어떠한 손실이나 손해에도 책임을 지지 않습니다.</p>' },
       'open-source': { title: '오픈 소스 고지', html: '<p>GitLoom에는 다음 오픈 소스 구성 요소가 포함되어 있으며, 각각 고유한 라이선스를 따릅니다:</p>{list}' },
-      law: { title: '준거법', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
     },
     grammars: 'Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript, YAML용 tree-sitter 문법',
   },
@@ -188,7 +187,7 @@ const copy: PagesCopy = {
       defaults: { title: '안전한 기본값', html: '<ul><li>GitHub와 GitLab 토큰, AI 키는 키체인에 저장됩니다.</li><li>MCP 서버와 AI는 기본적으로 꺼져 있습니다. MCP로 연결된 도구는 강제 푸시, 재설정, 버리기, 삭제, 기록 다시 쓰기를 할 수 없습니다.</li><li>웹 페이지가 아닌 링크와 링크로 연 폴더는 먼저 묻습니다.</li><li>가져온 설정은 토큰이나 키를 다른 서버로 돌릴 수 없습니다.</li><li>Git 로그에는 GitLoom이 실행한 명령줄만 남으며, 출력, 입력, 자격 증명은 절대 남지 않습니다.</li></ul>' },
       trust: { title: '신뢰하는 저장소만 여세요', html: '<p>저장소를 열면 해당 Git 설정에 지정된 프로그램(훅, 필터, fsmonitor)이 실행됩니다. 터미널에서 git을 쓸 때도 마찬가지입니다. 알 수 없는 저장소는 알 수 없는 앱처럼 다루세요.</p>' },
       verify: { title: '다운로드 검증', html: '<p>GitLoom은 이 웹사이트나 <a href="https://github.com/Jarvis219/gitloom-site/releases">GitHub 릴리스</a>에서만 다운로드하세요. 응용 프로그램으로 복사한 뒤, 다음 명령으로 서명 이후 앱 안의 파일이 하나도 바뀌지 않았는지 확인할 수 있습니다:</p>{command}<p><code>valid on disk</code>와 <code>satisfies its Designated Requirement</code>가 출력되어야 합니다. GitLoom은 아직 공증되지 않았으므로, 이 명령은 누가 서명했는지가 아니라 앱이 손상되지 않았음을 확인합니다. GitLoom이 직접 설치하는 업데이트는 자동으로 검사됩니다.</p>' },
-      report: { title: '취약점 신고', html: '<p>공개 이슈가 아니라 비공개로 신고해 주세요. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>기계 판독용 연락처: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
+      report: { title: '취약점 신고', html: '<p>자세한 내용은 공개적으로 올리지 마세요. 보안 신고가 있다는 사실만 적어 <a href="https://github.com/Jarvis219/gitloom-site/issues/new?title=Security%20report">이슈를 열어</a> 주세요(세부 내용 없이). 비공개로 보낼 방법을 함께 정하겠습니다.</p>' },
     },
   },
   press: {
