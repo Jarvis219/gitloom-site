@@ -13,6 +13,7 @@ const w = chromeWords(locale.code);
 const home = (l: Locale) => (l.path ? `/${l.path}/` : '/');
 const features = current === 'home' ? '#features' : `${home(locale)}#features`;
 const here = (k: string) => (current === k ? 'page' : undefined);
+const dmg = 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg';
 ---
 <a class="btn btn-p skip" href="#main">{t.skip}</a>
 <header class="nav" data-nav><div class="wrap">
@@ -20,7 +21,9 @@ const here = (k: string) => (current === k ? 'page' : undefined);
   <nav aria-label="Main">
     <a class="hide-m" href={features}>{t.nav.features}</a>
     <a class="hide-m" href={lp(locale, '/docs/')} aria-current={here('docs')}>{w.docs}</a>
-    <a class="btn btn-p btn-c" href={lp(locale, '/download/')} aria-current={here('download')}>{t.nav.download}</a>
+    <!-- Downloads the DMG straight away (feedback 2026-11-18): going to /download/ looked like a dead
+         button on that page. The Download page stays in the footer, the docs and the hero links. -->
+    <a class="btn btn-p btn-c" href={dmg}>{t.nav.download}</a>
     <a class="hide-m" href={lp(locale, '/support/')} aria-current={here('support')}>{t.nav.support}</a>
     <details class="lang">
       <summary aria-label={`${t.language}: ${locale.name}`}>
