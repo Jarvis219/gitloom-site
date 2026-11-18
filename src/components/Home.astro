@@ -31,7 +31,12 @@ const crops: (string | null)[] = [
 ];
 const chapterClass = ['cream', 'deep flip', 'cream', 'band flip', 'cream'];
 ---
-<Base locale={locale} title={t.title} description={t.description}>
+<Base locale={locale} title={t.title} description={t.description} imageAlt={t.heroAlt}
+  features={[...t.chapters.flatMap((c) => c.facts.filter((f) => !f.includes('<'))), ...t.gh.facts]}>
+<Fragment slot="head">
+  <link rel="preload" as="image" href="/shots/graph-light.png" media="(prefers-color-scheme: light)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/shots/graph-dark.png" media="(prefers-color-scheme: dark)" fetchpriority="high" />
+</Fragment>
 <div class="gl">
 <a class="btn btn-p skip" href="#main">{t.skip}</a>
 <header class="nav" data-nav><div class="wrap">
@@ -77,7 +82,7 @@ const chapterClass = ['cream', 'deep flip', 'cream', 'band flip', 'cream'];
 
 <section class="proof band" aria-label={t.proofLabel}><div class="wrap">
   <div class="figs">
-    {t.figs.map(([n, label], i) => <div class="fig reveal" style={`--d:${i * 80}ms`}><span class="num" data-count={n}>{n}</span><p>{label}</p></div>)}
+    {t.figs.map(([n, label], i) => <div class="fig reveal" style={`--d:${i * 80}ms`}><span class="num" dir="ltr" data-count={n}>{n}</span><p>{label}</p></div>)}
   </div>
 </div></section>
 

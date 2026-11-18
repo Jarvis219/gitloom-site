@@ -5,24 +5,51 @@ interface Props {
   locale: Locale;
   title: string;
   description: string;
+  /** Short feature names for the structured data (featureList). */
+  features?: string[];
+  /** Localized description of the share image. */
+  imageAlt?: string;
 }
-const { locale, title, description } = Astro.props;
+const { locale, title, description, features = [], imageAlt = 'GitLoom commit graph on macOS' } = Astro.props;
 const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
 const href = (l: Locale) => new URL(l.path ? `/${l.path}/` : '/', site).href;
 const canonical = href(locale);
+const root = href(locales[0]);
 const ogImage = new URL('/og.jpg', site).href;
+const shot = (name: string) => new URL(`/shots/${name}-light.png`, site).href;
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'GitLoom',
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'macOS 14 or later',
-  inLanguage: locale.hreflang,
-  description,
-  url: canonical,
-  image: ogImage,
-  downloadUrl: 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${root}#website`,
+      name: 'GitLoom',
+      url: root,
+      inLanguage: locales.map((l) => l.hreflang),
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${root}#app`,
+      name: 'GitLoom',
+      applicationCategory: 'DeveloperApplication',
+      applicationSubCategory: 'Git client',
+      operatingSystem: 'macOS 14 or later',
+      softwareRequirements: 'macOS 14 Sonoma or later, Apple silicon',
+      fileSize: '42MB',
+      inLanguage: locale.hreflang,
+      availableLanguage: locales.map((l) => l.hreflang),
+      description,
+      url: canonical,
+      image: ogImage,
+      screenshot: ['graph', 'diff', 'conflict', 'actions'].map(shot),
+      ...(features.length ? { featureList: features } : {}),
+      downloadUrl: 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg',
+      releaseNotes: 'https://github.com/Jarvis219/gitloom-site/releases',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      isPartOf: { '@id': `${root}#website` },
+    },
+  ],
 };
 ---
 <!doctype html>
@@ -32,6 +59,7 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href={canonical} />
     {locales.map((l) => <link rel="alternate" hreflang={l.hreflang} href={href(l)} />)}
     <link rel="alternate" hreflang="x-default" href={href(locales[0])} />
@@ -49,12 +77,15 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1256" />
-    <meta property="og:image:height" content="795" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <slot name="head" />
     <style is:global>

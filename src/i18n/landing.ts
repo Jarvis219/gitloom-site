@@ -93,5 +93,62 @@ const en: LandingCopy = {
   language: 'Language',
 };
 
-export const landing: Record<string, LandingCopy> = { en };
-export const landingCopy = (code: string): LandingCopy => landing[code] ?? en;
+/** Compact form for translations: arrays in a fixed order; numbers, ids and code stay from English. */
+export interface Compact {
+  title: string; description: string; skip: string; language: string; meta: string;
+  nav: [string, string, string, string, string];                       // features, install, download, support, menu
+  hero: [string, string, string, string, string, string, string];      // eyebrow, h1, lead, download, seeIt, alt, caption
+  heroMenu: [string, string, string];
+  proof: [string, string, string, string];                             // label, three figure captions
+  chapters: [string, string, string, string, string, string, string, string][];   // eyebrow, title, lead, 3 facts, caption, alt
+  gh: [string, string, string, string, string, string, string, string];
+  power: [string, string, [string, string][]];
+  langs: [string, string, string, string, string];                     // eyebrow, title, lead, caption, alt
+  install: string[];   // eyebrow, title, s1 title, s1 text, s2 title, s2 text, s3 title, s3 text, apps, dialog title, dialog text, done, pane, pane text, open anyway, honest, terminal, copy, copied
+  cta: [string, string, string];
+  footer: [string, string, string, string, string, string, string, string, string, string, string, string, string, string, string];
+}
+
+export function build(c: Compact): LandingCopy {
+  const i = c.install;
+  return {
+    title: c.title, description: c.description, skip: c.skip, language: c.language, meta: c.meta,
+    nav: { features: c.nav[0], install: c.nav[1], download: c.nav[2], support: c.nav[3], menu: c.nav[4] },
+    eyebrow: c.hero[0], h1: c.hero[1], lead: c.hero[2], download: c.hero[3], seeIt: c.hero[4], heroAlt: c.hero[5], heroCaption: c.hero[6],
+    heroMenu: c.heroMenu, proofLabel: c.proof[0],
+    figs: en.figs.map(([n], k) => [n, c.proof[k + 1]] as [string, string]),
+    chapters: en.chapters.map((e, k) => {
+      const x = c.chapters[k];
+      return { id: e.id, eyebrow: x[0], title: x[1], lead: x[2], facts: [x[3], x[4], x[5]], caption: x[6], alt: x[7] };
+    }),
+    gh: { eyebrow: c.gh[0], title: c.gh[1], lead: c.gh[2], facts: [c.gh[3], c.gh[4], c.gh[5]], caption: c.gh[6], alt: c.gh[7] },
+    power: { eyebrow: c.power[0], title: c.power[1], items: c.power[2] },
+    langs: { eyebrow: c.langs[0], title: c.langs[1], lead: c.langs[2], caption: c.langs[3], alt: c.langs[4] },
+    install: {
+      eyebrow: i[0], title: i[1],
+      steps: [{ n: 'STEP 01', title: i[2], text: i[3] }, { n: 'STEP 02', title: i[4], text: i[5] }, { n: 'STEP 03', title: i[6], text: i[7] }],
+      art: { dmg: 'GitLoom.dmg', apps: i[8], dialogTitle: i[9], dialogText: i[10], done: i[11], pane: i[12], paneText: i[13], openAnyway: i[14] },
+      honest: i[15], terminal: i[16], copy: i[17], copied: i[18],
+    },
+    cta: { title: c.cta[0], lead: c.cta[1], guide: c.cta[2] },
+    footer: { product: c.footer[0], help: c.footer[1], trust: c.footer[2], project: c.footer[3], features: c.footer[4], download: c.footer[5],
+      releases: c.footer[6], install: c.footer[7], support: c.footer[8], noAccount: c.footer[9], noTelemetry: c.footer[10], signed: c.footer[11],
+      bug: c.footer[12], feature: c.footer[13], tagline: c.footer[14] },
+  };
+}
+
+import { vi, ja, zhHans, zhHant, ko } from './landing-a';
+import { de, fr, es, it, ptBR } from './landing-b';
+import { ru, uk, pl, tr, ar } from './landing-c';
+
+export const landing: Record<string, LandingCopy> = {
+  en, vi: build(vi), ja: build(ja), 'zh-Hans': build(zhHans), 'zh-Hant': build(zhHant), ko: build(ko),
+  de: build(de), fr: build(fr), es: build(es), it: build(it), 'pt-BR': build(ptBR),
+  ru: build(ru), uk: build(uk), pl: build(pl), tr: build(tr), ar: build(ar),
+};
+
+export function landingCopy(code: string): LandingCopy {
+  return landing[code] ?? en;
+}
+
+export { en };

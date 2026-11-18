@@ -16,7 +16,7 @@ a{color:var(--acc)}a:hover{color:var(--fg)}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
 .deep .eyebrow{color:var(--acc2)}
 .band .eyebrow{color:var(--onband)}
-h1,h2,h3{font-family:'Chakra Petch',Inter,sans-serif;font-weight:600;margin:0;letter-spacing:-0.01em;text-wrap:balance}
+h1,h2,h3{font-family:'Chakra Petch',Inter,sans-serif;font-weight:600;margin:0;letter-spacing:-0.01em;text-wrap:balance;overflow-wrap:break-word;hyphens:auto;hyphenate-limit-chars:12 5 5}
 h1{font-size:72px;line-height:1.02}
 h2{font-size:56px;line-height:1.04}
 h2.sm{font-size:32px;line-height:1.15}
@@ -38,7 +38,7 @@ h3{font-size:24px;line-height:1.2}
 .band .btn-s:hover{background:var(--onband);color:var(--band)}
 .btn:focus-visible,.nav a:focus-visible,summary:focus-visible,.copybtn:focus-visible,.lnk:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .band .btn:focus-visible{outline-color:#16161A}
-.skip{position:absolute;left:-9999px;top:8px;z-index:20}.skip:focus{left:16px}
+.skip{position:absolute;inset-inline-start:16px;top:8px;z-index:20;clip-path:inset(50%);opacity:0;pointer-events:none}.skip:focus{clip-path:none;opacity:1;pointer-events:auto}
 .btn-c{min-height:36px;padding:6px 14px;font-size:14px}
 .meta{font-size:14px;color:var(--mut);margin:20px 0 0;font-family:'JetBrains Mono',monospace;letter-spacing:.02em}
 .band .meta{color:var(--onband)}
@@ -171,6 +171,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.92em}
  .hero{padding:48px 0 72px}
  .hero .wrap,.ch .wrap,.langs .wrap,.gh-head,.power,.honest{display:flex;flex-direction:column;align-items:stretch;gap:40px}
  .hero .pic{width:150%;margin-left:0}
+ .hero .pic figcaption{max-width:66.6%}
  .row .btn{width:100%}
  .figs{grid-template-columns:1fr;gap:32px}
  .num{font-size:48px}
