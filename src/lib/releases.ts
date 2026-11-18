@@ -35,6 +35,9 @@ async function load(): Promise<Release[]> {
 /** Release notes are the CHANGELOG section: bullet lists, optionally under ### New / Improved / Fixed. */
 export function parseNotes(md: string) {
   const order = ['New', 'Improved', 'Fixed'];
+  // release.sh publishes the CHANGELOG section as HTML (<ul><li>…</li></ul>): read its items as text.
+  const lis = [...md.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => decodeEntities(m[1].replace(/<[^>]+>/g, '').trim())).filter(Boolean);
+  if (lis.length) return [{ title: '', items: lis }];
   const sections: { title: string; items: string[] }[] = [];
   let cur = { title: '', items: [] as string[] };
   for (const raw of md.split(/\r?\n/)) {
@@ -50,6 +53,8 @@ export function parseNotes(md: string) {
   return known.length ? known : sections.map((s) => ({ ...s, title: order.includes(s.title) ? s.title : '' }));
 }
 
+const decodeEntities = (s: string) =>
+  s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 /** The little Markdown release notes use: `code`, **bold**, *italic*, [links](https://…). */
 export const inline = (s: string) => esc(s)
