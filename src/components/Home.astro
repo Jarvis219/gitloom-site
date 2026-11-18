@@ -1,167 +1,244 @@
 ---
 import Base from '../layouts/Base.astro';
 import { locales, type Locale } from '../i18n/locales';
-import { strings, linkText } from '../i18n/strings';
+import { landingCopy } from '../i18n/landing';
+import '@fontsource/chakra-petch/500.css';
+import '@fontsource/chakra-petch/600.css';
+import '@fontsource/chakra-petch/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '../styles/landing.css';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const t = strings[locale.code];
-const links = linkText[locale.code];
-const download = 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg';
+const t = landingCopy(locale.code);
+const dmg = 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg';
 const releases = 'https://github.com/Jarvis219/gitloom-site/releases';
+const issues = 'https://github.com/Jarvis219/gitloom-site/issues';
 const home = (l: Locale) => (l.path ? `/${l.path}/` : '/');
-const fill = (html: string) => html
-  .replace('{download}', `<a href="${download}">${links.download}</a>`)
-  .replace('{releases}', `<a href="${releases}">${links.releases}</a>`);
-const faqLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  inLanguage: locale.hreflang,
-  mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
-};
+// Real screenshots (light/dark) and the crops the design uses for each chapter.
+const shots = ['graph', 'conflict', 'diff', 'graph', 'graph'];
+const crops: (string | null)[] = [
+  'aspect-ratio: 664 / 520|width: 189.16%; margin-left: -34.94%; margin-top: -17.02%',
+  null,
+  null,
+  'aspect-ratio: 668 / 230|width: 188.02%; margin-left: -34.73%; margin-top: -7.78%',
+  'aspect-ratio: 496 / 300|width: 253.23%; margin-left: -153.23%; margin-top: 0%',
+];
+const chapterClass = ['cream', 'deep flip', 'cream', 'band flip', 'cream'];
 ---
 <Base locale={locale} title={t.title} description={t.description}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
-  <header class="top">
-    <div class="wrap bar">
-      <a class="brand" href={home(locale)}><img src="/favicon.png" width="28" height="28" alt="" />GitLoom</a>
-      <nav>
-        <a class="hide-sm" href="#features">{t.nav.features}</a>
-        <a class="hide-sm" href="#install">{t.nav.install}</a>
-        <a class="hide-sm" href="#faq">{t.nav.faq}</a>
-        <details class="lang">
-          <summary aria-label={t.language}>
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" /></svg>
-            {locale.name}
-          </summary>
-          <ul>
-            {locales.map((l) => (
-              <li><a href={home(l)} hreflang={l.hreflang} lang={l.hreflang} aria-current={l === locale ? 'page' : undefined}>{l.name}</a></li>
-            ))}
-          </ul>
-        </details>
-      </nav>
+<div class="gl">
+<a class="btn btn-p skip" href="#main">{t.skip}</a>
+<header class="nav" data-nav><div class="wrap">
+  <a class="logo" href={home(locale)} aria-label="GitLoom"><img src="/favicon.png" width="28" height="28" alt="" />GitLoom</a>
+  <nav aria-label="Main">
+    <a class="hide-m" href="#features">{t.nav.features}</a>
+    <a class="hide-m" href="#in">{t.nav.install}</a>
+    <a class="btn btn-p btn-c" href={dmg}>{t.nav.download}</a>
+    <a class="hide-m" href={issues}>{t.nav.support}</a>
+    <details class="lang">
+      <summary aria-label={`${t.language}: ${locale.name}`}>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6.3"></circle><path d="M1.8 8h12.4M8 1.7c1.8 1.9 2.6 4 2.6 6.3S9.8 12.4 8 14.3M8 1.7C6.2 3.6 5.4 5.7 5.4 8s.8 4.4 2.6 6.3"></path></svg>
+        <span>{locale.name}</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4.5l3 3 3-3"></path></svg>
+      </summary>
+      <ul>{locales.map((l) => <li><a href={home(l)} lang={l.hreflang} dir={l.dir} aria-current={l === locale ? 'true' : undefined}>{l.name}{l === locale && <span aria-hidden="true">✓</span>}</a></li>)}</ul>
+    </details>
+    <button class="burger" type="button" aria-label={t.nav.menu} aria-expanded="false" data-burger><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 5.5h12M3 12.5h12"></path></svg></button>
+  </nav>
+</div></header>
+
+<main id="main">
+<section class="hero cream" aria-labelledby="h1"><div class="wrap">
+  <div class="copy reveal">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1 id="h1">{t.h1}</h1>
+    <p class="lead">{t.lead}</p>
+    <div class="row" style="margin-top: 36px">
+      <a class="btn btn-p" href={dmg}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7.5l4 4 4-4M2.5 14h11"></path></svg>{t.download}</a>
+      <a class="btn btn-s" href="#drag">{t.seeIt}</a>
     </div>
-  </header>
+    <p class="meta">{t.meta}</p>
+  </div>
+  <div class="pic reveal" data-parallax>
+    <figure class="win"><div class="shot">
+      <picture><source media="(prefers-color-scheme: dark)" srcset="/shots/graph-dark.png" /><img src="/shots/graph-light.png" alt={t.heroAlt} width="1256" height="795" fetchpriority="high" /></picture>
+      <span class="ghost" aria-hidden="true">feature/sync-engine</span>
+      <div class="menu" aria-hidden="true"><div>{t.heroMenu[0]}</div><div class="on">{t.heroMenu[1]}</div><div class="sep"></div><div>{t.heroMenu[2]}</div></div>
+      <svg class="cursor" viewBox="0 0 18 22" aria-hidden="true"><path d="M1.5 1.5v16.2l4.3-4.1 2.9 6.6 2.9-1.3-2.9-6.5h6.1z" fill="#16161A" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+    </div><figcaption>{t.heroCaption}</figcaption></figure>
+  </div>
+</div></section>
 
-  <main>
-    <section class="hero wrap">
-      <img class="icon" src="/icon.png" width="112" height="112" alt={t.iconAlt} />
-      <h1>{t.heroTitle}</h1>
-      <p class="lead">{t.heroLead}</p>
-      <div class="cta">
-        <a class="button" href={download}>{t.download}</a>
-        <span class="note">{t.note}</span>
-      </div>
-      <figure class="shot">
-        <img src="/screenshot.png" width="1256" height="795" alt={t.shotAlt} />
-      </figure>
-    </section>
+<section class="proof band" aria-label={t.proofLabel}><div class="wrap">
+  <div class="figs">
+    {t.figs.map(([n, label], i) => <div class="fig reveal" style={`--d:${i * 80}ms`}><span class="num" data-count={n}>{n}</span><p>{label}</p></div>)}
+  </div>
+</div></section>
 
-    <section id="features" class="wrap">
-      <h2>{t.featuresHeading}</h2>
-      <div class="grid">
-        {t.features.map(([title, body]) => (
-          <article class="card">
-            <h3>{title}</h3>
-            <p>{body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
+{t.chapters.map((c, i) => {
+  const crop = crops[i]?.split('|');
+  const shot = shots[i];
+  return (
+  <section class={`sec ch ${chapterClass[i]}`} id={c.id} aria-labelledby={`c${i + 1}`}><div class="wrap">
+    <div class="txt reveal">
+      <p class="eyebrow">{c.eyebrow}</p><h2 id={`c${i + 1}`}>{c.title}</h2><p class="lead">{c.lead}</p>
+      <ul class="facts">{c.facts.map((f, j) => <li class="reveal" style={`--d:${120 + j * 70}ms`}><span>{String(j + 1).padStart(2, '0')}</span><span class="f" set:html={f} /></li>)}</ul>
+    </div>
+    <div class="pic reveal" data-parallax><figure class="win"><div class="shot">
+      {crop ? (
+        <div class="crop" style={crop[0]}><picture><source media="(prefers-color-scheme: dark)" srcset={`/shots/${shot}-dark.png`} /><img src={`/shots/${shot}-light.png`} alt={c.alt} style={crop[1]} loading="lazy" /></picture></div>
+      ) : (
+        <picture><source media="(prefers-color-scheme: dark)" srcset={`/shots/${shot}-dark.png`} /><img src={`/shots/${shot}-light.png`} alt={c.alt} width="1256" height="795" loading="lazy" /></picture>
+      )}
+    </div><figcaption>{c.caption}</figcaption></figure></div>
+  </div></section>
+  );
+})}
 
-    <section id="install" class="wrap">
-      <h2>{t.installHeading}</h2>
-      <ol class="steps">
-        {t.steps.map((step) => <li set:html={fill(step)} />)}
-      </ol>
-      <p class="muted" set:html={fill(t.more)} />
-    </section>
+<section class="sec deep" aria-labelledby="gh"><div class="wrap">
+  <div class="gh-head">
+    <div class="a reveal"><p class="eyebrow">{t.gh.eyebrow}</p><h2 id="gh">{t.gh.title}</h2><p class="lead">{t.gh.lead}</p></div>
+    <div class="b reveal" style="--d:100ms"><ul class="facts">{t.gh.facts.map((f, j) => <li><span>{String(j + 1).padStart(2, '0')}</span>{f}</li>)}</ul></div>
+  </div>
+  <figure class="win reveal" data-parallax><div class="shot"><picture><source media="(prefers-color-scheme: dark)" srcset="/shots/actions-dark.png" /><img src="/shots/actions-light.png" alt={t.gh.alt} width="1256" height="795" loading="lazy" /></picture></div><figcaption>{t.gh.caption}</figcaption></figure>
+</div></section>
 
-    <section id="faq" class="wrap">
-      <h2>{t.faqHeading}</h2>
-      {t.faq.map(([q, a]) => (
-        <details class="qa">
-          <summary>{q}</summary>
-          <p>{a}</p>
-        </details>
-      ))}
-    </section>
-  </main>
+<section class="sec cream" aria-labelledby="pw"><div class="wrap power">
+  <div class="h reveal"><p class="eyebrow">{t.power.eyebrow}</p><h2 class="sm" id="pw">{t.power.title}</h2></div>
+  <dl>{t.power.items.map(([k, v], i) => <div class="reveal" style={`--d:${(i % 2) * 60 + Math.floor(i / 2) * 50}ms`}><dt set:html={k} /><dd>{v}</dd></div>)}</dl>
+</div></section>
 
-  <footer class="wrap foot">
-    <span>GitLoom</span>
-    <a href={releases}>{t.nav.releases}</a>
-  </footer>
+<section class="sec band langs" aria-labelledby="lg"><div class="wrap">
+  <div class="txt reveal"><p class="eyebrow">{t.langs.eyebrow}</p><h2 id="lg">{t.langs.title}</h2>
+    <p class="lead">{t.langs.lead}</p>
+    <ul class="names">{locales.map((l, i) => <li lang={l.hreflang} dir={l.dir} class="reveal" style={`--d:${i * 30}ms`}>{l.name}</li>)}</ul></div>
+  <div class="pic reveal" data-parallax><figure class="win"><div class="shot split" data-split>
+    <img src="/shots/graph-light.png" alt={t.langs.alt} width="1256" height="795" loading="lazy" />
+    <div class="dk" aria-hidden="true"><img src="/shots/graph-dark.png" alt="" loading="lazy" /></div><span class="seam" aria-hidden="true"></span>
+  </div><figcaption>{t.langs.caption}</figcaption></figure></div>
+</div></section>
+
+<section class="sec cream" id="in" aria-labelledby="inh"><div class="wrap">
+  <div class="reveal"><p class="eyebrow">{t.install.eyebrow}</p><h2 id="inh">{t.install.title}</h2></div>
+  <ol class="steps">
+    <li class="reveal" style="--d:0ms"><div class="cap" aria-hidden="true"><div class="row2"><span class="tile"><img src="/icon.png" alt="" />{t.install.art.dmg}</span><span class="arrow">→</span><span class="tile"><span class="folder"></span>{t.install.art.apps}</span></div></div>
+      <span class="stepn">{t.install.steps[0].n}</span><h3>{t.install.steps[0].title}</h3><p>{t.install.steps[0].text}</p></li>
+    <li class="reveal" style="--d:100ms"><div class="cap" aria-hidden="true"><div class="dlg"><b>{t.install.art.dialogTitle}</b><span>{t.install.art.dialogText}</span><span class="pill">{t.install.art.done}</span></div></div>
+      <span class="stepn">{t.install.steps[1].n}</span><h3>{t.install.steps[1].title}</h3><p>{t.install.steps[1].text}</p></li>
+    <li class="reveal" style="--d:200ms"><div class="cap" aria-hidden="true"><div class="dlg"><b>{t.install.art.pane}</b><span>{t.install.art.paneText}</span><span class="pill">{t.install.art.openAnyway}</span></div></div>
+      <span class="stepn">{t.install.steps[2].n}</span><h3>{t.install.steps[2].title}</h3><p>{t.install.steps[2].text}</p></li>
+  </ol>
+  <div class="honest reveal">
+    <div class="a"><p style="margin: 0; font-size: 16px">{t.install.honest}</p></div>
+    <div class="b"><p class="small" style="margin: 0 0 10px">{t.install.terminal}</p>
+      <div class="code"><pre><code data-cmd>curl -LO {dmg}</code></pre><button class="copybtn" type="button" data-copy data-done={t.install.copied}>{t.install.copy}</button></div>
+      <p class="small" role="status" aria-live="polite" style="margin: 8px 0 0; min-height: 22px" data-status></p></div>
+  </div>
+</div></section>
+
+<section class="sec band cta" aria-labelledby="ct"><div class="wrap">
+  <div class="reveal"><span class="appicon"><img src="/icon.png" alt="" width="112" height="112" /></span><h2 id="ct">{t.cta.title}</h2><p class="lead">{t.cta.lead}</p></div>
+  <div class="reveal" style="--d:120ms"><div class="row"><a class="btn btn-p" href={dmg}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7.5l4 4 4-4M2.5 14h11"></path></svg>{t.download}</a><a class="btn btn-s" href="#in">{t.cta.guide}</a></div>
+    <p class="meta">{t.meta}</p></div>
+</div></section>
+</main>
+
+<footer class="foot deep"><div class="wrap">
+  <div class="cols">
+    <div><h3>{t.footer.product}</h3><ul><li><a href="#features">{t.footer.features}</a></li><li><a href={dmg}>{t.footer.download}</a></li><li><a href={releases}>{t.footer.releases}</a></li></ul></div>
+    <div><h3>{t.footer.help}</h3><ul><li><a href="#in">{t.footer.install}</a></li><li><a href={issues}>{t.footer.support}</a></li></ul></div>
+    <div><h3>{t.footer.trust}</h3><ul class="plain"><li>{t.footer.noAccount}</li><li>{t.footer.noTelemetry}</li><li>{t.footer.signed}</li></ul></div>
+    <div><h3>{t.footer.project}</h3><ul><li><a href={`${issues}/new`}>{t.footer.bug}</a></li><li><a href={`${issues}/new`}>{t.footer.feature}</a></li></ul></div>
+  </div>
+  <div class="fbar"><a class="logo" href={home(locale)}><img src="/favicon.png" width="28" height="28" alt="" />GitLoom</a><span class="small">{t.footer.tagline}</span></div>
+</div></footer>
+</div>
+
+<script>
+  // Progressive enhancements; the page reads fine without them.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Reveal on scroll, staggered by --d (content stays visible without JS: only .js hides it first).
+  document.documentElement.classList.add('js');
+  const items = document.querySelectorAll<HTMLElement>('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) items.forEach((el) => el.classList.add('in'));
+  else {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    items.forEach((el) => io.observe(el));
+  }
+  // Count-up of the proof figures, once.
+  if (!reduce) {
+    const run = (el: HTMLElement) => {
+      const text = el.dataset.count ?? '';
+      const m = text.match(/^([\d.]+)(.*)$/);
+      if (!m) return;
+      const end = parseFloat(m[1]), dec = (m[1].split('.')[1] ?? '').length, start = performance.now(), dur = 900;
+      const step = (now: number) => {
+        const p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = (end * e).toFixed(dec) + m[2];
+        if (p < 1) requestAnimationFrame(step); else el.textContent = text;
+      };
+      requestAnimationFrame(step);
+    };
+    const co = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { run(e.target as HTMLElement); co.unobserve(e.target); }
+    }), { threshold: 0.6 });
+    document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => co.observe(el));
+  }
+  // Subtle parallax on product shots (at most 24px) and a nav that tightens once scrolled.
+  const shots = [...document.querySelectorAll<HTMLElement>('[data-parallax]')];
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      nav?.classList.toggle('scrolled', scrollY > 8);
+      if (reduce) return;
+      const h = innerHeight;
+      for (const el of shots) {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > h) continue;
+        const k = (r.top + r.height / 2 - h / 2) / h;
+        el.style.setProperty('--py', `${(-k * 24).toFixed(1)}px`);
+      }
+    });
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  // Light/dark split: the seam follows the pointer.
+  const split = document.querySelector<HTMLElement>('[data-split]');
+  if (split) {
+    split.addEventListener('pointermove', (e) => {
+      const r = split.getBoundingClientRect();
+      split.style.setProperty('--cut', `${Math.min(95, Math.max(5, ((e.clientX - r.left) / r.width) * 100))}%`);
+    });
+    split.addEventListener('pointerleave', () => split.style.removeProperty('--cut'));
+  }
+  // Mobile menu.
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+  burger?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  // Copy the Terminal command.
+  const copy = document.querySelector<HTMLButtonElement>('[data-copy]');
+  copy?.addEventListener('click', async () => {
+    const cmd = document.querySelector('[data-cmd]')?.textContent ?? '';
+    try { await navigator.clipboard.writeText(cmd); } catch { return; }
+    const label = copy.textContent;
+    copy.textContent = copy.dataset.done ?? 'Copied';
+    const status = document.querySelector('[data-status]');
+    if (status) status.textContent = copy.dataset.done ?? '';
+    setTimeout(() => { copy.textContent = label; if (status) status.textContent = ''; }, 1600);
+  });
+</script>
 </Base>
-
-<style>
-  .top { position: sticky; top: 0; z-index: 2; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
-  .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--text); text-decoration: none; }
-  nav { display: flex; align-items: center; gap: 18px; font-size: 15px; }
-  nav > a { color: var(--muted); text-decoration: none; }
-  nav > a:hover { color: var(--text); }
-  .lang { position: relative; }
-  .lang summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; color: var(--muted); padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
-  .lang summary::-webkit-details-marker { display: none; }
-  .lang summary:hover, .lang[open] summary { color: var(--text); border-color: var(--slate); }
-  .lang ul { position: absolute; inset-inline-end: 0; top: calc(100% + 8px); margin: 0; padding: 6px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 16px 40px var(--shadow); max-height: 70vh; overflow: auto; min-width: 200px; }
-  .lang li a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--text); text-decoration: none; }
-  .lang li a:hover { background: var(--chip); }
-  .lang li a[aria-current='page'] { color: var(--navy); background: var(--amber); font-weight: 600; }
-
-  main { overflow-x: clip; }   /* the hero glow reaches past the edges */
-  .hero { position: relative; text-align: center; padding-top: 64px; isolation: isolate; }
-  .hero::before {
-    content: ''; position: absolute; z-index: -1; inset: -40px -10% auto; height: 620px; pointer-events: none;
-    background:
-      radial-gradient(40% 55% at 30% 30%, var(--glow-a), transparent 70%),
-      radial-gradient(35% 50% at 72% 25%, var(--glow-b), transparent 70%);
-    filter: blur(8px);
-  }
-  .icon { display: block; margin: 0 auto 14px; filter: drop-shadow(0 12px 24px var(--shadow)); }
-  h1 { font-size: clamp(36px, 6.4vw, 60px); line-height: 1.12; margin: 8px 0 16px; letter-spacing: -0.025em; }
-  .lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 660px; margin: 0 auto; }
-  .cta { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 30px 0 44px; }
-  .button {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--button); color: var(--button-text); text-decoration: none; font-weight: 700;
-    padding: 13px 28px; border-radius: 999px; font-size: 17px;
-    box-shadow: 0 10px 24px rgb(246 177 122 / 0.35), inset 0 -2px 0 rgb(45 50 80 / 0.12);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .button:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgb(246 177 122 / 0.45), inset 0 -2px 0 rgb(45 50 80 / 0.12); }
-  .button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid var(--slate); outline-offset: 3px; }
-  .note, .muted { color: var(--muted); font-size: 14px; }
-  .shot { margin: 0; padding: 10px; border-radius: 18px; background: linear-gradient(135deg, var(--slate), var(--indigo) 45%, var(--amber)); box-shadow: 0 30px 70px var(--shadow); }
-  .shot img { display: block; border-radius: 10px; }
-
-  section { padding: 44px 16px; }
-  h2 { font-size: clamp(25px, 3.6vw, 34px); margin: 24px 0 22px; letter-spacing: -0.015em; }
-  h2::after { content: ''; display: block; width: 44px; height: 4px; margin-top: 10px; border-radius: 4px; background: var(--amber); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 16px; }
-  .card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 18px; transition: border-color 0.15s ease, transform 0.15s ease; }
-  .card::before { content: ''; position: absolute; inset-block-start: 0; inset-inline: 20px; height: 3px; border-radius: 0 0 3px 3px; background: linear-gradient(90deg, var(--slate), var(--amber)); opacity: 0.85; }
-  .card:hover { border-color: var(--slate); transform: translateY(-2px); }
-  .card h3 { margin: 4px 0 6px; font-size: 17px; }
-  .card p { margin: 0; color: var(--muted); font-size: 15px; }
-
-  .steps { list-style: none; counter-reset: step; padding: 0; margin: 0; display: grid; gap: 12px; }
-  /* Not flex: <strong>/<a> inside a step would become separate flex items with gaps around them. */
-  .steps li { counter-increment: step; position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; padding-inline-start: 60px; min-height: 56px; }
-  .steps li::before { content: counter(step); position: absolute; inset-inline-start: 18px; top: 14px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--amber); color: var(--navy); font-weight: 700; font-size: 14px; }
-  .muted { margin-top: 16px; }
-
-  .qa { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 10px 0; }
-  .qa[open] { border-color: var(--slate); }
-  .qa summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
-  .qa summary::-webkit-details-marker { display: none; }
-  .qa summary::after { content: '+'; color: var(--amber); font-size: 20px; line-height: 1; font-weight: 700; }
-  .qa[open] summary::after { content: '−'; }
-  .qa p { margin: 10px 0 0; color: var(--muted); }
-
-  .foot { display: flex; justify-content: space-between; padding: 28px 16px 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
-  @media (max-width: 640px) { .hide-sm { display: none; } .shot { padding: 6px; border-radius: 14px; } }
-  @media (prefers-reduced-motion: reduce) { .button, .card { transition: none; } .button:hover, .card:hover { transform: none; } }
-</style>
