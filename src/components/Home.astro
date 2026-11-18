@@ -96,41 +96,72 @@ const faqLd = {
 </Base>
 
 <style>
-  .top { position: sticky; top: 0; z-index: 2; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .top { position: sticky; top: 0; z-index: 2; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
   .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
-  .brand { display: flex; align-items: center; gap: 8px; font-weight: 650; color: var(--text); text-decoration: none; }
+  .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--text); text-decoration: none; }
   nav { display: flex; align-items: center; gap: 18px; font-size: 15px; }
   nav > a { color: var(--muted); text-decoration: none; }
   nav > a:hover { color: var(--text); }
   .lang { position: relative; }
-  .lang summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; color: var(--muted); padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; white-space: nowrap; }
+  .lang summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; color: var(--muted); padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
   .lang summary::-webkit-details-marker { display: none; }
-  .lang[open] summary { color: var(--text); }
-  .lang ul { position: absolute; inset-inline-end: 0; top: calc(100% + 6px); margin: 0; padding: 6px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 30px rgb(0 0 0 / 0.18); max-height: 70vh; overflow: auto; min-width: 190px; }
-  .lang li a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--text); text-decoration: none; }
-  .lang li a:hover { background: var(--code); }
-  .lang li a[aria-current='page'] { color: var(--accent); font-weight: 600; }
-  .hero { text-align: center; padding-top: 56px; }
-  .icon { display: block; margin: 0 auto 12px; }
-  h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.15; margin: 8px 0 14px; letter-spacing: -0.02em; }
+  .lang summary:hover, .lang[open] summary { color: var(--text); border-color: var(--slate); }
+  .lang ul { position: absolute; inset-inline-end: 0; top: calc(100% + 8px); margin: 0; padding: 6px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 16px 40px var(--shadow); max-height: 70vh; overflow: auto; min-width: 200px; }
+  .lang li a { display: block; padding: 6px 10px; border-radius: 8px; color: var(--text); text-decoration: none; }
+  .lang li a:hover { background: var(--chip); }
+  .lang li a[aria-current='page'] { color: var(--navy); background: var(--amber); font-weight: 600; }
+
+  main { overflow-x: clip; }   /* the hero glow reaches past the edges */
+  .hero { position: relative; text-align: center; padding-top: 64px; isolation: isolate; }
+  .hero::before {
+    content: ''; position: absolute; z-index: -1; inset: -40px -10% auto; height: 620px; pointer-events: none;
+    background:
+      radial-gradient(40% 55% at 30% 30%, var(--glow-a), transparent 70%),
+      radial-gradient(35% 50% at 72% 25%, var(--glow-b), transparent 70%);
+    filter: blur(8px);
+  }
+  .icon { display: block; margin: 0 auto 14px; filter: drop-shadow(0 12px 24px var(--shadow)); }
+  h1 { font-size: clamp(36px, 6.4vw, 60px); line-height: 1.12; margin: 8px 0 16px; letter-spacing: -0.025em; }
   .lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 660px; margin: 0 auto; }
-  .cta { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 28px 0 40px; }
-  .button { background: var(--accent); color: var(--accent-text); text-decoration: none; font-weight: 600; padding: 12px 26px; border-radius: 10px; font-size: 17px; }
-  .button:hover { filter: brightness(1.08); }
+  .cta { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 30px 0 44px; }
+  .button {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--button); color: var(--button-text); text-decoration: none; font-weight: 700;
+    padding: 13px 28px; border-radius: 999px; font-size: 17px;
+    box-shadow: 0 10px 24px rgb(246 177 122 / 0.35), inset 0 -2px 0 rgb(45 50 80 / 0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .button:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgb(246 177 122 / 0.45), inset 0 -2px 0 rgb(45 50 80 / 0.12); }
+  .button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid var(--slate); outline-offset: 3px; }
   .note, .muted { color: var(--muted); font-size: 14px; }
-  .shot { margin: 0; }
-  .shot img { border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 24px 60px rgb(0 0 0 / 0.25); }
-  section { padding: 40px 16px; }
-  h2 { font-size: clamp(24px, 3.4vw, 32px); margin: 24px 0 20px; letter-spacing: -0.01em; }
+  .shot { margin: 0; padding: 10px; border-radius: 18px; background: linear-gradient(135deg, var(--slate), var(--indigo) 45%, var(--amber)); box-shadow: 0 30px 70px var(--shadow); }
+  .shot img { display: block; border-radius: 10px; }
+
+  section { padding: 44px 16px; }
+  h2 { font-size: clamp(25px, 3.6vw, 34px); margin: 24px 0 22px; letter-spacing: -0.015em; }
+  h2::after { content: ''; display: block; width: 44px; height: 4px; margin-top: 10px; border-radius: 4px; background: var(--amber); }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 16px; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
-  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 18px; transition: border-color 0.15s ease, transform 0.15s ease; }
+  .card::before { content: ''; position: absolute; inset-block-start: 0; inset-inline: 20px; height: 3px; border-radius: 0 0 3px 3px; background: linear-gradient(90deg, var(--slate), var(--amber)); opacity: 0.85; }
+  .card:hover { border-color: var(--slate); transform: translateY(-2px); }
+  .card h3 { margin: 4px 0 6px; font-size: 17px; }
   .card p { margin: 0; color: var(--muted); font-size: 15px; }
-  .steps { padding-inline-start: 22px; }
-  .steps li { margin: 8px 0; }
-  .qa { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 10px 0; }
-  .qa summary { cursor: pointer; font-weight: 600; }
-  .qa p { margin: 8px 0 0; color: var(--muted); }
+
+  .steps { list-style: none; counter-reset: step; padding: 0; margin: 0; display: grid; gap: 12px; }
+  /* Not flex: <strong>/<a> inside a step would become separate flex items with gaps around them. */
+  .steps li { counter-increment: step; position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; padding-inline-start: 60px; min-height: 56px; }
+  .steps li::before { content: counter(step); position: absolute; inset-inline-start: 18px; top: 14px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--amber); color: var(--navy); font-weight: 700; font-size: 14px; }
+  .muted { margin-top: 16px; }
+
+  .qa { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 10px 0; }
+  .qa[open] { border-color: var(--slate); }
+  .qa summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary::after { content: '+'; color: var(--amber); font-size: 20px; line-height: 1; font-weight: 700; }
+  .qa[open] summary::after { content: '−'; }
+  .qa p { margin: 10px 0 0; color: var(--muted); }
+
   .foot { display: flex; justify-content: space-between; padding: 28px 16px 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
-  @media (max-width: 640px) { .hide-sm { display: none; } }
+  @media (max-width: 640px) { .hide-sm { display: none; } .shot { padding: 6px; border-radius: 14px; } }
+  @media (prefers-reduced-motion: reduce) { .button, .card { transition: none; } .button:hover, .card:hover { transform: none; } }
 </style>

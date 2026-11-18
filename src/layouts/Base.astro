@@ -39,8 +39,8 @@ const jsonLd = {
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2D3250" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F8F6F3" media="(prefers-color-scheme: light)" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GitLoom" />
     <meta property="og:locale" content={locale.og} />
@@ -58,26 +58,41 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <slot name="head" />
     <style is:global>
+      /* Palette: Color Hunt #2D3250 · #424769 · #7077A1 · #F6B17A
+         (https://colorhunt.co/palette/2d32504247697077a1f6b17a) — the icon's indigo and amber.
+         Text pairs checked against WCAG AA; #7077A1 is decoration only (4.3:1 on white). */
       :root {
-        --bg: #f7f8fa;
-        --surface: #ffffff;
-        --text: #14161c;
-        --muted: #5b6070;
-        --line: #e3e6ec;
-        --accent: #2f6fe0;
-        --accent-text: #ffffff;
-        --code: #eef1f6;
+        --navy: #2D3250;
+        --indigo: #424769;
+        --slate: #7077A1;
+        --amber: #F6B17A;
+        --bg: #F8F6F3;
+        --surface: #FFFFFF;
+        --text: var(--navy);
+        --muted: #555B86;
+        --line: #E4E2EC;
+        --link: var(--indigo);
+        --button: var(--amber);
+        --button-text: var(--navy);
+        --glow-a: rgb(112 119 161 / 0.22);
+        --glow-b: rgb(246 177 122 / 0.30);
+        --chip: #EFEDF5;
+        --shadow: rgb(45 50 80 / 0.18);
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --bg: #0f1117;
-          --surface: #171a22;
-          --text: #eceef3;
-          --muted: #9aa1b2;
-          --line: #262a35;
-          --accent: #4c8dff;
-          --accent-text: #ffffff;
-          --code: #1e222c;
+          --bg: var(--navy);
+          --surface: #383D5E;
+          --text: #F4F3F8;
+          --muted: #C3C6DE;
+          --line: #4A5075;
+          --link: var(--amber);
+          --button: var(--amber);
+          --button-text: var(--navy);
+          --glow-a: rgb(112 119 161 / 0.35);
+          --glow-b: rgb(246 177 122 / 0.16);
+          --chip: var(--indigo);
+          --shadow: rgb(0 0 0 / 0.35);
         }
       }
       * { box-sizing: border-box; }
@@ -88,7 +103,7 @@ const jsonLd = {
         color: var(--text);
         font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
       }
-      a { color: var(--accent); }
+      a { color: var(--link); text-underline-offset: 3px; }
       img { max-width: 100%; height: auto; }
       .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
     </style>
