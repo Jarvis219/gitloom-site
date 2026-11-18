@@ -1,3 +1,5 @@
+> **Mới hơn: `v4-prompts.md`** (dựng bằng skill `design-styles`: GITLOOM-DESIGN.md + G0–G7). v3 vẫn dùng được làm tham khảo.
+
 # GitLoom site — design prompts v3 (2026 direction)
 
 Thay thế `bold-prompts.md` và phần phong cách trong `pages-prompts.md`. Hai file cũ vẫn dùng được cho cấu trúc
