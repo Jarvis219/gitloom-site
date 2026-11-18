@@ -1,0 +1,52 @@
+---
+import Page from '../layouts/Page.astro';
+import SearchBox from '../components/SearchBox.astro';
+import { faq } from '../lib/faq';
+
+const repo = 'https://github.com/Jarvis219/gitloom-site';
+const plainText = (html: string) => html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+const ld = [{
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) } })),
+}];
+const chevron = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg>';
+---
+<Page title="GitLoom support — common fixes and how to get help" description="Fixes for common GitLoom questions: the first open, Git not found, repositories owned by another user, SSH keys, AI and updates. Then GitHub Issues." path="/support/" current="support" ld={ld}>
+<section class="pagehead cream"><div class="wrap">
+  <p class="eyebrow">Support</p><h1>Support</h1>
+  <p class="lead">Try the common fixes first. If they don’t help, open an issue on GitHub.</p>
+  <div style="margin-top: 32px"><SearchBox id="sq" label="Search support and docs" /></div>
+</div></section>
+<section class="sec cream" style="padding-top: 32px" aria-labelledby="cf"><div class="wrap" style="max-width: 900px; margin: 0 auto">
+  <h2 class="sm" id="cf" style="margin-bottom: 24px">Common fixes</h2>
+  <div class="acc">{faq.map((f, i) => (
+    <details id={f.id} open={i === 0}><summary>{f.q}<Fragment set:html={chevron} /></summary><div class="ans"><p set:html={f.a} />{f.doc && <p><a href={f.doc}>Read more in the docs</a></p>}</div></details>
+  ))}</div>
+</div></section>
+<section class="sec deep" aria-labelledby="gi"><div class="wrap">
+  <p class="eyebrow">GitHub Issues</p><h2 class="sm" id="gi" style="margin-bottom: 32px">Still stuck?</h2>
+  <div class="rows">
+    <div class="rowlink"><div class="t"><h3>Report a bug</h3></div>
+      <div class="d"><p style="margin: 0">Include:</p><ul><li>Your GitLoom and macOS versions</li><li>The steps that cause it</li><li>What you expected, and what happened</li><li>A screenshot, if it helps</li></ul></div>
+      <div class="g"><a class="btn btn-s" href={`${repo}/issues/new?labels=bug`}>Report a bug →</a></div></div>
+    <div class="rowlink"><div class="t"><h3>Request a feature</h3></div>
+      <div class="d"><p style="margin: 0">Describe the problem you want solved before the solution you have in mind.</p></div>
+      <div class="g"><a class="btn btn-s" href={`${repo}/issues/new?labels=enhancement`}>Request a feature →</a></div></div>
+  </div>
+  <div class="honest" style="border-top-color: var(--sbd)">
+    <div class="a"><p class="never" style="margin: 0"><b>Never paste</b> access tokens, passwords, SSH keys or private code into an issue. Issues are public.</p></div>
+    <div class="b"><p style="margin: 0 0 8px">After a crash, GitLoom offers to report it: your browser opens a new issue filled in with the error, and you read it before sending. Nothing is sent otherwise.</p>
+      <p class="small" style="margin: 0">Security problems: please don’t open a public issue. See <a href="/security/#report">Report a vulnerability</a>.</p></div>
+  </div>
+</div></section>
+</Page>
+
+<script>
+  // /support/#git-not-found opens and scrolls to that answer.
+  const open = () => {
+    const el = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (el instanceof HTMLDetailsElement) { el.open = true; el.scrollIntoView({ block: 'start' }); el.querySelector('summary')?.focus(); }
+  };
+  addEventListener('hashchange', open);
+  open();
+</script>

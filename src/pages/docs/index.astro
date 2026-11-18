@@ -1,0 +1,25 @@
+---
+import Page from '../../layouts/Page.astro';
+import SearchBox from '../../components/SearchBox.astro';
+import { docs, byGroup } from '../../lib/docs';
+
+const start = ['install', 'first-steps', 'the-window'].map((s) => docs.find((d) => d.slug === s)).filter(Boolean) as typeof docs;
+---
+<Page title="GitLoom docs — how to use the Git client" description="Learn GitLoom’s window first, then the parts you need: staging, branches, drag-and-drop merge and rebase, undo, history, GitHub and GitLab, AI and settings." path="/docs/" current="docs">
+<section class="pagehead cream"><div class="wrap">
+  <p class="eyebrow">Docs</p><h1>GitLoom docs</h1>
+  <p class="lead">Learn the window first, then the parts you need.</p>
+  <div style="margin-top: 32px"><SearchBox id="q" label="Search the docs" /></div>
+</div></section>
+<section class="sec cream" style="padding-top: 24px" aria-labelledby="sh"><div class="wrap">
+  <h2 class="sm" id="sh" style="margin-bottom: 28px">Start here</h2>
+  <ol class="start">{start.map((d, i) => <li><a href={d.url}><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{d.title}</h3><p>{d.summary}</p></a></li>)}</ol>
+</div></section>
+<section class="sec deep" aria-labelledby="ti"><div class="wrap">
+  <h2 class="sm" id="ti" style="margin-bottom: 40px">All topics</h2>
+  <div class="index">{byGroup.map((g) => (
+    <section aria-labelledby={`g-${g.id}`}><h3 id={g.id}><span id={`g-${g.id}`}>{g.group}</span></h3>
+      <ul>{g.items.map((d) => <li><a href={d.url}>{d.title}</a></li>)}</ul></section>
+  ))}</div>
+</div></section>
+</Page>

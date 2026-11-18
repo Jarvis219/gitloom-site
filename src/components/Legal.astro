@@ -1,0 +1,33 @@
+---
+// Privacy, Terms and Security (design G5): "In short" panel, numbered sections, a sticky list of
+// sections on the left (a Sections dropdown on phones), and print styles in pages.css.
+interface Props {
+  eyebrow: string;
+  title: string;
+  updated: string;          // ISO date
+  draft?: boolean;
+  short: string[];
+  sections: { id: string; title: string; html: string }[];
+}
+const { eyebrow, title, updated, draft = false, short, sections } = Astro.props;
+const updatedText = new Date(`${updated}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const chevron = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4.5l3 3 3-3"></path></svg>';
+---
+<section class="pagehead cream"><div class="wrap">
+  {draft && <p class="draft">Draft · needs review by a lawyer</p>}
+  <p class="eyebrow">{eyebrow}</p><h1>{title}</h1>
+  <p class="updated">Last updated <time datetime={updated}>{updatedText}</time></p>
+</div></section>
+<div class="legal cream">
+  <aside class="toc" aria-label="Sections"><div class="in">
+    <div data-toc><p>On this page</p><ol>{sections.map((s, i) => <li><a href={`#${s.id}`}>{i + 1}. {s.title}</a></li>)}</ol></div>
+    <details><summary>Sections <Fragment set:html={chevron} /></summary>
+      <ol class="dd-list">{sections.map((s, i) => <li><a href={`#${s.id}`}>{i + 1}. {s.title}</a></li>)}</ol></details>
+  </div></aside>
+  <div>
+    <div class="summary"><p class="k">In short</p><ul>{short.map((s) => <li>{s}</li>)}</ul></div>
+    {sections.map((s, i) => (
+      <section aria-labelledby={s.id}><h2 id={s.id}><span class="no">{String(i + 1).padStart(2, '0')}</span>{s.title}</h2><Fragment set:html={s.html} /></section>
+    ))}
+  </div>
+</div>

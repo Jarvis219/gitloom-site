@@ -1,8 +1,8 @@
 /* GitLoom landing — design "Warm Poster" (direction W, from the impeccable design skill), applied 2026-11-18.
    Fonts are self-hosted through @fontsource (no Google Fonts requests). */
-.gl{--bg:#FBF4E8;--bg2:#F3E6D0;--fg:#16161A;--mut:#5C5148;--line:#E7D9C2;--acc:#B94C1E;--acc2:#5C5148;--ring:#16161A;--surf:#FFFFFF;--sbd:#5C5148;--band:#B94C1E;--onband:#FFF8EE;--cta:#F6B17A;--ctaH:#CC8800;--ink:#16161A}
+.gl{--bg:#FBF4E8;--bg2:#F3E6D0;--fg:#16161A;--mut:#5C5148;--line:#E7D9C2;--line2:#E7D9C2;--acc:#B94C1E;--acc2:#5C5148;--ring:#16161A;--surf:#FFFFFF;--sbd:#5C5148;--band:#B94C1E;--onband:#FFF8EE;--cta:#F6B17A;--ctaH:#CC8800;--ink:#16161A}
 @media (prefers-color-scheme:dark){
- .gl{--bg:#14110E;--bg2:#1E1A15;--fg:#F5EDE2;--mut:#B8A994;--line:#2A241D;--acc:#F6B17A;--acc2:#F6B17A;--ring:#F5EDE2;--surf:#1E1A15;--sbd:#B8A994}
+ .gl{--bg:#14110E;--bg2:#1E1A15;--fg:#F5EDE2;--mut:#B8A994;--line:#2A241D;--line2:#14110E;--acc:#F6B17A;--acc2:#F6B17A;--ring:#F5EDE2;--surf:#1E1A15;--sbd:#B8A994}
 }
 body{margin:0}
 *{box-sizing:border-box}
@@ -146,7 +146,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.92em}
 /* footer */
 .foot{padding:72px 0 40px}
 .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.cols h3{font:600 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
+.cols h3,.cols .fh{font:600 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:0 0 14px}
 .cols ul{list-style:none;padding:0;margin:0}
 .cols li a{display:inline-block;padding:6px 0;color:var(--fg);text-decoration:none;font-size:15px;min-height:32px}
 .cols li a:hover{color:var(--acc)}

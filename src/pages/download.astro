@@ -1,0 +1,58 @@
+---
+import Page from '../layouts/Page.astro';
+import { getReleases, formatDate } from '../lib/releases';
+
+const dmg = 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg';
+const releases = await getReleases();
+const latest = releases.find((r) => !r.beta) ?? releases[0];
+const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
+const ld = [{
+  '@type': 'SoftwareApplication',
+  name: 'GitLoom',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'macOS 14 or later',
+  softwareRequirements: 'macOS 14 Sonoma or later, Apple silicon',
+  fileSize: '42MB',
+  downloadUrl: dmg,
+  url: new URL('/download/', site).href,
+  ...(latest ? { softwareVersion: latest.version, datePublished: latest.date.slice(0, 10) } : {}),
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+}];
+const curl = `curl -LO ${dmg}`;
+---
+<Page title="Download GitLoom — free Git client for macOS" description="Download GitLoom, a free, native Git client for macOS: 42 MB, macOS 14+ on Apple silicon, no account. How to open it the first time, and why updates are safe." path="/download/" current="download" ld={ld}>
+<section class="pagehead cream dlhero"><div class="wrap">
+  <div class="a"><p class="eyebrow">Download</p><h1>Download GitLoom</h1>
+    <p class="lead">Free, native and 42 MB. From this website, not the App Store.</p>
+    <div class="row" style="margin-top: 32px"><a class="btn btn-p" href={dmg}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7.5l4 4 4-4M2.5 14h11"></path></svg>Download for macOS</a></div>
+    <p class="meta">GitLoom.dmg{latest && ` · ${latest.version}`} · 42 MB</p>
+    <div class="links"><a href="/changelog/">Release notes</a><a href="https://github.com/Jarvis219/gitloom-site/releases">Older versions</a><a href="/security/#verify">Verify your download</a></div>
+    <div style="margin-top: 28px; max-width: 560px"><p class="small" style="margin: 0 0 10px">Or download from Terminal</p>
+      <div class="code"><pre><code>{curl}</code></pre><button class="copybtn" type="button" data-copy={curl}>Copy</button></div>
+      <p class="small" role="status" aria-live="polite" style="margin: 8px 0 0; min-height: 22px" data-status></p></div>
+  </div>
+  <div class="b"><div class="ver" role="group" aria-label="Latest release">
+    <div class="row" style="justify-content: space-between"><span class="small">Latest release</span>{latest && <span class={`tag ${latest.beta ? 'beta' : 'stable'}`}>{latest.beta ? 'Beta' : 'Stable'}</span>}</div>
+    {latest
+      ? <><p class="v" style="margin: 12px 0 4px">{latest.version}</p><p class="small" style="margin: 0">Released <time datetime={latest.date.slice(0, 10)}>{formatDate(latest.date)}</time></p></>
+      : <><p class="v" style="margin: 12px 0 4px">Soon</p><p class="small" style="margin: 0">The first release is on its way.</p></>}
+    <ul class="req"><li><span>macOS</span><span>14 or later</span></li><li><span>Processor</span><span>Apple silicon</span></li><li><span>Download</span><span>42 MB</span></li><li><span>Account</span><span>None needed</span></li></ul>
+  </div></div>
+</div></section>
+<section class="sec deep" aria-labelledby="fo"><div class="wrap">
+  <p class="eyebrow">First open</p><h2 class="sm" id="fo">The first time you open it</h2>
+  <ol class="steps">
+    <li><div class="cap" aria-hidden="true"><div class="row2"><span class="tile"><img src="/icon.png" alt="" />GitLoom.dmg</span><span class="arrow">→</span><span class="tile"><span class="folder"></span>Applications</span></div></div>
+      <span class="stepn">STEP 01</span><h3>Open GitLoom.dmg and drag GitLoom to Applications.</h3></li>
+    <li><div class="cap" aria-hidden="true"><div class="dlg"><b>“GitLoom” Not Opened</b><span>Apple could not verify “GitLoom” is free of malware…</span><span class="pill">Done</span></div></div>
+      <span class="stepn">STEP 02</span><h3>Open GitLoom. macOS stops the first launch.</h3></li>
+    <li><div class="cap" aria-hidden="true"><div class="dlg"><b>Privacy &amp; Security</b><span>“GitLoom” was blocked to protect your Mac.</span><span class="pill">Open Anyway</span></div></div>
+      <span class="stepn">STEP 03</span><h3>Go to System Settings ▸ Privacy &amp; Security and choose Open Anyway.</h3></li>
+  </ol>
+</div></section>
+<section class="sec band" aria-label="Why Open Anyway, and signed updates"><div class="wrap why">
+  <div><h2 id="wo">Why Open Anyway?</h2><p>GitLoom isn’t notarized by Apple yet, so macOS can’t vouch for it and stops the first launch. You approve it once in Privacy &amp; Security.</p></div>
+  <div><h2 id="su">Updates are signed</h2><p>Every update is EdDSA-signed and checked before it installs, and only newer versions are installed. No account, no telemetry.</p></div>
+</div></section>
+</Page>

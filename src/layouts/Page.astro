@@ -1,0 +1,100 @@
+---
+// Sub-pages (design G2–G6). English only for now; the nav and footer labels follow the visitor's
+// language only on the landing pages.
+import Base from './Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { locales } from '../i18n/locales';
+import '@fontsource/chakra-petch/500.css';
+import '@fontsource/chakra-petch/600.css';
+import '@fontsource/chakra-petch/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '../styles/landing.css';
+import '../styles/pages.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  current?: 'docs' | 'download' | 'support' | 'other';
+  ld?: object[];
+  noindex?: boolean;
+  ogType?: string;
+}
+const { title, description, path, current = 'other', ld = [], noindex = false, ogType } = Astro.props;
+const locale = locales[0];
+const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
+// Every sub-page gets a breadcrumb trail from its path (Home › Docs › Article).
+const crumbs = [{ name: 'GitLoom', url: new URL('/', site).href }];
+const parts = path.split('/').filter(Boolean);
+parts.forEach((_, i) => {
+  const url = new URL(`/${parts.slice(0, i + 1).join('/')}/`, site).href;
+  crumbs.push({ name: i === parts.length - 1 ? title.split(' — ')[0] : parts[i][0].toUpperCase() + parts[i].slice(1), url });
+});
+const breadcrumb = parts.length && !noindex ? [{
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
+}] : [];
+---
+<Base locale={locale} title={title} description={description} path={path} ld={[...breadcrumb, ...ld]} noindex={noindex} ogType={ogType}>
+<slot name="head" slot="head" />
+<div class="gl">
+<SiteNav locale={locale} current={current} />
+<main id="main">
+<slot />
+</main>
+<SiteFooter locale={locale} />
+</div>
+<script>
+  import { initSearch } from '../scripts/search';
+  // Nav: tighten once scrolled; mobile menu.
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const onScroll = () => nav?.classList.toggle('scrolled', scrollY > 8);
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+  burger?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  // Copy buttons: data-copy="<text>" or data-copy-from="<selector>"; a status line announces it.
+  document.querySelectorAll<HTMLButtonElement>('[data-copy],[data-copy-from]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const from = btn.dataset.copyFrom ? btn.closest('.code,.box')?.querySelector(btn.dataset.copyFrom) : null;
+      const text = btn.dataset.copy ?? from?.textContent ?? '';
+      try { await navigator.clipboard.writeText(text.trim()); } catch { return; }
+      const label = btn.textContent;
+      btn.textContent = 'Copied';
+      const status = document.querySelector('[data-status]');
+      if (status) status.textContent = 'Copied to the clipboard.';
+      setTimeout(() => { btn.textContent = label; if (status) status.textContent = ''; }, 1600);
+    });
+  });
+  // "On this page" lists: mark the section being read.
+  const tocLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc] a[href^="#"]')];
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    const targets = tocLinks.map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1)))).filter(Boolean) as HTMLElement[];
+    const mark = (id: string) => tocLinks.forEach((a) => {
+      if (a.hash.slice(1) === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+    const seen = new Map<string, boolean>();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => seen.set(e.target.id, e.isIntersecting));
+      const first = targets.find((t) => seen.get(t.id));
+      if (first) mark(first.id);
+    }, { rootMargin: '-80px 0px -60% 0px' });
+    targets.forEach((t) => io.observe(t));
+  }
+  // A dropdown <details> closes after a choice and on Esc.
+  document.querySelectorAll<HTMLDetailsElement>('details:has(.dd-list)').forEach((d) => {
+    d.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => d.removeAttribute('open')));
+    d.addEventListener('keydown', (e) => { if (e.key === 'Escape') { d.removeAttribute('open'); d.querySelector('summary')?.focus(); } });
+  });
+  initSearch();
+</script>
+</Base>

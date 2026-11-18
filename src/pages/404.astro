@@ -1,0 +1,13 @@
+---
+import Page from '../layouts/Page.astro';
+import SearchBox from '../components/SearchBox.astro';
+---
+<Page title="Page not found — GitLoom" description="This page doesn’t exist. Search the site, or go to the home page, docs, download, support or changelog." path="/404/" noindex>
+<section class="nf cream"><div class="wrap">
+  <img src="/icon.png" alt="" width="48" height="48" style="display: block; margin-bottom: 32px" />
+  <p class="eyebrow">404</p><h1 style="font-size: 56px">This page doesn’t exist.</h1>
+  <p class="lead">It may have moved. Search, or try one of these.</p>
+  <div style="margin-top: 32px"><SearchBox id="nq" label="Search the site" /></div>
+  <ul><li><a href="/">Home</a></li><li><a href="/docs/">Docs</a></li><li><a href="/download/">Download</a></li><li><a href="/support/">Support</a></li><li><a href="/changelog/">Changelog</a></li></ul>
+</div></section>
+</Page>

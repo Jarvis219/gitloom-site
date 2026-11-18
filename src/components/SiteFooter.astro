@@ -1,0 +1,41 @@
+---
+// Footer shared by the landing and every sub-page (design G2–G6: Product · Help · Legal · Project).
+import { type Locale } from '../i18n/locales';
+import { landingCopy } from '../i18n/landing';
+import { chromeWords } from '../i18n/chrome';
+
+interface Props { locale: Locale; onHome?: boolean }
+const { locale, onHome = false } = Astro.props;
+const t = landingCopy(locale.code);
+const w = chromeWords(locale.code);
+const home = locale.path ? `/${locale.path}/` : '/';
+const repo = 'https://github.com/Jarvis219/gitloom-site';
+---
+<footer class="foot deep"><div class="wrap">
+  <div class="cols">
+    <div><h2 class="fh">{t.footer.product}</h2><ul>
+      <li><a href={onHome ? '#features' : `${home}#features`}>{t.footer.features}</a></li>
+      <li><a href="/download/">{t.footer.download}</a></li>
+      <li><a href="/changelog/">{w.changelog}</a></li>
+      <li><a href="/compare/">{w.compare}</a></li>
+      <li><a href="/press/">{w.press}</a></li>
+    </ul></div>
+    <div><h2 class="fh">{t.footer.help}</h2><ul>
+      <li><a href="/docs/">{w.docs}</a></li>
+      <li><a href="/support/">{t.nav.support}</a></li>
+      <li><a href={`${repo}/issues/new?labels=bug`}>{t.footer.bug}</a></li>
+      <li><a href={`${repo}/issues/new?labels=enhancement`}>{t.footer.feature}</a></li>
+    </ul></div>
+    <div><h2 class="fh">{w.legal}</h2><ul>
+      <li><a href="/privacy/">{w.privacy}</a></li>
+      <li><a href="/terms/">{w.terms}</a></li>
+      <li><a href="/security/">{w.security}</a></li>
+    </ul></div>
+    <div><h2 class="fh">{t.footer.project}</h2><ul>
+      <li><a href={`${repo}/releases`}>{t.footer.releases}</a></li>
+      <li><a href={`${repo}/issues`}>{w.issues}</a></li>
+      <li><a href="/appcast.xml">{w.updateFeed}</a></li>
+    </ul></div>
+  </div>
+  <div class="fbar"><a class="logo" href={home}><img src="/favicon.png" width="28" height="28" alt="" />GitLoom</a><span class="small">{t.footer.tagline}</span></div>
+</div></footer>

@@ -14,5 +14,10 @@ const sitemapLocales = {
 export default defineConfig({
   site,
   trailingSlash: 'ignore',
-  integrations: [sitemap({ i18n: { defaultLocale: 'en', locales: sitemapLocales } })],
+  // Docs code blocks take the site's own colours, not a syntax theme.
+  markdown: { syntaxHighlight: false },
+  integrations: [sitemap({
+    i18n: { defaultLocale: 'en', locales: sitemapLocales },
+    filter: (page) => !/\/(404|search)\/?$/.test(new URL(page).pathname),
+  })],
 });

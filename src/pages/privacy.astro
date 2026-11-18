@@ -1,0 +1,24 @@
+---
+import Page from '../layouts/Page.astro';
+import Legal from '../components/Legal.astro';
+
+// Each statement is checked against the app: no account or analytics code; tokens and AI keys in the
+// Keychain; Gravatar gets a SHA-256 of the address; Sparkle with SUEnableSystemProfiling = false and
+// automatic checks on by default; crash reports open a pre-filled GitHub issue the user sends.
+const sections = [
+  { id: 'collect', title: 'What GitLoom collects', html: '<p>Nothing about you. There’s no account and no telemetry. Your repositories, settings and history stay on your Mac.</p>' },
+  { id: 'git', title: 'Git traffic', html: '<p>GitLoom runs your own <code>git</code>, which talks only to the remotes you set up for each repository. Background fetches go to those same remotes.</p>' },
+  { id: 'hosting', title: 'GitHub and GitLab', html: '<p>GitLoom calls the GitHub or GitLab API only when you’ve added an account. Your token is stored in your Keychain.</p>' },
+  { id: 'avatars', title: 'Avatars', html: '<p>Avatars are drawn locally by default. If you choose Gravatar, GitLoom sends a SHA-256 hash of each author’s email address to Gravatar. If you choose GitHub, it asks GitHub for the picture.</p>' },
+  { id: 'ai', title: 'AI', html: '<p>AI is off by default and runs only when you ask it to. The first time you use it in a repository you see exactly what will be sent, and <em>Preview Data…</em> shows it again any time. Obvious secrets are redacted, and the request goes only to the provider you choose, with your own key. A local model (Ollama or LM Studio) keeps everything on your Mac.</p>' },
+  { id: 'updates', title: 'Update checks', html: '<p>Update checks are on by default and can be turned off in Settings ▸ General. They download the update feed from this website and send no system profile.</p>' },
+  { id: 'crashes', title: 'Crash reports', html: '<p>After a crash, GitLoom offers to report it: your browser opens a new GitHub issue filled in with the error, which you read before sending. Nothing is sent unless you submit it, and you can turn the offer off in Settings ▸ Advanced.</p>' },
+  { id: 'site', title: 'This website', html: '<p>This website is static. It sets no cookies and runs no analytics. Its host (Vercel) and GitHub, which serves the downloads, keep their standard request logs.</p>' },
+  { id: 'contact', title: 'Contact', html: '<p>Questions about privacy: open an issue on <a href="https://github.com/Jarvis219/gitloom-site/issues">GitHub Issues</a>. Issues are public, so don’t include personal details.</p>' },
+];
+---
+<Page title="Privacy — GitLoom" description="GitLoom has no account and no telemetry. Your code goes only to your remotes and the services you turn on; AI is off until you use it; this website sets no cookies." path="/privacy/">
+<Legal eyebrow="Privacy" title="Privacy" updated="2026-11-18" draft
+  short={['No account and no telemetry.', 'Your code goes only to your remotes and the services you turn on.', 'AI is off until you use it, and you can see what’s sent.', 'This website sets no cookies.']}
+  sections={sections} />
+</Page>
