@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jarvis219.github.io/gitloom-site/sitemap-index.xml

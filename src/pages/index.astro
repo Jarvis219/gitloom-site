@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const download = 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg';
+const releases = 'https://github.com/Jarvis219/gitloom-site/releases';
+
+const features = [
+  { title: 'A graph that keeps up', body: 'Scroll and search repositories with 100,000+ commits. Branches, tags, merges and your work in progress in one clear graph.' },
+  { title: 'Drag to merge, rebase, cherry-pick', body: 'Drop a branch on another to merge or rebase it, drag a commit to cherry-pick it. Interactive rebase without a text editor.' },
+  { title: 'Stage exactly what you mean', body: 'Stage files, hunks or single lines. Amend, sign off, sign with GPG or SSH, add co-authors.' },
+  { title: 'Undo for almost everything', body: 'Undo and redo commits, checkouts, merges, resets and branch changes — and recover lost work from the reflog.' },
+  { title: 'Profiles and SSH accounts', body: 'Work and personal profiles, each with its own tabs, recent repositories and commit identity. The right SSH key for every repository.' },
+  { title: 'GitHub and GitLab built in', body: 'Pull requests, reviews, issues and GitHub Actions runs next to your code.' },
+  { title: 'Conflicts without fear', body: 'A three-way merge editor that shows both sides and the result, side by side.' },
+  { title: 'Terminal, editor, and more', body: 'A built-in terminal and file editor, file history and blame, worktrees, submodules, bisect, Git LFS.' },
+  { title: 'AI on your terms', body: 'Commit messages and explanations from the AI provider you choose — and an MCP server so other tools can drive GitLoom.' },
+];
+
+const faq = [
+  { q: 'Is GitLoom free?', a: 'Yes. GitLoom is free to download and use.' },
+  { q: 'Which macOS versions are supported?', a: 'macOS 14 Sonoma or later.' },
+  { q: 'Why does macOS say it cannot verify GitLoom?', a: 'This build is not notarized by Apple yet. Open it once from System Settings ▸ Privacy & Security ▸ Open Anyway; after that it opens normally, and updates install by themselves.' },
+  { q: 'How do updates work?', a: 'GitLoom checks for new versions on its own (you can change this in Settings ▸ Updates). Every update is signed, and GitLoom refuses one that is not.' },
+  { q: 'Does GitLoom send my code anywhere?', a: 'No. Your repositories stay on your Mac. GitLoom only talks to the Git hosts you connect and, if you turn it on, the AI provider you choose.' },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<Base
+  title="GitLoom — a fast, native Git client for macOS"
+  description="GitLoom is a free, native Git GUI for macOS: a commit graph for huge repositories, drag-and-drop merge and rebase, line staging, undo, profiles, and GitHub and GitLab built in."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href={base}><img src={base + 'favicon.png'} width="28" height="28" alt="" />GitLoom</a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href={releases}>Releases</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <img class="icon" src={base + 'icon.png'} width="112" height="112" alt="GitLoom app icon" />
+      <h1>Git, woven clearly.</h1>
+      <p class="lead">A fast, native Git client for macOS. See every branch at a glance, merge and rebase by dragging, and undo almost anything.</p>
+      <div class="cta">
+        <a class="button" href={download}>Download for macOS</a>
+        <span class="note">Free · macOS 14 or later · Apple silicon</span>
+      </div>
+      <figure class="shot">
+        <img src={base + 'screenshot.png'} width="1256" height="795" alt="GitLoom showing a repository's commit graph with branches, merges and the working tree" />
+      </figure>
+    </section>
+
+    <section id="features" class="wrap">
+      <h2>Everything you do in Git, in one window</h2>
+      <div class="grid">
+        {features.map((f) => (
+          <article class="card">
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="install" class="wrap">
+      <h2>Install</h2>
+      <ol class="steps">
+        <li><a href={download}>Download GitLoom.dmg</a> and drag GitLoom to Applications.</li>
+        <li>Open GitLoom. The first time, macOS says it can't verify the developer — click <strong>Done</strong>.</li>
+        <li>Open <strong>System Settings ▸ Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong> next to GitLoom.</li>
+        <li>That's it. Later versions install on their own.</li>
+      </ol>
+      <p class="muted">Older versions and release notes are on the <a href={releases}>releases page</a>.</p>
+    </section>
+
+    <section id="faq" class="wrap">
+      <h2>Questions</h2>
+      {faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span>GitLoom</span>
+    <a href={releases}>Releases</a>
+  </footer>
+</Base>
+
+<style>
+  .top { position: sticky; top: 0; z-index: 2; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+  .brand { display: flex; align-items: center; gap: 8px; font-weight: 650; color: var(--text); text-decoration: none; }
+  nav { display: flex; gap: 18px; font-size: 15px; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--text); }
+  .hero { text-align: center; padding-top: 56px; }
+  .icon { display: block; margin: 0 auto 12px; }
+  h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.1; margin: 8px 0 14px; letter-spacing: -0.02em; }
+  .lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 640px; margin: 0 auto; }
+  .cta { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 28px 0 40px; }
+  .button { background: var(--accent); color: var(--accent-text); text-decoration: none; font-weight: 600; padding: 12px 26px; border-radius: 10px; font-size: 17px; }
+  .button:hover { filter: brightness(1.08); }
+  .note, .muted { color: var(--muted); font-size: 14px; }
+  .shot { margin: 0; }
+  .shot img { border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 24px 60px rgb(0 0 0 / 0.25); }
+  section { padding: 40px 16px; }
+  h2 { font-size: clamp(24px, 3.4vw, 32px); margin: 24px 0 20px; letter-spacing: -0.01em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .steps { padding-left: 22px; }
+  .steps li { margin: 8px 0; }
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 10px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 8px 0 0; color: var(--muted); }
+  .foot { display: flex; justify-content: space-between; padding: 28px 16px 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  @media (max-width: 560px) { nav a:not(:last-child) { display: none; } }
+</style>
