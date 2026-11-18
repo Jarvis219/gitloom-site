@@ -1,36 +1,5 @@
 ---
-import Page from '../layouts/Page.astro';
-
-// Columns are categories, not products (design G6). The Electron column says "Varies": it describes
-// many apps, and a named product would need an owner-supplied, dated source.
-const rows: [string, string, string, string][] = [
-  ['Price', 'Free', 'Varies', 'Free'],
-  ['Built with', 'Swift and AppKit', 'Electron (web technologies)', 'Git itself'],
-  ['Runs on', 'macOS 14+, Apple silicon', 'Varies', 'macOS, Windows, Linux'],
-  ['Download size', '42 MB', 'Varies', 'Comes with Apple’s command line tools'],
-  ['Merge, rebase, cherry-pick', 'Drag a branch onto another', 'Varies', 'Commands'],
-  ['Undo', '⌘Z for commits, checkouts, merges, resets and branch changes, plus reflog recovery', 'Varies', 'Reflog and reset, by hand'],
-  ['Stage single lines', 'Yes', 'Varies', '<code>git add -p</code>'],
-  ['Account needed', 'No', 'Varies', 'No'],
-  ['Telemetry', 'None', 'Varies', 'None'],
-  ['Notarized by Apple', 'Not yet', 'Varies', 'Ships with Apple’s tools'],
-];
+import Compare from '../views/Compare.astro';
+import { locales } from '../i18n/locales';
 ---
-<Page title="How GitLoom compares — native Git client vs Electron clients and the command line" description="A plain comparison of GitLoom with Electron-based Git clients and the command line: price, platform, size, merging, undo, line staging, account and telemetry." path="/compare/">
-<section class="pagehead cream"><div class="wrap">
-  <p class="eyebrow">Compare</p><h1>How GitLoom compares</h1>
-  <p class="lead">A plain comparison with two common alternatives. Named products appear only with a dated source.</p>
-</div></section>
-<section class="sec cream" style="padding-top: 16px" aria-label="Comparison table"><div class="wrap">
-  <div class="tblw"><table class="tbl">
-    <caption class="vh">GitLoom compared with Electron-based Git clients and the command line</caption>
-    <thead><tr><th scope="col"><span class="vh">Feature</span></th><th scope="col">GitLoom</th><th scope="col">Electron-based Git clients</th><th scope="col">The command line</th></tr></thead>
-    <tbody>{rows.map(([k, a, b, c]) => <tr><th scope="row">{k}</th><td set:html={a} /><td set:html={b} /><td set:html={c} /></tr>)}</tbody>
-  </table></div>
-  <p class="small" style="margin: 16px 0 0">“Varies” means it depends on the app: this column describes a kind of app, not one product.</p>
-</div></section>
-<section class="sec band" aria-labelledby="nf"><div class="wrap" style="max-width: 900px; margin: 0 auto">
-  <h2 class="sm" id="nf" style="margin-bottom: 24px">GitLoom may not be for you if…</h2>
-  <ul class="notfor"><li>You need Windows or Linux. GitLoom is macOS only.</li><li>Your Mac has an Intel processor. GitLoom needs Apple silicon.</li><li>You only install notarized apps. GitLoom isn’t notarized yet.</li><li>You want to install from the App Store. GitLoom comes from this website.</li></ul>
-</div></section>
-</Page>
+<Compare locale={locales[0]} />

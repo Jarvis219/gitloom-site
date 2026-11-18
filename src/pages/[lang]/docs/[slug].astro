@@ -1,0 +1,11 @@
+---
+import DocsArticle from '../../../views/DocsArticle.astro';
+import { locales, type Locale } from '../../../i18n/locales';
+import { docsFor } from '../../../lib/docs';
+
+export function getStaticPaths() {
+  return locales.slice(1).flatMap((l) => docsFor(l).map((d) => ({ params: { lang: l.path, slug: d.slug }, props: { locale: l } })));
+}
+const { locale } = Astro.props as { locale: Locale };
+---
+<DocsArticle locale={locale} slug={Astro.params.slug!} />

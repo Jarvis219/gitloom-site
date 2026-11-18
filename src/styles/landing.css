@@ -250,3 +250,6 @@ details.lang.up ul{animation-name:popup}
 
 /* The drag loop needs room: on narrow screens the hero shows the plain screenshot. */
 @container (max-width:720px){ .ghost,.menu,.cursor{display:none} }
+[dir=rtl] details.lang ul{right:auto;left:0}
+/* Arabic letters must join: no letter-spacing on the mono labels */
+[dir=rtl] :is(.eyebrow,.meta,.stepn,.cols h3,.cols .fh,.fh,.tag){letter-spacing:0;font-family:Inter,system-ui,sans-serif}

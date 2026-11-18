@@ -1,10 +1,11 @@
 ---
-// Sub-pages (design G2–G6). English only for now; the nav and footer labels follow the visitor's
-// language only on the landing pages.
+// Sub-pages (design G2–G6) in every language: /docs/, /vi/docs/, /ar/docs/…
 import Base from './Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { locales } from '../i18n/locales';
+import { locales, type Locale } from '../i18n/locales';
+import { lp } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
 import '@fontsource/chakra-petch/500.css';
 import '@fontsource/chakra-petch/600.css';
 import '@fontsource/chakra-petch/700.css';
@@ -18,24 +19,24 @@ import '../styles/landing.css';
 import '../styles/pages.css';
 
 interface Props {
+  locale?: Locale;
   title: string;
   description: string;
+  /** Without the language prefix: "/docs/install/". */
   path: string;
+  /** Breadcrumb trail after "GitLoom": [{ name, path }]. Defaults to this page alone. */
+  crumbs?: { name: string; path: string }[];
   current?: 'docs' | 'download' | 'support' | 'other';
   ld?: object[];
   noindex?: boolean;
   ogType?: string;
 }
-const { title, description, path, current = 'other', ld = [], noindex = false, ogType } = Astro.props;
-const locale = locales[0];
+const { locale = locales[0], title, description, path, crumbs: trail, current = 'other', ld = [], noindex = false, ogType } = Astro.props;
+const c = pagesCopy(locale.code).common;
 const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
-// Every sub-page gets a breadcrumb trail from its path (Home › Docs › Article).
-const crumbs = [{ name: 'GitLoom', url: new URL('/', site).href }];
+const crumbs = [{ name: 'GitLoom', url: new URL(lp(locale, '/'), site).href },
+  ...(trail ?? [{ name: title.split(' — ')[0], path }]).map((t) => ({ name: t.name, url: new URL(lp(locale, t.path), site).href }))];
 const parts = path.split('/').filter(Boolean);
-parts.forEach((_, i) => {
-  const url = new URL(`/${parts.slice(0, i + 1).join('/')}/`, site).href;
-  crumbs.push({ name: i === parts.length - 1 ? title.split(' — ')[0] : parts[i][0].toUpperCase() + parts[i].slice(1), url });
-});
 const breadcrumb = parts.length && !noindex ? [{
   '@type': 'BreadcrumbList',
   itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
@@ -43,8 +44,8 @@ const breadcrumb = parts.length && !noindex ? [{
 ---
 <Base locale={locale} title={title} description={description} path={path} ld={[...breadcrumb, ...ld]} noindex={noindex} ogType={ogType}>
 <slot name="head" slot="head" />
-<div class="gl">
-<SiteNav locale={locale} current={current} />
+<div class="gl" data-copied={c.copied} data-copied-status={c.copiedStatus}>
+<SiteNav locale={locale} current={current} path={path === '/404/' ? '/' : path} />
 <main id="main">
 <slot />
 </main>
@@ -69,9 +70,10 @@ const breadcrumb = parts.length && !noindex ? [{
       const text = btn.dataset.copy ?? from?.textContent ?? '';
       try { await navigator.clipboard.writeText(text.trim()); } catch { return; }
       const label = btn.textContent;
-      btn.textContent = 'Copied';
+      const gl = document.querySelector<HTMLElement>('.gl')?.dataset;
+      btn.textContent = gl?.copied ?? 'Copied';
       const status = document.querySelector('[data-status]');
-      if (status) status.textContent = 'Copied to the clipboard.';
+      if (status) status.textContent = gl?.copiedStatus ?? '';
       setTimeout(() => { btn.textContent = label; if (status) status.textContent = ''; }, 1600);
     });
   });

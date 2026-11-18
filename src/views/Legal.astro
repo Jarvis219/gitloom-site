@@ -1,0 +1,33 @@
+---
+// Privacy, Terms and Security. Each statement is checked against the app: no account or analytics
+// code; tokens and AI keys in the Keychain; Gravatar gets a SHA-256 of the address; Sparkle with
+// SUEnableSystemProfiling = false and automatic checks on by default; crash reports open a pre-filled
+// GitHub issue the user sends; `codesign --verify` prints the two lines quoted on an ad-hoc build.
+import Page from '../layouts/Page.astro';
+import Legal from '../components/Legal.astro';
+import type { Locale } from '../i18n/locales';
+import { pagesCopy } from '../i18n/pages';
+
+interface Props { locale: Locale; page: 'privacy' | 'terms' | 'security' }
+const { locale, page } = Astro.props;
+const all = pagesCopy(locale.code);
+const t = all[page];
+const c = all.common;
+const path = `/${page}/`;
+
+const oss = [
+  ['Sparkle', 'https://github.com/sparkle-project/Sparkle', 'MIT'],
+  ['SwiftTerm', 'https://github.com/migueldeicaza/SwiftTerm', 'MIT'],
+  ['SwiftTreeSitter', 'https://github.com/tree-sitter/swift-tree-sitter', 'BSD 3-Clause'],
+  [all.terms.grammars, 'https://github.com/tree-sitter', 'MIT'],
+];
+const verify = 'codesign --verify --deep --strict --verbose=1 /Applications/GitLoom.app';
+const command = `<div class="code" dir="ltr"><pre><code>${verify}</code></pre><button class="copybtn" type="button" data-copy="${verify}" aria-label="${c.copyCommand}">${c.copy}</button></div><p class="small" role="status" aria-live="polite" style="min-height: 22px; margin: 8px 0 0" data-status></p>`;
+const fill = (html: string) => html
+  .replace('{list}', `<ul>${oss.map(([n, u, l]) => `<li><a href="${u}">${n}</a> · ${l}</li>`).join('')}</ul>`)
+  .replace('{command}', command);
+const sections = Object.entries(t.sections).map(([id, s]) => ({ id, title: s.title, html: fill(s.html) }));
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path={path} crumbs={[{ name: t.title, path }]}>
+<Legal locale={locale} path={path} eyebrow={t.eyebrow} title={t.title} updated="2026-11-18" draft={page !== 'security'} short={t.short} sections={sections} />
+</Page>

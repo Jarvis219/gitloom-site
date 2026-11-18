@@ -1,0 +1,62 @@
+---
+// Search page: with JavaScript it shows the results for ?q=; without it, every page is listed.
+import Page from '../layouts/Page.astro';
+import SearchBox from '../components/SearchBox.astro';
+import type { Locale } from '../i18n/locales';
+import { lp } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
+import { chromeWords } from '../i18n/chrome';
+import { landingCopy } from '../i18n/landing';
+import { byGroupFor } from '../lib/docs';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const all = pagesCopy(locale.code);
+const t = all.search;
+const w = chromeWords(locale.code);
+const site = [['/download/', landingCopy(locale.code).nav.download], ['/support/', all.support.title], ['/changelog/', w.changelog], ['/compare/', w.compare], ['/press/', w.press], ['/privacy/', w.privacy], ['/terms/', w.terms], ['/security/', w.security]];
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/search/" noindex>
+<section class="pagehead cream"><div class="wrap">
+  <p class="eyebrow">{t.title}</p><h1>{t.title}</h1>
+  <div style="margin-top: 32px"><SearchBox id="pq" label={t.site} locale={locale} /></div>
+</div></section>
+<section class="sec cream" style="padding-top: 16px"><div class="wrap" style="max-width: 900px; margin: 0 auto">
+  <div data-results hidden data-nothing={t.nothing} data-results-for={t.resultsFor} data-try={t.tryFewer}><h2 class="sm" style="margin-bottom: 20px" data-results-title></h2><ul class="hits" data-hits></ul></div>
+  <div data-all>
+    <h2 class="sm" style="margin-bottom: 20px">{t.allPages}</h2>
+    <div class="index">
+      <section><h3>{t.groupSite}</h3><ul>{site.map(([p, n]) => <li><a href={lp(locale, p)}>{n}</a></li>)}</ul></section>
+      {byGroupFor(locale).map((g) => <section><h3>{all.docs.groups[g.group as keyof typeof all.docs.groups]}</h3><ul>{g.items.map((d) => <li><a href={d.url}>{d.title}</a></li>)}</ul></section>)}
+    </div>
+  </div>
+</div></section>
+</Page>
+
+<script>
+  import { loadIndex, search } from '../scripts/search';
+  const q = new URLSearchParams(location.search).get('q')?.trim() ?? '';
+  const form = document.querySelector<HTMLFormElement>('[data-search]');
+  const input = document.querySelector<HTMLInputElement>('#pq');
+  if (input) input.value = q;
+  if (q && form) {
+    loadIndex(form.dataset.index).then((entries) => {
+      const hits = search(entries, q, 30);
+      const box = document.querySelector<HTMLElement>('[data-results]')!;
+      const title = box.querySelector('[data-results-title]')!;
+      const list = box.querySelector('[data-hits]')!;
+      title.textContent = (hits.length ? box.dataset.resultsFor! : box.dataset.nothing!).replace('{q}', q);
+      list.replaceChildren(...hits.map((h) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a'); a.href = h.u;
+        const b = document.createElement('b'); b.textContent = h.t;
+        const g = document.createElement('span'); g.textContent = h.g;
+        const p = document.createElement('p'); p.textContent = h.s;
+        a.append(b, g); li.append(a, p); return li;
+      }));
+      if (!hits.length) { const li = document.createElement('li'); li.innerHTML = box.dataset.try ?? ''; list.append(li); }
+      box.hidden = false;
+      document.title = `${title.textContent} — GitLoom`;
+    });
+  }
+</script>

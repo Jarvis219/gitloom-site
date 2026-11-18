@@ -1,0 +1,29 @@
+---
+// Columns are categories, not products (design G6). The Electron column says "Varies": it describes
+// many apps, and a named product would need an owner-supplied, dated source.
+import Page from '../layouts/Page.astro';
+import type { Locale } from '../i18n/locales';
+import { pagesCopy } from '../i18n/pages';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = pagesCopy(locale.code).compare;
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/compare/" crumbs={[{ name: t.title, path: '/compare/' }]}>
+<section class="pagehead cream"><div class="wrap">
+  <p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+</div></section>
+<section class="sec cream" style="padding-top: 16px" aria-label={t.tableLabel}><div class="wrap">
+  <div class="tblw"><table class="tbl">
+    <caption class="vh">{t.caption}</caption>
+    <thead><tr><th scope="col"><span class="vh">{t.feature}</span></th><th scope="col">GitLoom</th><th scope="col">{t.electron}</th><th scope="col">{t.cli}</th></tr></thead>
+    <tbody>{t.rows.map(([k, a, b, c]) => <tr><th scope="row">{k}</th><td set:html={a} /><td set:html={b} /><td set:html={c} /></tr>)}</tbody>
+  </table></div>
+  <p class="small" style="margin: 16px 0 0">{t.varies}</p>
+</div></section>
+<section class="sec band" aria-labelledby="nf"><div class="wrap" style="max-width: 900px; margin: 0 auto">
+  <h2 class="sm" id="nf" style="margin-bottom: 24px">{t.notForTitle}</h2>
+  <ul class="notfor">{t.notFor.map((x) => <li>{x}</li>)}</ul>
+</div></section>
+</Page>

@@ -1,0 +1,70 @@
+---
+import Page from '../layouts/Page.astro';
+import type { Locale } from '../i18n/locales';
+import { lp, fmt, formatDate } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
+import { landingCopy } from '../i18n/landing';
+import { getReleases } from '../lib/releases';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = pagesCopy(locale.code).download;
+const c = pagesCopy(locale.code).common;
+const art = landingCopy(locale.code).install.art;
+const download = landingCopy(locale.code).download;
+const dmg = 'https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg';
+const releases = await getReleases();
+const latest = releases.find((r) => !r.beta) ?? releases[0];
+const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
+const ld = [{
+  '@type': 'SoftwareApplication',
+  name: 'GitLoom',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'macOS 14 or later',
+  softwareRequirements: 'macOS 14 Sonoma or later, Apple silicon',
+  fileSize: '42MB',
+  inLanguage: locale.hreflang,
+  downloadUrl: dmg,
+  url: new URL(lp(locale, '/download/'), site).href,
+  ...(latest ? { softwareVersion: latest.version, datePublished: latest.date.slice(0, 10) } : {}),
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+}];
+const curl = `curl -LO ${dmg}`;
+const steps = [t.step1, t.step2, t.step3];
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/download/" current="download" ld={ld} crumbs={[{ name: t.title, path: '/download/' }]}>
+<section class="pagehead cream dlhero"><div class="wrap">
+  <div class="a"><p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1>
+    <p class="lead">{t.lead}</p>
+    <div class="row" style="margin-top: 32px"><a class="btn btn-p" href={dmg}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7.5l4 4 4-4M2.5 14h11"></path></svg>{download}</a></div>
+    <p class="meta" dir="ltr">GitLoom.dmg{latest && ` · ${latest.version}`} · 42 MB</p>
+    <div class="links"><a href={lp(locale, '/changelog/')}>{t.releaseNotes}</a><a href="https://github.com/Jarvis219/gitloom-site/releases">{t.olderVersions}</a><a href={lp(locale, '/security/#verify')}>{t.verify}</a></div>
+    <div style="margin-top: 28px; max-width: 560px"><p class="small" style="margin: 0 0 10px">{t.terminal}</p>
+      <div class="code" dir="ltr"><pre><code>{curl}</code></pre><button class="copybtn" type="button" data-copy={curl} aria-label={c.copyCommand}>{c.copy}</button></div>
+      <p class="small" role="status" aria-live="polite" style="margin: 8px 0 0; min-height: 22px" data-status></p></div>
+  </div>
+  <div class="b"><div class="ver" role="group" aria-label={t.latestRelease}>
+    <div class="row" style="justify-content: space-between"><span class="small">{t.latestRelease}</span>{latest && <span class={`tag ${latest.beta ? 'beta' : 'stable'}`}>{latest.beta ? t.beta : t.stable}</span>}</div>
+    {latest
+      ? <><p class="v" style="margin: 12px 0 4px">{latest.version}</p><p class="small" style="margin: 0" set:html={fmt(t.released, { date: `<time datetime="${latest.date.slice(0, 10)}">${formatDate(latest.date, locale)}</time>` })} /></>
+      : <><p class="v" style="margin: 12px 0 4px">{t.soon}</p><p class="small" style="margin: 0">{t.soonText}</p></>}
+    <ul class="req"><li><span>{t.reqMacOS}</span><span>{t.reqMacOSValue}</span></li><li><span>{t.reqProcessor}</span><span>{t.reqProcessorValue}</span></li><li><span>{t.reqDownload}</span><span>{t.reqDownloadValue}</span></li><li><span>{t.reqAccount}</span><span>{t.reqAccountValue}</span></li></ul>
+  </div></div>
+</div></section>
+<section class="sec deep" aria-labelledby="fo"><div class="wrap">
+  <p class="eyebrow">{t.firstOpenEyebrow}</p><h2 class="sm" id="fo">{t.firstOpenTitle}</h2>
+  <ol class="steps">
+    <li><div class="cap" aria-hidden="true"><div class="row2"><span class="tile"><img src="/icon.png" alt="" />GitLoom.dmg</span><span class="arrow">→</span><span class="tile"><span class="folder"></span>{art.apps}</span></div></div>
+      <span class="stepn">{fmt(t.step, { n: '01' })}</span><h3>{steps[0]}</h3></li>
+    <li><div class="cap" aria-hidden="true"><div class="dlg"><b>{art.dialogTitle}</b><span>{art.dialogText}</span><span class="pill">{art.done}</span></div></div>
+      <span class="stepn">{fmt(t.step, { n: '02' })}</span><h3>{steps[1]}</h3></li>
+    <li><div class="cap" aria-hidden="true"><div class="dlg"><b>{art.pane}</b><span>{art.paneText}</span><span class="pill">{art.openAnyway}</span></div></div>
+      <span class="stepn">{fmt(t.step, { n: '03' })}</span><h3>{steps[2]}</h3></li>
+  </ol>
+</div></section>
+<section class="sec band" aria-label={t.bandLabel}><div class="wrap why">
+  <div><h2 id="wo">{t.whyTitle}</h2><p>{t.whyText}</p></div>
+  <div><h2 id="su">{t.signedTitle}</h2><p>{t.signedText}</p></div>
+</div></section>
+</Page>

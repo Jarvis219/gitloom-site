@@ -1,0 +1,25 @@
+---
+import Page from '../layouts/Page.astro';
+import SearchBox from '../components/SearchBox.astro';
+import type { Locale } from '../i18n/locales';
+import { lp } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
+import { chromeWords } from '../i18n/chrome';
+import { landingCopy } from '../i18n/landing';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const all = pagesCopy(locale.code);
+const t = all.notFound;
+const w = chromeWords(locale.code);
+const links = [['/', t.home], ['/docs/', w.docs], ['/download/', landingCopy(locale.code).nav.download], ['/support/', all.support.title], ['/changelog/', w.changelog]];
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/404/" noindex>
+<section class="nf cream"><div class="wrap">
+  <img src="/icon.png" alt="" width="48" height="48" style="display: block; margin-bottom: 32px" />
+  <p class="eyebrow">404</p><h1 style="font-size: 56px">{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+  <div style="margin-top: 32px"><SearchBox id="nq" label={all.search.site} locale={locale} /></div>
+  <ul>{links.map(([p, n]) => <li><a href={lp(locale, p)}>{n}</a></li>)}</ul>
+</div></section>
+</Page>

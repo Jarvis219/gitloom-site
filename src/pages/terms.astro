@@ -1,25 +1,5 @@
 ---
-import Page from '../layouts/Page.astro';
-import Legal from '../components/Legal.astro';
-
-const oss = [
-  ['Sparkle', 'https://github.com/sparkle-project/Sparkle', 'MIT'],
-  ['SwiftTerm', 'https://github.com/migueldeicaza/SwiftTerm', 'MIT'],
-  ['SwiftTreeSitter', 'https://github.com/tree-sitter/swift-tree-sitter', 'BSD 3-Clause'],
-  ['tree-sitter grammars for Bash, CSS, Go, HTML, JavaScript, JSON, Python, Rust, Swift, TSX, TypeScript and YAML', 'https://github.com/tree-sitter', 'MIT'],
-];
-const sections = [
-  { id: 'licence', title: 'Licence', html: '<p>GitLoom is free to use. Its source code isn’t published, and you may not sell it or pass it off as your own.</p>' },
-  { id: 'repositories', title: 'Your repositories', html: '<p>You’re responsible for what you commit and push, and for any history you rewrite. GitLoom asks before actions that are hard to undo, and most operations can be undone, but keep backups of work that matters.</p>' },
-  { id: 'services', title: 'Third-party services', html: '<p>GitHub, GitLab and the AI provider you choose are run by others, under their own terms. Using them through GitLoom doesn’t change those terms.</p>' },
-  { id: 'ai', title: 'AI can be wrong', html: '<p>AI suggestions can be wrong. Check them before you commit, push or run them.</p>' },
-  { id: 'warranty', title: 'No warranty', html: '<p>GitLoom is provided “as is”, without warranty of any kind, express or implied, including fitness for a particular purpose. To the extent the law allows, its author isn’t liable for any loss or damage arising from its use.</p>' },
-  { id: 'open-source', title: 'Open-source acknowledgements', html: `<p>GitLoom includes these open-source components, each under its own licence:</p><ul>${oss.map(([n, u, l]) => `<li><a href="${u}">${n}</a> · ${l}</li>`).join('')}</ul>` },
-  { id: 'law', title: 'Governing law', html: '<p><span class="ph">[OWNER FILLS: the country whose law applies]</span></p>' },
-];
+import Legal from '../views/Legal.astro';
+import { locales } from '../i18n/locales';
 ---
-<Page title="Terms of use — GitLoom" description="GitLoom is free to use. You’re responsible for what you push and rewrite; other services and AI have their own terms; GitLoom comes without warranty." path="/terms/">
-<Legal eyebrow="Terms" title="Terms of use" updated="2026-11-18" draft
-  short={['GitLoom is free to use.', 'You’re responsible for what you push and rewrite.', 'Other services and AI have their own terms, and AI can be wrong.', 'There’s no warranty.']}
-  sections={sections} />
-</Page>
+<Legal locale={locales[0]} page="terms" />

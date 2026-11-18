@@ -3,6 +3,7 @@
 import { type Locale } from '../i18n/locales';
 import { landingCopy } from '../i18n/landing';
 import { chromeWords } from '../i18n/chrome';
+import { lp } from '../i18n/paths';
 
 interface Props { locale: Locale; onHome?: boolean }
 const { locale, onHome = false } = Astro.props;
@@ -15,21 +16,21 @@ const repo = 'https://github.com/Jarvis219/gitloom-site';
   <div class="cols">
     <div><h2 class="fh">{t.footer.product}</h2><ul>
       <li><a href={onHome ? '#features' : `${home}#features`}>{t.footer.features}</a></li>
-      <li><a href="/download/">{t.footer.download}</a></li>
-      <li><a href="/changelog/">{w.changelog}</a></li>
-      <li><a href="/compare/">{w.compare}</a></li>
-      <li><a href="/press/">{w.press}</a></li>
+      <li><a href={lp(locale, '/download/')}>{t.footer.download}</a></li>
+      <li><a href={lp(locale, '/changelog/')}>{w.changelog}</a></li>
+      <li><a href={lp(locale, '/compare/')}>{w.compare}</a></li>
+      <li><a href={lp(locale, '/press/')}>{w.press}</a></li>
     </ul></div>
     <div><h2 class="fh">{t.footer.help}</h2><ul>
-      <li><a href="/docs/">{w.docs}</a></li>
-      <li><a href="/support/">{t.nav.support}</a></li>
+      <li><a href={lp(locale, '/docs/')}>{w.docs}</a></li>
+      <li><a href={lp(locale, '/support/')}>{t.nav.support}</a></li>
       <li><a href={`${repo}/issues/new?labels=bug`}>{t.footer.bug}</a></li>
       <li><a href={`${repo}/issues/new?labels=enhancement`}>{t.footer.feature}</a></li>
     </ul></div>
     <div><h2 class="fh">{w.legal}</h2><ul>
-      <li><a href="/privacy/">{w.privacy}</a></li>
-      <li><a href="/terms/">{w.terms}</a></li>
-      <li><a href="/security/">{w.security}</a></li>
+      <li><a href={lp(locale, '/privacy/')}>{w.privacy}</a></li>
+      <li><a href={lp(locale, '/terms/')}>{w.terms}</a></li>
+      <li><a href={lp(locale, '/security/')}>{w.security}</a></li>
     </ul></div>
     <div><h2 class="fh">{t.footer.project}</h2><ul>
       <li><a href={`${repo}/releases`}>{t.footer.releases}</a></li>

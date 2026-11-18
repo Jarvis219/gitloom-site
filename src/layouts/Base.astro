@@ -1,5 +1,6 @@
 ---
 import { locales, type Locale } from '../i18n/locales';
+import { lp } from '../i18n/paths';
 
 interface Props {
   locale: Locale;
@@ -9,7 +10,7 @@ interface Props {
   features?: string[];
   /** Localized description of the share image. */
   imageAlt?: string;
-  /** Sub-pages (English only): their own path. Leaves out the language alternates and the app's JSON-LD. */
+  /** Sub-pages: the path without the language prefix ("/docs/"). Leaves out the app's JSON-LD. */
   path?: string;
   /** Extra JSON-LD nodes for this page (FAQPage, TechArticle, BreadcrumbList…). */
   ld?: object[];
@@ -19,9 +20,9 @@ interface Props {
 }
 const { locale, title, description, features = [], imageAlt = 'GitLoom commit graph on macOS', path, ld = [], noindex = false, ogType = 'website' } = Astro.props;
 const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
-const href = (l: Locale) => new URL(l.path ? `/${l.path}/` : '/', site).href;
-const canonical = path ? new URL(path, site).href : href(locale);
-const root = href(locales[0]);
+const href = (l: Locale) => new URL(lp(l, path ?? '/'), site).href;
+const canonical = href(locale);
+const root = new URL('/', site).href;
 const ogImage = new URL('/og.jpg', site).href;
 const shot = (name: string) => new URL(`/shots/${name}-light.png`, site).href;
 const jsonLd = {
@@ -68,8 +69,8 @@ const jsonLd = {
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
     <link rel="canonical" href={canonical} />
-    {!path && locales.map((l) => <link rel="alternate" hreflang={l.hreflang} href={href(l)} />)}
-    {!path && <link rel="alternate" hreflang="x-default" href={href(locales[0])} />}
+    {!noindex && locales.map((l) => <link rel="alternate" hreflang={l.hreflang} href={href(l)} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={href(locales[0])} />}
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -79,7 +80,7 @@ const jsonLd = {
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="GitLoom" />
     <meta property="og:locale" content={locale.og} />
-    {!path && locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={l.og} />)}
+    {!noindex && locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={l.og} />)}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

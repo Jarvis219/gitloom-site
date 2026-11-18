@@ -1,0 +1,62 @@
+---
+import Page from '../layouts/Page.astro';
+import type { Locale } from '../i18n/locales';
+import { lp, fmt, formatDate } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
+import { getReleases } from '../lib/releases';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = pagesCopy(locale.code).press;
+const c = pagesCopy(locale.code).common;
+const releases = await getReleases();
+const latest = releases.find((r) => !r.beta) ?? releases[0];
+const counts = ['', ' · 45', ' · 100'];
+const hexes = ['#F6B17A', '#B94C1E', '#16161A', '#FBF4E8', '#F3E6D0', '#FFF8EE', '#5C5148', '#E7D9C2', '#14110E', '#F5EDE2'];
+const shotKeys = ['graph', 'diff', 'conflict', 'actions'] as const;
+const dl = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7.5l4 4 4-4M2.5 14h11"></path></svg>';
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/press/" crumbs={[{ name: t.title, path: '/press/' }]}>
+<section class="pagehead cream"><div class="wrap">
+  <p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+</div></section>
+<section class="sec cream" style="padding-top: 16px" aria-labelledby="ds"><div class="wrap">
+  <h2 class="sm" id="ds" style="margin-bottom: 28px">{t.descriptions}</h2>
+  <div class="desc">{t.descs.map(([k, text], i) => (
+    <div class="box"><p class="k">{k}<span dir="ltr">{counts[i]}</span></p><p data-text>{text}</p><button class="copybtn" type="button" style="align-self: flex-start" data-copy-from="[data-text]" aria-label={fmt(t.copyDescription, { k })}>{c.copy}</button></div>
+  ))}</div>
+  <p class="small" role="status" aria-live="polite" style="min-height: 22px; margin: 12px 0 0" data-status></p>
+</div></section>
+<section class="sec deep" aria-labelledby="as"><div class="wrap">
+  <h2 class="sm" id="as" style="margin-bottom: 28px">{t.iconTitle}</h2>
+  <div class="row" style="gap: 32px; align-items: center; margin-bottom: 40px">
+    <img class="iconimg" src="/icon.png" alt={t.iconAlt} width="128" height="128" />
+    <div><p style="margin: 0 0 12px">{t.iconText}</p><a class="btn btn-s" href="/press/gitloom-icon-1024.png" download><Fragment set:html={dl} />{t.downloadIcon}</a></div>
+  </div>
+  <div class="shots">{shotKeys.flatMap((n) => (['light', 'dark'] as const).map((th) => (
+    <figure><img src={`/shots/${n}-${th}.png`} alt={fmt(t.shotAlt, { label: t.shots[n], theme: t[th] })} width="1256" height="795" loading="lazy" />
+      <figcaption><span>{t.shots[n]} · {t[th]}</span><a href={`/shots/${n}-${th}.png`} download={`gitloom-${n}-${th}.png`}>PNG</a></figcaption></figure>
+  )))}</div>
+</div></section>
+<section class="sec cream" aria-labelledby="co"><div class="wrap">
+  <h2 class="sm" id="co" style="margin-bottom: 28px">{t.colours}</h2>
+  <div class="sw">{t.colourNames.map(([n, use], i) => <div><i style={`background: ${hexes[i]}`}></i><p><b>{n}</b><code dir="ltr">{hexes[i]}</code><br />{use}</p></div>)}</div>
+</div></section>
+<section class="sec cream" style="padding-top: 0" aria-labelledby="lo"><div class="wrap">
+  <h2 class="sm" id="lo" style="margin-bottom: 28px">{t.usingIcon}</h2>
+  <div class="dd">
+    <div class="col"><h3>{t.do}</h3><ul>{t.doItems.map((x) => <li>{x}</li>)}</ul></div>
+    <div class="col no"><h3>{t.dont}</h3><ul>{t.dontItems.map((x) => <li>{x}</li>)}</ul></div>
+  </div>
+</div></section>
+<section class="sec deep" aria-labelledby="fs"><div class="wrap">
+  <h2 class="sm" id="fs" style="margin-bottom: 28px">{t.factSheet}</h2>
+  <div class="tblw"><table class="tbl"><tbody>
+    {t.facts.map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}
+    <tr><th scope="row">{t.getIt}</th><td><a href={lp(locale, '/download/')} dir="ltr">gitloom-site.vercel.app{lp(locale, '/download')}</a></td></tr>
+    <tr><th scope="row">{t.latestVersion}</th><td>{latest ? `${latest.version} · ${formatDate(latest.date, locale)}` : t.firstSoon}</td></tr>
+  </tbody></table></div>
+  <p style="margin: 32px 0 0" set:html={t.questions} />
+</div></section>
+</Page>

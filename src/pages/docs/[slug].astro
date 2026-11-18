@@ -1,70 +1,10 @@
 ---
-import Page from '../../layouts/Page.astro';
-import { docs, byGroup, groupId } from '../../lib/docs';
+import DocsArticle from '../../views/DocsArticle.astro';
+import { locales } from '../../i18n/locales';
+import { docsFor } from '../../lib/docs';
 
 export function getStaticPaths() {
-  return docs.map((d) => ({ params: { slug: d.slug } }));
+  return docsFor(locales[0]).map((d) => ({ params: { slug: d.slug } }));
 }
-const doc = docs.find((d) => d.slug === Astro.params.slug)!;
-const i = docs.indexOf(doc);
-const prev = docs[i - 1], next = docs[i + 1];
-const html = await doc.html();
-const site = Astro.site ?? new URL('https://gitloom-site.vercel.app');
-const updated = new Date(`${doc.updated}T00:00:00Z`);
-const updatedText = updated.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
-const issue = `https://github.com/Jarvis219/gitloom-site/issues/new?labels=docs&title=${encodeURIComponent(`Docs: ${doc.title}`)}`;
-const ld = [{
-  '@type': 'TechArticle',
-  headline: doc.title,
-  description: doc.summary,
-  dateModified: doc.updated,
-  inLanguage: 'en',
-  url: new URL(doc.url, site).href,
-  about: { '@type': 'SoftwareApplication', name: 'GitLoom', operatingSystem: 'macOS 14 or later' },
-  isPartOf: { '@type': 'WebSite', name: 'GitLoom', url: new URL('/', site).href },
-}];
-const sideNav = byGroup;
 ---
-<Page title={`${doc.title} — GitLoom docs`} description={doc.summary} path={doc.url} current="docs" ld={ld} ogType="article">
-<div class="docs">
-  <nav class="side" aria-label="Docs">{sideNav.map((g) => (<>
-    <p class="grp">{g.group}</p>
-    <ul>{g.items.map((d) => <li><a href={d.url} aria-current={d.slug === doc.slug ? 'page' : undefined}>{d.title}</a></li>)}</ul>
-  </>))}</nav>
-  <article class="art" aria-labelledby="t">
-    <div class="docbar">
-      <button class="btn btn-s menu-btn" type="button" aria-haspopup="dialog" data-sheet-open><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11"></path></svg>&nbsp;Docs menu</button>
-      {doc.headings.length > 0 && <details><summary>On this page <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4.5l3 3 3-3"></path></svg></summary>
-        <ul class="dd-list">{doc.headings.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul></details>}
-    </div>
-    <p class="crumbs"><a href="/docs/">Docs</a><span aria-hidden="true">/</span><a href={`/docs/#${groupId(doc.group)}`}>{doc.group}</a></p>
-    <h1 id="t">{doc.title}</h1>
-    <p class="updated">Last updated <time datetime={doc.updated}>{updatedText}</time><a href={issue}>Report an issue</a></p>
-    <div class="prose" set:html={html} />
-    <p class="small" role="status" aria-live="polite" style="min-height: 22px; margin-top: 8px" data-status></p>
-    <nav class="pn" aria-label="Previous and next">
-      {prev ? <a href={prev.url} rel="prev"><span>← Previous</span><b>{prev.title}</b></a> : <span></span>}
-      {next && <a href={next.url} rel="next"><span>Next →</span><b>{next.title}</b></a>}
-    </nav>
-  </article>
-  <aside class="toc" aria-label="On this page">{doc.headings.length > 0 && <div class="in" data-toc><p>On this page</p>
-    <ul>{doc.headings.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul></div>}</aside>
-</div>
-<dialog class="sheet" aria-label="Docs menu" data-sheet>
-  <div class="sheet-head"><p class="fh" style="margin: 0">Docs</p><button class="btn btn-s btn-c" type="button" data-sheet-close>Close</button></div>
-  <nav class="side" aria-label="Docs">{sideNav.map((g) => (<>
-    <p class="grp">{g.group}</p>
-    <ul>{g.items.map((d) => <li><a href={d.url} aria-current={d.slug === doc.slug ? 'page' : undefined}>{d.title}</a></li>)}</ul>
-  </>))}</nav>
-</dialog>
-</Page>
-
-<script>
-  // Mobile "Docs menu": a modal sheet (focus stays inside, Esc closes, focus returns to the button).
-  const sheet = document.querySelector<HTMLDialogElement>('[data-sheet]');
-  const opener = document.querySelector<HTMLButtonElement>('[data-sheet-open]');
-  opener?.addEventListener('click', () => { sheet?.showModal(); sheet?.querySelector<HTMLElement>('[aria-current]')?.scrollIntoView({ block: 'center' }); });
-  sheet?.querySelector('[data-sheet-close]')?.addEventListener('click', () => sheet.close());
-  sheet?.addEventListener('close', () => opener?.focus());
-  sheet?.addEventListener('click', (e) => { if (e.target === sheet) sheet.close(); });
-</script>
+<DocsArticle locale={locales[0]} slug={Astro.params.slug!} />

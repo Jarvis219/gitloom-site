@@ -1,0 +1,9 @@
+---
+import Compare from '../../views/Compare.astro';
+import { otherLocales } from '../../i18n/paths';
+import type { Locale } from '../../i18n/locales';
+
+export const getStaticPaths = otherLocales;
+const { locale } = Astro.props as { locale: Locale };
+---
+<Compare locale={locale} />

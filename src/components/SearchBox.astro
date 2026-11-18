@@ -1,16 +1,22 @@
 ---
 // Search field (design G2): ⌘K or / focuses it, results list under it as you type, ↑↓ and Enter.
-// Without JavaScript the form goes to /search/, which lists every page.
-interface Props { id: string; label: string }
-const { id, label } = Astro.props;
+// Without JavaScript the form goes to the search page, which lists every page.
+import type { Locale } from '../i18n/locales';
+import { lp } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
+
+interface Props { id: string; label: string; locale: Locale }
+const { id, label, locale } = Astro.props;
+const s = pagesCopy(locale.code).search;
+const strings = JSON.stringify({ count: s.count, none: s.none, nothing: s.nothing, tryFewer: s.tryFewer, results: s.results });
 ---
-<form role="search" action="/search/" style="margin: 0" data-search>
+<form role="search" action={lp(locale, '/search/')} style="margin: 0" data-search data-index={lp(locale, '/search-index.json')} data-strings={strings}>
   <label class="vh" for={id}>{label}</label>
   <div class="search" style="position: relative">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="5.6"></circle><path d="M12.2 12.2l3.8 3.8" stroke-linecap="round"></path></svg>
     <input id={id} name="q" type="search" placeholder={label} autocomplete="off" role="combobox" aria-expanded="false" aria-controls={`${id}-list`} aria-autocomplete="list" />
     <span class="hint" aria-hidden="true"><kbd>⌘K</kbd><kbd>/</kbd></span>
-    <ul class="dd-list results" id={`${id}-list`} role="listbox" aria-label="Results" hidden></ul>
+    <ul class="dd-list results" id={`${id}-list`} role="listbox" aria-label={s.results} hidden></ul>
   </div>
   <p class="vh" role="status" aria-live="polite" data-search-status></p>
 </form>

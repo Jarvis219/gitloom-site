@@ -286,3 +286,23 @@ dialog.sheet .sheet-head{display:flex;justify-content:space-between;align-items:
 .legal .toc p{font-size:12px;line-height:1.4;margin:0 0 10px}
 .code pre{min-width:0}.dlhero .a,.dlhero .b{min-width:0}
 @container (max-width:720px){ .dlhero .wrap{align-items:stretch} }
+/* --- right-to-left (Arabic): mirror the rules above that are written with left/right --- */
+[dir=rtl] .side{border-right:0;border-left:1px solid var(--line);padding-right:0;padding-left:24px}
+[dir=rtl] .side a{margin-left:0;margin-right:-12px;border-left:0;border-right:2px solid transparent;border-radius:4px 0 0 4px}
+[dir=rtl] .side a[aria-current]{border-right-color:var(--fg)}
+[dir=rtl] .toc ul,[dir=rtl] .legal .toc ol{border-left:0;border-right:1px solid var(--line)}
+[dir=rtl] .toc a,[dir=rtl] .legal .toc li a{padding:7px 14px 7px 0;margin-left:0;margin-right:-1px;border-left:0;border-right:2px solid transparent}
+[dir=rtl] .toc a[aria-current],[dir=rtl] .legal .toc li a[aria-current]{border-right-color:var(--fg)}
+[dir=rtl] .callout{padding:4px 18px 4px 0;border-left:0;border-right:2px solid var(--fg)}
+[dir=rtl] .callout.warn{border-right-color:var(--acc)}
+[dir=rtl] .never{border-left:0;border-right:2px solid var(--acc);padding-left:0;padding-right:18px}
+[dir=rtl] .entry{padding:0 36px 64px 0;border-left:0;border-right:1px solid var(--line)}
+[dir=rtl] .entry::before{left:auto;right:-6px}
+[dir=rtl] .entry ul[dir=ltr]{padding-left:20px}
+[dir=rtl] .entry ul:not([dir=ltr]),[dir=rtl] .prose ul,[dir=rtl] .prose ol,[dir=rtl] .dd ul,[dir=rtl] .rowlink ul{padding-left:0;padding-right:22px}
+[dir=rtl] .pn a:last-child{text-align:left}
+[dir=rtl] .tbl th,[dir=rtl] .tbl td{text-align:right}
+[dir=rtl] .search{padding:0 18px 0 10px}
+[dir=rtl] dialog.sheet{margin:0 auto 0 0;border-left:0;border-right:1px solid var(--sbd)}
+@container (max-width:720px){ [dir=rtl] .entry{padding-left:0;padding-right:24px} [dir=rtl] .pn a:last-child{text-align:right} }
+[dir=rtl] :is(.side .grp,.toc p,.updated,.index h3,.summary p.k,.desc .box .k,.tbl thead th,.pn a span,.entry h3,.feed,.draft,.start .n,.hits a span,.search .results li a span,.legal h2 .no){letter-spacing:0;font-family:Inter,system-ui,sans-serif}

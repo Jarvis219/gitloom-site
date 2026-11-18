@@ -1,8 +1,14 @@
 // Site search over a static index built at deploy (/search-index.json). No server, no tracking.
 export interface Entry { t: string; g: string; u: string; s: string; x: string }
 
-let index: Promise<Entry[]> | null = null;
-export const loadIndex = () => (index ??= fetch('/search-index.json').then((r) => (r.ok ? r.json() : [])).catch(() => []));
+const indexes = new Map<string, Promise<Entry[]>>();
+/** Each language has its own index: /search-index.json, /vi/search-index.json… */
+export const loadIndex = (url = '/search-index.json') => {
+  if (!indexes.has(url)) indexes.set(url, fetch(url).then((r) => (r.ok ? r.json() : [])).catch(() => []));
+  return indexes.get(url)!;
+};
+export interface Strings { count: string; none: string; nothing: string; tryFewer: string; results: string }
+const fill = (s: string, k: string, v: string | number) => s.replace(`{${k}}`, String(v));
 
 const fold = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
@@ -40,6 +46,8 @@ export function initSearch() {
     const input = form.querySelector('input')!;
     const list = form.querySelector<HTMLUListElement>('[role=listbox]')!;
     const status = form.querySelector('[data-search-status]');
+    const url = form.dataset.index ?? '/search-index.json';
+    const t = JSON.parse(form.dataset.strings ?? '{}') as Strings;
     let active = -1, results: Entry[] = [];
     const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; };
     const highlight = (i: number) => {
@@ -51,18 +59,18 @@ export function initSearch() {
     const render = async () => {
       const q = input.value.trim();
       if (!q) { close(); return; }
-      results = search(await loadIndex(), q);
+      results = search(await loadIndex(url), q);
       if (!results.length) {
-        list.innerHTML = `<li class="none">Nothing matches “${esc(q)}”. Try fewer words, or <a href="https://github.com/Jarvis219/gitloom-site/issues">ask on GitHub Issues</a>.</li>`;
+        list.innerHTML = `<li class="none">${fill(esc(t.nothing), 'q', esc(q))} ${t.tryFewer}</li>`;
       } else {
         list.innerHTML = results.map((r, i) => `<li role="option" id="${input.id}-o${i}" aria-selected="false"><a href="${r.u}"><b>${esc(r.t)}</b><span>${esc(r.g)}</span></a></li>`).join('');
       }
-      if (status) status.textContent = results.length ? `${results.length} results` : 'No results';
+      if (status) status.textContent = results.length ? fill(t.count, 'n', results.length) : t.none;
       list.hidden = false;
       input.setAttribute('aria-expanded', 'true');
       active = -1;
     };
-    input.addEventListener('focus', () => { loadIndex(); });
+    input.addEventListener('focus', () => { loadIndex(url); });
     input.addEventListener('input', render);
     input.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' && results.length) { e.preventDefault(); highlight(Math.min(results.length - 1, active + 1)); }

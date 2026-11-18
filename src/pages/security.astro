@@ -1,19 +1,5 @@
 ---
-import Page from '../layouts/Page.astro';
-import Legal from '../components/Legal.astro';
-
-const verify = 'codesign --verify --deep --strict --verbose=1 /Applications/GitLoom.app';
-const copy = `<div class="code"><pre><code>${verify}</code></pre><button class="copybtn" type="button" data-copy="${verify}" aria-label="Copy command">Copy</button></div><p class="small" role="status" aria-live="polite" style="min-height: 22px; margin: 8px 0 0" data-status></p>`;
-const sections = [
-  { id: 'signed', title: 'Signed updates', html: '<p>Every update is signed with an EdDSA key, and GitLoom checks the signature before it installs anything. An update that isn’t signed with that key is refused, and only newer versions are installed. Updates wait while a clone, push, pull or commit is running.</p>' },
-  { id: 'defaults', title: 'Safe defaults', html: '<ul><li>GitHub and GitLab tokens and AI keys are stored in your Keychain.</li><li>The MCP server and AI are off by default. Tools connected through MCP can’t force-push, reset, discard, delete or rewrite history.</li><li>Links that aren’t web pages, and folders opened from a link, ask first.</li><li>Imported settings can’t redirect your tokens or keys to another server.</li><li>The Git Log keeps the command lines GitLoom ran, never their output, input or credentials.</li></ul>' },
-  { id: 'trust', title: 'Open only repositories you trust', html: '<p>Opening a repository runs the programs its Git settings name (hooks, filters, an fsmonitor). That’s how git works in a terminal too. Treat an unknown repository like an unknown app.</p>' },
-  { id: 'verify', title: 'Verify your download', html: `<p>Download GitLoom only from this website or <a href="https://github.com/Jarvis219/gitloom-site/releases">its GitHub releases</a>. After you’ve copied it to Applications, this command checks that no file in the app has changed since it was signed:</p>${copy}<p>It should print <code>valid on disk</code> and <code>satisfies its Designated Requirement</code>. GitLoom isn’t notarized yet, so this confirms the app is intact, not who signed it. Updates installed by GitLoom itself are checked automatically.</p>` },
-  { id: 'report', title: 'Report a vulnerability', html: '<p>Please report privately, not in a public issue. <span class="ph">[OWNER FILLS: address and response time]</span></p><p>Machine-readable contact: <span class="ph">/.well-known/security.txt (added once the address is set)</span></p>' },
-];
+import Legal from '../views/Legal.astro';
+import { locales } from '../i18n/locales';
 ---
-<Page title="Security — GitLoom" description="How GitLoom keeps you safe: EdDSA-signed updates, tokens in the Keychain, MCP and AI off by default, links that ask first, and how to verify your download." path="/security/">
-<Legal eyebrow="Security" title="Security" updated="2026-11-18"
-  short={['Updates are signed and verified; only newer versions install.', 'MCP and AI are off by default.', 'Links and link-opened folders ask before they open.', 'Open only repositories you trust.']}
-  sections={sections} />
-</Page>
+<Legal locale={locales[0]} page="security" />

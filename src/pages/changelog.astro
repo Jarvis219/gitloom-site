@@ -1,28 +1,5 @@
 ---
-import Page from '../layouts/Page.astro';
-import { getReleases, formatDate, inline } from '../lib/releases';
-
-const releases = await getReleases();
+import Changelog from '../views/Changelog.astro';
+import { locales } from '../i18n/locales';
 ---
-<Page title="GitLoom changelog — every release, newest first" description="What changed in each GitLoom release: new features, improvements and fixes, newest first. Also available as the app’s update feed." path="/changelog/">
-<link slot="head" rel="alternate" type="application/rss+xml" title="GitLoom updates" href="/appcast.xml" />
-<section class="pagehead cream"><div class="wrap" style="max-width: 760px">
-  <p class="eyebrow">Changelog</p><h1>Changelog</h1>
-  <p class="lead">Every release, newest first.</p>
-  <p style="margin: 16px 0 0"><a class="feed" href="/appcast.xml"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 3a10 10 0 0 1 10 10M3 7.5A5.5 5.5 0 0 1 8.5 13"></path><circle cx="3.6" cy="12.4" r="1" fill="currentColor"></circle></svg>appcast.xml</a></p>
-</div></section>
-<div class="log cream">
-  {releases.length === 0 && <p class="lead" style="margin: 0 0 32px">No releases yet. The first one will appear here as soon as it’s out.</p>}
-  {releases.map((r) => {
-    const id = `v${r.version}`;
-    return (
-      <article class="entry" aria-labelledby={id}>
-        <header><h2 id={id}>{r.version}</h2><span class={`tag ${r.beta ? 'beta' : 'stable'}`}>{r.beta ? 'Beta' : 'Stable'}</span><time datetime={r.date.slice(0, 10)}>{formatDate(r.date)}</time>
-          <a class="anchor" href={`#${id}`} aria-label={`Link to version ${r.version}`}>#</a></header>
-        {r.sections.map((s) => <>{s.title && <h3>{s.title}</h3>}<ul>{s.items.map((it) => <li set:html={inline(it)} />)}</ul></>)}
-      </article>
-    );
-  })}
-  <p><a href="https://github.com/Jarvis219/gitloom-site/releases" style="min-height: 44px; display: inline-flex; align-items: center">All releases on GitHub →</a></p>
-</div>
-</Page>
+<Changelog locale={locales[0]} />

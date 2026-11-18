@@ -1,0 +1,61 @@
+---
+import Page from '../layouts/Page.astro';
+import SearchBox from '../components/SearchBox.astro';
+import type { Locale } from '../i18n/locales';
+import { lp, fmt } from '../i18n/paths';
+import { pagesCopy } from '../i18n/pages';
+import { faqFor } from '../lib/faq';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = pagesCopy(locale.code).support;
+const faq = faqFor(locale);
+const docs = pagesCopy(locale.code).docs;
+const repo = 'https://github.com/Jarvis219/gitloom-site';
+const plainText = (html: string) => html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+const ld = [{
+  '@type': 'FAQPage',
+  inLanguage: locale.hreflang,
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) } })),
+}];
+const chevron = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg>';
+---
+<Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/support/" current="support" ld={ld} crumbs={[{ name: t.title, path: '/support/' }]}>
+<section class="pagehead cream"><div class="wrap">
+  <p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+  <div style="margin-top: 32px"><SearchBox id="sq" label={pagesCopy(locale.code).search.support} locale={locale} /></div>
+</div></section>
+<section class="sec cream" style="padding-top: 32px" aria-labelledby="cf"><div class="wrap" style="max-width: 900px; margin: 0 auto">
+  <h2 class="sm" id="cf" style="margin-bottom: 24px">{t.commonFixes}</h2>
+  <div class="acc">{faq.map((f, i) => (
+    <details id={f.id} open={i === 0}><summary>{f.q}<Fragment set:html={chevron} /></summary><div class="ans"><p set:html={f.a} />{f.doc && <p><a href={f.doc}>{docs.readMore}</a></p>}</div></details>
+  ))}</div>
+</div></section>
+<section class="sec deep" aria-labelledby="gi"><div class="wrap">
+  <p class="eyebrow">{t.issuesEyebrow}</p><h2 class="sm" id="gi" style="margin-bottom: 32px">{t.stillStuck}</h2>
+  <div class="rows">
+    <div class="rowlink"><div class="t"><h3>{t.reportBug}</h3></div>
+      <div class="d"><p style="margin: 0">{t.include}</p><ul>{t.includeItems.map((x) => <li>{x}</li>)}</ul></div>
+      <div class="g"><a class="btn btn-s" href={`${repo}/issues/new?labels=bug`}>{t.reportBugButton}</a></div></div>
+    <div class="rowlink"><div class="t"><h3>{t.requestFeature}</h3></div>
+      <div class="d"><p style="margin: 0">{t.requestText}</p></div>
+      <div class="g"><a class="btn btn-s" href={`${repo}/issues/new?labels=enhancement`}>{t.requestFeatureButton}</a></div></div>
+  </div>
+  <div class="honest" style="border-top-color: var(--sbd)">
+    <div class="a"><p class="never" style="margin: 0" set:html={t.never} /></div>
+    <div class="b"><p style="margin: 0 0 8px">{t.crash}</p>
+      <p class="small" style="margin: 0" set:html={fmt(t.security, { href: lp(locale, '/security/#report') })} /></div>
+  </div>
+</div></section>
+</Page>
+
+<script>
+  // /support/#git-not-found opens and scrolls to that answer.
+  const open = () => {
+    const el = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (el instanceof HTMLDetailsElement) { el.open = true; el.scrollIntoView({ block: 'start' }); el.querySelector('summary')?.focus(); }
+  };
+  addEventListener('hashchange', open);
+  open();
+</script>
