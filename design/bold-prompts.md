@@ -3,6 +3,7 @@
 Cách dùng: mỗi mục `## P…` là một prompt độc lập, copy nguyên khối (từ dòng `>>>` đến `<<<`) vào công cụ
 AI (v0 / Lovable / Figma Make / Claude / Midjourney / GPT-image). Nên chạy theo thứ tự:
 P0 (chọn hướng) → P1 (cả trang) → P2 (hero chơi được) → P3–P6 (từng phần) → P7 (ảnh minh hoạ) → P8 (chữ).
+Các trang khác (Docs, Support, Privacy, Terms, Security, Download, Changelog, Compare, Press, 404): xem `pages-prompts.md` (P9–P17).
 Mọi con số trong đây là số đo thật của app; cấm AI thêm số liệu, logo khách hàng, testimonial.
 
 Facts block — already pasted into every prompt below (edit here and in the prompts together):
