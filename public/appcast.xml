@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>GitLoom</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Wed, 18 Nov 2026 21:42:40 +0700</pubDate>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<ul>
+
+<li>First public release. Not notarized yet: on first open, macOS asks — System Settings ▸ Privacy & Security ▸ Open Anyway. Later versions arrive through the app's own updater.</li>
+<li>Commit graph for large repositories (100k+ commits), commit details and diffs (side by side or unified, word-level), file history and blame.</li>
+<li>Staging by file, hunk or line; commits with amend, sign-off, signing (GPG/SSH), co-authors and team conventions.</li>
+<li>Branches and tags, fetch / pull / push with upstream tracking, stashes, undo and redo for most operations.</li>
+<li>Merge, rebase, cherry-pick and revert by drag and drop on the graph; interactive rebase; a three-way conflict editor.</li>
+<li>Tabs, several windows, profiles that each keep their own tabs, recent repositories and commit identity.</li>
+<li>SSH accounts that pick the right key per repository; GitHub and GitLab sign-in for pull requests, issues, reviews and Actions.</li>
+<li>Built-in terminal, file editor, search and filters, worktrees, submodules, bisect, reflog recovery, Git LFS.</li>
+<li>AI commit messages and explanations with your own provider; an MCP server so other tools can drive GitLoom.</li>
+<li>Themes, layout and keyboard customisation; 16 languages.</li>
+
+</ul>
+]]></description>
+            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.0/GitLoom-1.0.0.zip" length="17546659" type="application/octet-stream" sparkle:edSignature="vp2M8PwdTa7f4mZxZ23IE8q8BfuoP4BuhKlm3ZfLJkGwrWyo92z6LAwBy6r42Y5vKPkHHmDWOKyFmvtEyDd+DQ=="/>
+        </item>
+    </channel>
+</rss>
