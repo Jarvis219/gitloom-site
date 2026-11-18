@@ -306,3 +306,4 @@ dialog.sheet .sheet-head{display:flex;justify-content:space-between;align-items:
 [dir=rtl] dialog.sheet{margin:0 auto 0 0;border-left:0;border-right:1px solid var(--sbd)}
 @container (max-width:720px){ [dir=rtl] .entry{padding-left:0;padding-right:24px} [dir=rtl] .pn a:last-child{text-align:right} }
 [dir=rtl] :is(.side .grp,.toc p,.updated,.index h3,.summary p.k,.desc .box .k,.tbl thead th,.pn a span,.entry h3,.feed,.draft,.start .n,.hits a span,.search .results li a span,.legal h2 .no){letter-spacing:0;font-family:Inter,system-ui,sans-serif}
+.deep a.cap{text-decoration:none}

@@ -38,7 +38,7 @@ const steps = [t.step1, t.step2, t.step3];
   <div class="a"><p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1>
     <p class="lead">{t.lead}</p>
     <div class="row" style="margin-top: 32px"><a class="btn btn-p" href={dmg}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v9M4 7.5l4 4 4-4M2.5 14h11"></path></svg>{download}</a></div>
-    <p class="meta" dir="ltr">GitLoom.dmg{latest && ` · ${latest.version}`} · 42 MB</p>
+    <p class="meta" dir="ltr"><a href={dmg}>GitLoom.dmg</a>{latest && ` · ${latest.version}`} · 42 MB</p>
     <div class="links"><a href={lp(locale, '/changelog/')}>{t.releaseNotes}</a><a href="https://github.com/Jarvis219/gitloom-site/releases">{t.olderVersions}</a><a href={lp(locale, '/security/#verify')}>{t.verify}</a></div>
     <div style="margin-top: 28px; max-width: 560px"><p class="small" style="margin: 0 0 10px">{t.terminal}</p>
       <div class="code" dir="ltr"><pre><code>{curl}</code></pre><button class="copybtn" type="button" data-copy={curl} aria-label={c.copyCommand}>{c.copy}</button></div>
@@ -55,7 +55,7 @@ const steps = [t.step1, t.step2, t.step3];
 <section class="sec deep" aria-labelledby="fo"><div class="wrap">
   <p class="eyebrow">{t.firstOpenEyebrow}</p><h2 class="sm" id="fo">{t.firstOpenTitle}</h2>
   <ol class="steps">
-    <li><div class="cap" aria-hidden="true"><div class="row2"><span class="tile"><img src="/icon.png" alt="" />GitLoom.dmg</span><span class="arrow">→</span><span class="tile"><span class="folder"></span>{art.apps}</span></div></div>
+    <li><a class="cap" href={dmg} aria-label={download}><div class="row2"><span class="tile"><img src="/icon.png" alt="" />GitLoom.dmg</span><span class="arrow">→</span><span class="tile"><span class="folder"></span>{art.apps}</span></div></a>
       <span class="stepn">{fmt(t.step, { n: '01' })}</span><h3>{steps[0]}</h3></li>
     <li><div class="cap" aria-hidden="true"><div class="dlg"><b>{art.dialogTitle}</b><span>{art.dialogText}</span><span class="pill">{art.done}</span></div></div>
       <span class="stepn">{fmt(t.step, { n: '02' })}</span><h3>{steps[1]}</h3></li>

@@ -253,3 +253,8 @@ details.lang.up ul{animation-name:popup}
 [dir=rtl] details.lang ul{right:auto;left:0}
 /* Arabic letters must join: no letter-spacing on the mono labels */
 [dir=rtl] :is(.eyebrow,.meta,.stepn,.cols h3,.cols .fh,.fh,.tag){letter-spacing:0;font-family:Inter,system-ui,sans-serif}
+/* The step-1 picture is the download itself (feedback 2026-11-18: "download" places without a link) */
+a.cap{text-decoration:none;cursor:pointer;transition:border-color 120ms,background-color 120ms}
+a.cap:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--bg2))}
+a.cap:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.meta a{color:inherit;text-underline-offset:3px}
