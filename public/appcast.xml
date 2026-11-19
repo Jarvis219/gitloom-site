@@ -3,6 +3,28 @@
     <channel>
         <title>GitLoom</title>
         <item>
+            <title>1.0.1</title>
+            <pubDate>Thu, 19 Nov 2026 10:38:09 +0700</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<ul>
+
+<li>Closing the last window now only hides it: clicking the Dock icon brings it back at once, with its tabs, graph and terminal, instead of loading every repository again.</li>
+<li>When the window had really been closed, the Dock icon opened an empty start page instead of your repositories.</li>
+<li>Pull requests no longer say GitHub rejected the saved sign-in when the repository's default account has an expired token but another account works: that account is skipped quietly, and accounts that need signing in are no longer picked by default.</li>
+<li>Tokens are read from the Keychain once, so a busy Keychain no longer looks like a rejected sign-in.</li>
+<li>The ⚠ next to a branch whose upstream was deleted on the remote explains itself when you hover it, and says what to do.</li>
+
+</ul>
+]]></description>
+            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.1/GitLoom-1.0.1.zip" length="17562518" type="application/octet-stream" sparkle:edSignature="CNgWznhKPFCeVRUeEaVjeEGol0bAM8vgKP72BR838a66SFh/1oiJdxzLEB8rH5d7Ad5TKHXtaitzoCkkODPiAg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.1/GitLoom3-2.delta" sparkle:deltaFrom="2" length="1025698" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="NFDO9O4i2oXfmKxs7DVeUsi0KWnZjo2+iOWUFP9qOew9xafBkGnUVrbZ5W+wZzm1KXw+c4jrmpQm1GQuljyLBg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.0</title>
             <pubDate>Wed, 18 Nov 2026 21:42:40 +0700</pubDate>
             <sparkle:version>2</sparkle:version>
