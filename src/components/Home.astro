@@ -31,7 +31,7 @@ const crops: (string | null)[] = [
 const chapterClass = ['cream', 'deep flip', 'cream', 'band flip', 'cream'];
 ---
 <Base locale={locale} title={t.title} description={t.description} imageAlt={t.heroAlt}
-  features={[...t.chapters.flatMap((c) => c.facts.filter((f) => !f.includes('<'))), ...t.gh.facts]}>
+  features={[...t.chapters.flatMap((c) => c.facts.filter((f) => !f.includes('<'))), ...t.gh.facts, ...t.ai.facts.map((f) => f.replace(/<[^>]+>/g, ''))]}>
 <Fragment slot="head">
   <link rel="preload" as="image" href="/shots/graph-light.png" media="(prefers-color-scheme: light)" fetchpriority="high" />
   <link rel="preload" as="image" href="/shots/graph-dark.png" media="(prefers-color-scheme: dark)" fetchpriority="high" />
@@ -93,6 +93,18 @@ const chapterClass = ['cream', 'deep flip', 'cream', 'band flip', 'cream'];
     <div class="b reveal" style="--d:100ms"><ul class="facts">{t.gh.facts.map((f, j) => <li><span>{String(j + 1).padStart(2, '0')}</span>{f}</li>)}</ul></div>
   </div>
   <figure class="win reveal" data-parallax><div class="shot"><picture><source media="(prefers-color-scheme: dark)" srcset="/shots/actions-dark.png" /><img src="/shots/actions-light.png" alt={t.gh.alt} width="1256" height="795" loading="lazy" /></picture></div><figcaption>{t.gh.caption}</figcaption></figure>
+</div></section>
+
+<section class="sec ch band" id="ai" aria-labelledby="aih"><div class="wrap">
+  <div class="txt reveal">
+    <p class="eyebrow">{t.ai.eyebrow}</p><h2 id="aih">{t.ai.title}</h2><p class="lead">{t.ai.lead}</p>
+    <ul class="facts">{t.ai.facts.map((f, j) => <li class="reveal" style={`--d:${120 + j * 70}ms`}><span>{String(j + 1).padStart(2, '0')}</span><span class="f" set:html={f} /></li>)}</ul>
+    <p class="small" style="margin: 20px 0 0">{t.ai.privacy}</p>
+  </div>
+  <div class="pic reveal" data-parallax><figure class="win"><div class="shot">
+    <div class="crop" style="aspect-ratio: 696 / 650"><picture><source media="(prefers-color-scheme: dark)" srcset="/shots/ai-dark.png" /><img src="/shots/ai-light.png" alt={t.ai.alt} style="width: 180.5%; margin-left: -80.5%; margin-top: -15.8%" loading="lazy" /></picture></div>
+  </div><figcaption>{t.ai.caption}</figcaption></figure>
+  <p class="small" style="margin: 20px 0 0">{t.ai.mcp}</p></div>
 </div></section>
 
 <section class="sec cream" aria-labelledby="pw"><div class="wrap power">

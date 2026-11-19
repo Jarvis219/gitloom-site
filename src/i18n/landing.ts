@@ -19,6 +19,8 @@ export interface LandingCopy {
   figs: [string, string][];
   chapters: Chapter[];
   gh: { eyebrow: string; title: string; lead: string; facts: string[]; caption: string; alt: string };
+  /** AI section (2026-11-19). Every line is a feature of the app (F17, F26). */
+  ai: { eyebrow: string; title: string; lead: string; facts: string[]; privacy: string; mcp: string; caption: string; alt: string };
   power: { eyebrow: string; title: string; items: [string, string][] };
   langs: { eyebrow: string; title: string; lead: string; caption: string; alt: string };
   install: {
@@ -33,8 +35,8 @@ export interface LandingCopy {
 }
 
 const en: LandingCopy = {
-  title: 'GitLoom — a free, native Git client for macOS',
-  description: 'GitLoom is a free, native Git client for macOS: a commit graph for huge repositories, drag-and-drop merge and rebase, line staging, undo, profiles, and GitHub and GitLab built in.',
+  title: 'GitLoom — a free, native Git client for macOS, with AI',
+  description: 'Free, native Git client for macOS: a fast commit graph, drag-and-drop merge and rebase, line staging, undo, AI commit messages and code review with your own key, GitHub and GitLab.',
   skip: 'Skip to content',
   nav: { features: 'Features', install: 'Install', download: 'Download', support: 'Support', menu: 'Open menu' },
   eyebrow: 'Git client for macOS · Free',
@@ -68,6 +70,19 @@ const en: LandingCopy = {
   gh: { eyebrow: 'GitHub & GitLab', title: 'Pull requests and Actions, inside the app.', lead: 'Review, track issues and rerun workflows next to the history they touch.',
     facts: ['Pull requests and reviews', 'Issues, filtered to yours or all', 'Actions runs and their jobs'],
     caption: 'A pull request with checks, and an Actions run open on the right.', alt: 'Sidebar listing a pull request with a passing check and Actions runs; a run is open showing its build job.' },
+  ai: { eyebrow: 'AI · Off until you turn it on', title: 'AI writes the commit message. You decide.', lead: 'Commit messages, code review, conflict suggestions and explanations from the AI provider you choose — or a model on your own Mac.',
+    facts: [
+      'Commit messages from your changes in one click (<kbd>⌥⌘G</kbd>), shorter or rewritten on demand',
+      'Splits a large change into separate commits that you review before anything is committed',
+      'Reviews a diff line by line and suggests fixes you can apply',
+      'Suggests a resolution for each merge conflict',
+      'Explains a commit, a branch or your uncommitted work; drafts pull request descriptions and stash messages',
+      'Anthropic, OpenAI, Gemini, OpenRouter, Groq, Mistral, DeepSeek, Qwen, xAI, Together, or a local model in Ollama or LM Studio',
+    ],
+    privacy: 'Your own key, kept in your Keychain. You see exactly what is sent the first time in each repository, obvious secrets are redacted, and AI can be turned off per repository.',
+    mcp: 'Use Claude Code, Cursor or VS Code? Through GitLoom’s MCP server they can read your repositories and, if you allow it, stage, commit and push — each change shown in GitLoom with an Undo button.',
+    caption: 'The ✨ button wrote this message from the diff beside it.',
+    alt: 'GitLoom with a diff of CommitList.swift and, in the commit form, a message the AI wrote from that change.' },
   power: { eyebrow: 'For power users', title: 'The rest of Git, close at hand.', items: [
     ['Terminal', 'Built in'], ['File editor', 'Built in'], ['Worktrees', 'Several checkouts of one repo'], ['Submodules', 'Supported'],
     ['Bisect', 'Find the commit that broke it'], ['Git LFS', 'Supported'], ['<code>gitloom</code>', 'Command-line tool'], ['MCP server', 'Off by default'],
@@ -95,6 +110,8 @@ const en: LandingCopy = {
 
 /** Compact form for translations: arrays in a fixed order; numbers, ids and code stay from English. */
 export interface Compact {
+  /** eyebrow, title, lead, 6 facts, privacy, mcp, caption, alt — optional: English until translated */
+  ai?: string[];
   title: string; description: string; skip: string; language: string; meta: string;
   nav: [string, string, string, string, string];                       // features, install, download, support, menu
   hero: [string, string, string, string, string, string, string];      // eyebrow, h1, lead, download, seeIt, alt, caption
@@ -122,6 +139,9 @@ export function build(c: Compact): LandingCopy {
       return { id: e.id, eyebrow: x[0], title: x[1], lead: x[2], facts: [x[3], x[4], x[5]], caption: x[6], alt: x[7] };
     }),
     gh: { eyebrow: c.gh[0], title: c.gh[1], lead: c.gh[2], facts: [c.gh[3], c.gh[4], c.gh[5]], caption: c.gh[6], alt: c.gh[7] },
+    ai: c.ai && c.ai.length === 13
+      ? { eyebrow: c.ai[0], title: c.ai[1], lead: c.ai[2], facts: c.ai.slice(3, 9), privacy: c.ai[9], mcp: c.ai[10], caption: c.ai[11], alt: c.ai[12] }
+      : en.ai,
     power: { eyebrow: c.power[0], title: c.power[1], items: c.power[2] },
     langs: { eyebrow: c.langs[0], title: c.langs[1], lead: c.langs[2], caption: c.langs[3], alt: c.langs[4] },
     install: {
