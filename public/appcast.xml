@@ -3,6 +3,25 @@
     <channel>
         <title>GitLoom</title>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Thu, 19 Nov 2026 11:21:51 +0700</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<ul>
+
+<li>The AI data preview reads as text: the instructions for the AI and your request with real line breaks, redactions marked, and the model and limits on one line. A Readable / JSON switch still shows the exact request.</li>
+
+</ul>
+]]></description>
+            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.2/GitLoom-1.0.2.zip" length="17575937" type="application/octet-stream" sparkle:edSignature="TxFibDVyNI7KpUCLshEo222fqPxXxB750+LWSxV1iSgkjbWOXbUzHdnXA9MGfSC94E+ayX2yEf3Gr70cs+CEDw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.2/GitLoom4-3.delta" sparkle:deltaFrom="3" length="1002554" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Phx/DKV/tbBc9I44dmNxbLu0nveCBWpbqp2yj8RnQ5FoFBlNZWN21pFRfCqOKYIBdrp10mqWrejIAy4zMYz4Dg=="/>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.2/GitLoom4-2.delta" sparkle:deltaFrom="2" length="1175442" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Ou5rxDR6CCXtN6deLwSe8T0oX0x04Aqoohldli1Ls6Gx0rUBVOE6UgPtVcj9EnKkr5H855gJzlp1uy8M0yvdCw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Thu, 19 Nov 2026 10:38:09 +0700</pubDate>
             <sparkle:version>3</sparkle:version>
