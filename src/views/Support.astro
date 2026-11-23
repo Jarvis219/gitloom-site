@@ -26,9 +26,9 @@ const chevron = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" str
   <p class="lead">{t.lead}</p>
   <div style="margin-top: 32px"><SearchBox id="sq" label={pagesCopy(locale.code).search.support} locale={locale} /></div>
 </div></section>
-<section class="sec cream" style="padding-top: 32px" aria-labelledby="cf"><div class="wrap" style="max-width: 900px; margin: 0 auto">
+<section class="sec cream" style="padding-top: 32px" aria-labelledby="cf"><div class="wrap">
   <h2 class="sm" id="cf" style="margin-bottom: 24px">{t.commonFixes}</h2>
-  <div class="acc">{faq.map((f, i) => (
+  <div class="acc" style="max-width: 900px">{faq.map((f, i) => (
     <details id={f.id} open={i === 0}><summary>{f.q}<Fragment set:html={chevron} /></summary><div class="ans"><p set:html={f.a} />{f.doc && <p><a href={f.doc}>{docs.readMore}</a></p>}</div></details>
   ))}</div>
 </div></section>

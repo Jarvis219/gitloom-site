@@ -21,7 +21,7 @@ const site = [['/download/', landingCopy(locale.code).nav.download], ['/support/
   <p class="eyebrow">{t.title}</p><h1>{t.title}</h1>
   <div style="margin-top: 32px"><SearchBox id="pq" label={t.site} locale={locale} /></div>
 </div></section>
-<section class="sec cream" style="padding-top: 16px"><div class="wrap" style="max-width: 900px; margin: 0 auto">
+<section class="sec cream" style="padding-top: 16px"><div class="wrap"><div style="max-width: 900px">
   <div data-results hidden data-nothing={t.nothing} data-results-for={t.resultsFor} data-try={t.tryFewer}><h2 class="sm" style="margin-bottom: 20px" data-results-title></h2><ul class="hits" data-hits></ul></div>
   <div data-all>
     <h2 class="sm" style="margin-bottom: 20px">{t.allPages}</h2>
@@ -30,7 +30,7 @@ const site = [['/download/', landingCopy(locale.code).nav.download], ['/support/
       {byGroupFor(locale).map((g) => <section><h3>{all.docs.groups[g.group as keyof typeof all.docs.groups]}</h3><ul>{g.items.map((d) => <li><a href={d.url}>{d.title}</a></li>)}</ul></section>)}
     </div>
   </div>
-</div></section>
+</div></div></section>
 </Page>
 
 <script>
