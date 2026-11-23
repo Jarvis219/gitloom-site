@@ -258,3 +258,57 @@ a.cap{text-decoration:none;cursor:pointer;transition:border-color 120ms,backgrou
 a.cap:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--bg2))}
 a.cap:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .meta a{color:inherit;text-underline-offset:3px}
+/* Install steps drawn like macOS windows (InstallArt.astro), 2026-11-23. */
+.cap:has(.ia-win,.ia-alert){padding:18px;overflow:hidden}
+.gl{--win:#FFFFFF;--winbar:#ECECEC;--winline:rgba(0,0,0,.12);--winfg:#1D1D1F;--winmut:#6E6E73;--winside:#F2F2F4;--macblue:#0A84FF}
+@media (prefers-color-scheme:dark){.gl{--win:#2A2A2D;--winbar:#323235;--winline:rgba(255,255,255,.1);--winfg:#F2F2F4;--winmut:#A1A1A6;--winside:#252528}}
+.ia-win,.ia-alert{background:var(--win);color:var(--winfg);border:1px solid var(--winline);border-radius:12px;box-shadow:0 18px 40px -18px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.12);font:400 12px/1.35 -apple-system,BlinkMacSystemFont,Inter,sans-serif;text-align:left}
+.ia-win{width:100%;max-width:330px;overflow:hidden}
+.ia-bar{display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;background:var(--winbar);border-bottom:1px solid var(--winline);position:relative}
+.ia-bar i{width:10px;height:10px;border-radius:50%;background:#FF5F57}.ia-bar i:nth-child(2){background:#FEBC2E}.ia-bar i:nth-child(3){background:#28C840}
+.ia-bar span{position:absolute;left:0;right:0;text-align:center;font-weight:600;font-size:11.5px;color:var(--winmut);pointer-events:none}
+.ia-body{position:relative;display:flex;align-items:center;justify-content:space-around;padding:26px 14px 22px}
+.ia-item{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11.5px;width:84px}
+.ia-item img{width:56px;height:56px}
+.ia-arrow{flex:1;height:3px;margin:0 2px 18px;background:var(--macblue);border-radius:2px;position:relative;opacity:.85}
+.ia-arrow::after{content:"";position:absolute;right:-2px;top:50%;transform:translateY(-50%);border:7px solid transparent;border-left:10px solid var(--macblue);border-right:0}
+.ia-folder{position:relative;width:58px;height:46px;margin:5px 0;border-radius:5px 5px 7px 7px;background:linear-gradient(#6CC4FA,#3BA7F0);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.ia-folder::before{content:"";position:absolute;left:0;top:-5px;width:24px;height:8px;border-radius:4px 4px 0 0;background:#58B6F5}
+.ia-folder b{position:absolute;inset:0;display:grid;place-items:center;font:700 20px/1 -apple-system,Inter,sans-serif;color:rgba(255,255,255,.55)}
+.ia-folder em{position:absolute;left:-4px;bottom:-4px;width:16px;height:16px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.ia-folder em svg{width:10px;height:10px}
+.ia-drag{position:absolute;left:28px;top:26px;width:56px;height:56px;animation:iaDrag 3.6s ease-in-out infinite}
+.ia-drag img{width:56px;height:56px;opacity:.55}
+.ia-cur{position:absolute;width:14px;height:19px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.ia-drag .ia-cur{left:30px;top:30px}
+@keyframes iaDrag{0%,12%{left:28px;opacity:0}20%{left:28px;opacity:1}62%,78%{left:calc(100% - 84px);opacity:1}90%,100%{left:calc(100% - 84px);opacity:0}}
+.ia-alert{width:100%;max-width:236px;padding:18px 16px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.ia-badge{position:relative;width:50px;height:50px;margin-bottom:4px}
+.ia-badge img{width:50px;height:50px}
+.ia-badge b{position:absolute;right:-5px;bottom:-3px;width:22px;height:20px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#FFCC00;color:#111;font:800 12px/24px sans-serif;text-align:center}
+.ia-alert strong{font-size:12.5px;font-weight:700}
+.ia-alert .ia-txt{color:var(--winfg);font-size:11px;margin-bottom:6px}
+.ia-btn{position:relative;display:block;border-radius:7px;font-weight:500;font-size:12px;padding:5px 12px;text-align:center}
+.ia-alert .ia-btn{width:100%}
+.ia-pri{background:var(--macblue);color:#fff}
+.ia-btn .ia-cur{right:-6px;top:62%;animation:iaTap 2.4s ease-in-out infinite}
+.ia-pri{animation:iaPress 2.4s ease-in-out infinite}
+@keyframes iaTap{0%,100%{transform:translate(18px,16px);opacity:0}30%{opacity:1}45%,70%{transform:translate(0,0);opacity:1}}
+@keyframes iaPress{0%,52%,62%,100%{filter:none}56%{filter:brightness(.8)}}
+.ia-cols{display:flex;min-height:150px}
+.ia-side{width:38%;background:var(--winside);border-right:1px solid var(--winline);padding:10px 6px;display:flex;flex-direction:column;gap:6px}
+.ia-side span{height:9px;margin:2px 6px;border-radius:4px;background:var(--winline)}
+.ia-side span.on{height:auto;margin:0;padding:4px 6px;border-radius:6px;background:var(--macblue);color:#fff;font-size:10.5px;font-weight:600;display:flex;align-items:center;gap:5px;line-height:1.2}
+.ia-side span.on b{font-size:11px;filter:saturate(0) brightness(3)}
+.ia-main{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ia-h{font-weight:700;font-size:12.5px}
+.ia-row{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:9px;border-radius:8px;background:var(--winside);border:1px solid var(--winline)}
+.ia-row .ia-txt{color:var(--winmut);font-size:10.5px}
+.ia-row .ia-btn{font-size:11px;padding:4px 10px}
+.ia-line{height:8px;border-radius:4px;background:var(--winline);width:80%}.ia-line.s{width:55%}
+@media (prefers-reduced-motion:reduce){.ia-drag,.ia-cur,.ia-pri{animation:none!important}.ia-drag{display:none}}
+/* The DMG window keeps Finder's fixed left-to-right layout in every language; long words wrap. */
+.ia-dmg .ia-body{direction:ltr}
+.ia-win,.ia-alert,.ia-main,.ia-side,.ia-row{min-width:0}
+.ia-side span.on,.ia-h,.ia-row .ia-txt,.ia-alert strong,.ia-alert .ia-txt,.ia-item{overflow-wrap:anywhere;hyphens:auto}
+.ia-side span.on{min-width:0}

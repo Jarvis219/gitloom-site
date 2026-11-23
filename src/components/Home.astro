@@ -1,4 +1,5 @@
 ---
+import InstallArt from './InstallArt.astro';
 import Base from '../layouts/Base.astro';
 import SiteNav from './SiteNav.astro';
 import SiteFooter from './SiteFooter.astro';
@@ -125,11 +126,11 @@ const chapterClass = ['cream', 'deep flip', 'cream', 'band flip', 'cream'];
 <section class="sec cream" id="in" aria-labelledby="inh"><div class="wrap">
   <div class="reveal"><p class="eyebrow">{t.install.eyebrow}</p><h2 id="inh">{t.install.title}</h2></div>
   <ol class="steps">
-    <li class="reveal" style="--d:0ms"><a class="cap" href={dmg} aria-label={t.download}><div class="row2"><span class="tile"><img src="/icon.png" alt="" />{t.install.art.dmg}</span><span class="arrow">→</span><span class="tile"><span class="folder"></span>{t.install.art.apps}</span></div></a>
+    <li class="reveal" style="--d:0ms"><a class="cap" href={dmg} aria-label={t.download}><InstallArt step={1} art={t.install.art} /></a>
       <span class="stepn">{t.install.steps[0].n}</span><h3>{t.install.steps[0].title}</h3><p>{t.install.steps[0].text}</p></li>
-    <li class="reveal" style="--d:100ms"><div class="cap" aria-hidden="true"><div class="dlg"><b>{t.install.art.dialogTitle}</b><span>{t.install.art.dialogText}</span><span class="pill">{t.install.art.done}</span></div></div>
+    <li class="reveal" style="--d:100ms"><div class="cap" aria-hidden="true"><InstallArt step={2} art={t.install.art} /></div>
       <span class="stepn">{t.install.steps[1].n}</span><h3>{t.install.steps[1].title}</h3><p>{t.install.steps[1].text}</p></li>
-    <li class="reveal" style="--d:200ms"><div class="cap" aria-hidden="true"><div class="dlg"><b>{t.install.art.pane}</b><span>{t.install.art.paneText}</span><span class="pill">{t.install.art.openAnyway}</span></div></div>
+    <li class="reveal" style="--d:200ms"><div class="cap" aria-hidden="true"><InstallArt step={3} art={t.install.art} /></div>
       <span class="stepn">{t.install.steps[2].n}</span><h3>{t.install.steps[2].title}</h3><p>{t.install.steps[2].text}</p></li>
   </ol>
   <div class="honest reveal">

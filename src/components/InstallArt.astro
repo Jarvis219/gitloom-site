@@ -1,0 +1,40 @@
+---
+// The three install-step pictures, drawn like the real macOS windows: the DMG window (app, arrow,
+// Applications, a cursor dragging the app across), the Gatekeeper alert, and System Settings ▸
+// Privacy & Security with Open Anyway. Text comes from landingCopy().install.art; decoration only.
+interface Props { step: 1 | 2 | 3; art: { apps: string; dialogTitle: string; dialogText: string; done: string; pane: string; paneText: string; openAnyway: string } }
+const { step, art } = Astro.props;
+const cursor = '<svg class="ia-cur" viewBox="0 0 16 22" aria-hidden="true"><path d="M1 1v17l4.6-4.4 3 6.9 2.9-1.3-3-6.7H15z" fill="#111" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+---
+{step === 1 && (
+  <div class="ia-win ia-dmg">
+    <div class="ia-bar"><i></i><i></i><i></i><span>GitLoom</span></div>
+    <div class="ia-body">
+      <span class="ia-item"><img src="/icon.png" alt="" />GitLoom</span>
+      <span class="ia-arrow"></span>
+      <span class="ia-item"><span class="ia-folder"><b>A</b><em><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 7.5 7 3.5M4 3.5h3v3" fill="none" stroke="#111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span>{art.apps}</span>
+      <span class="ia-drag"><img src="/icon.png" alt="" /><Fragment set:html={cursor} /></span>
+    </div>
+  </div>
+)}
+{step === 2 && (
+  <div class="ia-alert">
+    <span class="ia-badge"><img src="/icon.png" alt="" /><b>!</b></span>
+    <strong>{art.dialogTitle}</strong>
+    <span class="ia-txt">{art.dialogText}</span>
+    <span class="ia-btn ia-pri">{art.done}<Fragment set:html={cursor} /></span>
+  </div>
+)}
+{step === 3 && (
+  <div class="ia-win ia-set">
+    <div class="ia-bar"><i></i><i></i><i></i></div>
+    <div class="ia-cols">
+      <div class="ia-side"><span></span><span></span><span class="on"><b>✋</b>{art.pane}</span><span></span><span></span></div>
+      <div class="ia-main">
+        <span class="ia-h">{art.pane}</span>
+        <span class="ia-row"><span class="ia-txt">{art.paneText}</span><span class="ia-btn ia-pri">{art.openAnyway}<Fragment set:html={cursor} /></span></span>
+        <span class="ia-line"></span><span class="ia-line s"></span>
+      </div>
+    </div>
+  </div>
+)}
