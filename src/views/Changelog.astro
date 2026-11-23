@@ -4,11 +4,19 @@ import type { Locale } from '../i18n/locales';
 import { fmt, formatDate } from '../i18n/paths';
 import { pagesCopy } from '../i18n/pages';
 import { getReleases, inline } from '../lib/releases';
+import { translatedNotes } from '../i18n/release-notes';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = pagesCopy(locale.code).changelog;
 const releases = await getReleases();
+// Translated notes replace a release's single untitled list when one exists for this locale.
+const shown = releases.map((r) => {
+  const all = r.sections.flatMap((s) => s.items);
+  const tr = locale.code === 'en' || r.sections.length !== 1 ? null : translatedNotes(locale.code, r.version, all.length);
+  return { ...r, sections: tr ? [{ title: r.sections[0].title, items: tr }] : r.sections, english: locale.code !== 'en' && !tr };
+});
+const anyEnglish = shown.some((r) => r.english);
 const sectionName = (s: string) => (s === 'New' || s === 'Improved' || s === 'Fixed' ? t[s] : s);
 ---
 <Page locale={locale} title={t.metaTitle} description={t.metaDescription} path="/changelog/" crumbs={[{ name: t.title, path: '/changelog/' }]}>
@@ -17,17 +25,17 @@ const sectionName = (s: string) => (s === 'New' || s === 'Improved' || s === 'Fi
   <p class="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1>
   <p class="lead">{t.lead}</p>
   <p style="margin: 16px 0 0"><a class="feed" href="/appcast.xml"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 3a10 10 0 0 1 10 10M3 7.5A5.5 5.5 0 0 1 8.5 13"></path><circle cx="3.6" cy="12.4" r="1" fill="currentColor"></circle></svg>appcast.xml</a></p>
-  {locale.code !== 'en' && releases.length > 0 && <p class="small" style="margin: 8px 0 0">{t.notesInEnglish}</p>}
+  {anyEnglish && <p class="small" style="margin: 8px 0 0">{t.notesInEnglish}</p>}
 </div></section>
 <div class="log cream">
   {releases.length === 0 && <p class="lead" style="margin: 0 0 32px">{t.none}</p>}
-  {releases.map((r) => {
+  {shown.map((r) => {
     const id = `v${r.version}`;
     return (
       <article class="entry" aria-labelledby={id}>
         <header><h2 id={id} dir="ltr">{r.version}</h2><span class={`tag ${r.beta ? 'beta' : 'stable'}`}>{r.beta ? pagesCopy(locale.code).download.beta : pagesCopy(locale.code).download.stable}</span><time datetime={r.date.slice(0, 10)}>{formatDate(r.date, locale)}</time>
           <a class="anchor" href={`#${id}`} aria-label={fmt(t.linkTo, { v: r.version })}>#</a></header>
-        {r.sections.map((s) => <>{s.title && <h3>{sectionName(s.title)}</h3>}<ul lang="en" dir="ltr">{s.items.map((it) => <li set:html={inline(it)} />)}</ul></>)}
+        {r.sections.map((s) => <>{s.title && <h3>{sectionName(s.title)}</h3>}<ul lang={r.english ? 'en' : undefined} dir={r.english ? 'ltr' : undefined}>{s.items.map((it) => <li set:html={inline(it)} />)}</ul></>)}
       </article>
     );
   })}
