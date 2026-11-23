@@ -3,6 +3,36 @@
     <channel>
         <title>GitLoom</title>
         <item>
+            <title>1.1.0</title>
+            <pubDate>Mon, 23 Nov 2026 20:10:37 +0700</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<ul>
+
+<li>Ten new themes, light and dark: Fern, Tide, Blossom, Dune and Graphite.</li>
+<li>The commit graph reads more like a map: a band in the branch's colour runs from its label through the graph to the commit message, and a branch made from the checked-out one stays in line with it, even when it is several commits long.</li>
+<li>The checked-out commit is easy to spot: a double ring around its avatar and a stronger band across the row.</li>
+<li>Dragging a branch onto another always works on the branch you drag, whichever one is checked out: *Fast-forward f to develop* when f is behind, *Rebase f onto develop*, *Merge f into develop* (hidden when there is nothing to merge).</li>
+<li>Branch menus say exactly what they delete: *Delete Local Branch “f”*, or *Delete “f” and “origin/f”* when it has an upstream. Names appear in quotes, so a short name no longer looks cut off.</li>
+<li>The labels list that opens when you hover a row with many branches has the full right-click menu for each branch.</li>
+<li>Delete, Force Push and other destructive confirmations have a red button.</li>
+<li>Clicking below the last graph row keeps the selected commit; changed-file counts stay readable in a narrow panel.</li>
+<li>Unstaged and staged files scroll in their own panes, with their headers pinned; an open diff follows its file when you stage or unstage it, and committing from it opens the new commit.</li>
+<li>The diff's close button is at the right end and easier to hit.</li>
+<li>A Keychain that won't hand over a saved token no longer marks the account as signed out.</li>
+
+</ul>
+]]></description>
+            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.1.0/GitLoom-1.1.0.zip" length="17614615" type="application/octet-stream" sparkle:edSignature="7qks1o9k4v4I5XtOD5nwx0dM/O5X/VwZzMxQWnH02yoREU0heLz5inKUqSa30HQi8DLO6EwvQRawhU0yUAi7Bg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.1.0/GitLoom5-4.delta" sparkle:deltaFrom="4" length="1443438" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="//WiuB+F8hbUthm94Ggp4vya2eHUZaH8DcJ4LsvNYqgsVN2kfzpDhTXoXb1YxEHgc7yemHft3fjsBj2VaU2lAw=="/>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.1.0/GitLoom5-3.delta" sparkle:deltaFrom="3" length="1541342" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="sd0WwuaQznOdSBGCMBoklpnN6B/RCnjyc9HBLKIq2EQ3rLNlRch2sUUhZJ/T0ptmexx9/64V6UfvoiuAo+shAw=="/>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.1.0/GitLoom5-2.delta" sparkle:deltaFrom="2" length="1617894" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="c2pRTbM9cGWWk1r87qxzFgYydk4/i0ZTjXgzdi6E9DtbaXXBTc9UIVk7O4BPpGJ7D1YKr6jwiZeYrqiKwomQDQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.2</title>
             <pubDate>Thu, 19 Nov 2026 11:21:51 +0700</pubDate>
             <sparkle:version>4</sparkle:version>
@@ -42,30 +72,6 @@
             <sparkle:deltas>
                 <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.1/GitLoom3-2.delta" sparkle:deltaFrom="2" length="1025698" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="NFDO9O4i2oXfmKxs7DVeUsi0KWnZjo2+iOWUFP9qOew9xafBkGnUVrbZ5W+wZzm1KXw+c4jrmpQm1GQuljyLBg=="/>
             </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.0.0</title>
-            <pubDate>Wed, 18 Nov 2026 21:42:40 +0700</pubDate>
-            <sparkle:version>2</sparkle:version>
-            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<ul>
-
-<li>First public release. Not notarized yet: on first open, macOS asks — System Settings ▸ Privacy & Security ▸ Open Anyway. Later versions arrive through the app's own updater.</li>
-<li>Commit graph for large repositories (100k+ commits), commit details and diffs (side by side or unified, word-level), file history and blame.</li>
-<li>Staging by file, hunk or line; commits with amend, sign-off, signing (GPG/SSH), co-authors and team conventions.</li>
-<li>Branches and tags, fetch / pull / push with upstream tracking, stashes, undo and redo for most operations.</li>
-<li>Merge, rebase, cherry-pick and revert by drag and drop on the graph; interactive rebase; a three-way conflict editor.</li>
-<li>Tabs, several windows, profiles that each keep their own tabs, recent repositories and commit identity.</li>
-<li>SSH accounts that pick the right key per repository; GitHub and GitLab sign-in for pull requests, issues, reviews and Actions.</li>
-<li>Built-in terminal, file editor, search and filters, worktrees, submodules, bisect, reflog recovery, Git LFS.</li>
-<li>AI commit messages and explanations with your own provider; an MCP server so other tools can drive GitLoom.</li>
-<li>Themes, layout and keyboard customisation; 16 languages.</li>
-
-</ul>
-]]></description>
-            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.0/GitLoom-1.0.0.zip" length="17546659" type="application/octet-stream" sparkle:edSignature="vp2M8PwdTa7f4mZxZ23IE8q8BfuoP4BuhKlm3ZfLJkGwrWyo92z6LAwBy6r42Y5vKPkHHmDWOKyFmvtEyDd+DQ=="/>
         </item>
     </channel>
 </rss>
