@@ -3,6 +3,82 @@
     <channel>
         <title>GitLoom</title>
         <item>
+            <title>1.2.0</title>
+            <pubDate>Sat, 28 Nov 2026 15:42:48 +0700</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<ul>
+
+<li>Branch labels in the graph no longer stay faded after a drag whose end the app missed (the checked-out branch looked disabled). A squash's *Abort Squash* in the toast now asks first, like the bar.</li>
+<li>Pulling, or moving main onto origin/main, no longer gets stuck on files you already copied in by hand: when every file in the way already has exactly the incoming content, the message says so and *Replace Files and Try Again* finishes it. When untracked files are in the way, the message now says to move or delete them, and no longer offers a stash that wouldn't help.</li>
+<li>All 70 built-in birds have new close-up portraits, easier to tell apart in the graph. Every author keeps the same bird species as before.</li>
+<li>GitLoom tells you when a new version is ready: a note in the window with *Restart Now*, a *Restart to Install GitLoom …* item in the GitLoom menu, a line in Settings ▸ Updates, and a macOS notification when GitLoom is in the background. Without *Restart Now* it still installs when you quit.</li>
+<li>With automatic downloads off, a new version shows as a note and a *View Update…* menu item instead of a window popping up over your work.</li>
+<li>The Files tab and the changed-file lists show an icon for each kind of file — TS, PY, Swift, Markdown, images, archives, config, Dockerfile… — and colours common folders (src, docs, tests, assets, scripts, .github).</li>
+<li>The detail panel on the right is never left empty. When what it showed goes away — a stash you popped or dropped, the working-tree changes after you discard them, a commit that is gone, a pull request or run you closed — it shows your working-tree changes, or the checked-out commit when there are none. After popping a stash its changes are ready to commit, and the commit you make is selected.</li>
+<li>Profile pictures and bird avatars in the commit graph are no longer upside down.</li>
+<li>Coming back to a tab you hadn't looked at for a while no longer shows “No commits yet” over the commit graph.</li>
+<li>Repositories with thousands of branches and tags open quickly again: the sidebar no longer freezes the window or uses hundreds of MB. With more than 200 branches in a group, branch folders start closed.</li>
+<li>*Delete Local Branch* and *Delete “f” and “origin/f”* are translated in every language.</li>
+<li>Stashing and popping no longer make the commit graph blink or lag: the graph updates as soon as git is done, without reading the history again, and changes in one step — the uncommitted-changes row turns into the stash row (and back on pop) with nothing in between.</li>
+<li>The detail panel follows your changes: stash while the uncommitted changes are selected and the new stash is selected; pop that stash and the uncommitted changes are selected again.</li>
+<li>Deleting a branch that another worktree has checked out no longer fails with “used by worktree”: the delete dialog says where it is checked out and offers *Also remove the worktree*, together with the local branch and its remote branch.</li>
+<li>When that worktree has uncommitted changes, *Stash its uncommitted changes first* (on by default) keeps them — staged, unstaged and new files — in the stash list before the folder goes; if stashing fails, nothing is removed, and when something there can't be stashed (changes inside a submodule, a nested repository) the worktree and the branch stay. The note afterwards says which stash has them, and its button says *Restore Branch*, since the folder can't come back.</li>
+<li>A pull request's Commits and Files tabs show that pull request's own commits, found by the commit the host reports. A branch of the same name in another fork, or a remote branch not fetched since the author pushed, is no longer shown in its place. When the commits aren't here yet, *Fetch PR #n* gets them without changing your branches, and *Show Changes* fetches them by itself.</li>
+<li>A review you're writing is kept until it's sent: the summary and line comments of each pull request stay when you open another pull request's changes, and when sending fails. Only what the host accepted is cleared, and Review is off while a review is on its way, so it can't go twice. Line comments go with the commit they were written on, so a push in the meantime doesn't move them to other lines.</li>
+<li>*Split into Commits…* (on the uncommitted-changes row and in the working tree's header) opens the commit composer without AI: every change starts in one commit, *Move to ▸ New Commit* starts another, and you name and order them; making them is one undo step. *Suggest with AI* is there when AI is on; your own plan stays until its answer arrives.</li>
+<li>Closing a repository tab while its files are changing — a build, `npm install`, a git command — can no longer make GitLoom quit unexpectedly.</li>
+<li>*Identity of This Repository…* (in the profile and account menus of the title bar) shows in one place what the next commit and push here will use: the author and email and where git gets them, the profile in use and whether its email differs, commit signing, and for each remote how it signs in — SSH with which account and key, or ssh's own choice; HTTPS with your GitHub or GitLab account, or git's credential helper. Each line has *Change…* to the right setting, and SSH remotes have *Test Connection*.</li>
+<li>Settings has a sidebar instead of twelve tabs in a row, grouped into App, Identity & Accounts (Profiles, Accounts, Hosting, Signing) and Git & Tools, with a search that finds the page for what you want to do — “commit email”, “SSH key”, “token” — in your language too (⌘F).</li>
+<li>Image diffs zoom: pinch to zoom and drag to move, Before and After together on the same spot, pixels sharp up to 64×. Click an image to enlarge it over the diff, with Before / After, zoom buttons, Fit and Actual Size; double-click zooms, Esc closes.</li>
+<li>Double-clicking a commit that a local branch points at checks out the branch, not the commit: going back to main's commit no longer leaves HEAD detached. While HEAD is detached on a branch's commit, the banner offers *Check Out main* (or that branch).</li>
+<li>The sidebar opens with only LOCAL and REMOTE expanded; tags, stashes, worktrees, pull requests, issues and Actions stay closed until you open them, and each repository remembers what you opened or closed. Typing in the filter still shows matching tags and stashes.</li>
+<li>Discarding, staging, unstaging or stashing a file whose name has brackets — `data[1].json`, `app/[id]/page.tsx` — acts on that file only. Git read such a name as a pattern, so a file called `data1.json` was discarded with it.</li>
+<li>*Discard All*, *Stage* and *Unstage* work with tens of thousands of files selected (after a codemod or a line-ending change) instead of failing.</li>
+<li>A git command no longer hangs for good when something it started keeps running after it — a hook that starts a server, an SSH connection kept open for reuse. Before, every later commit, stage or pull in that repository waited behind it until GitLoom was restarted.</li>
+<li>Cancelling a password prompt or a running command can no longer make GitLoom quit.</li>
+<li>Return no longer confirms a dialog that deletes: *Delete Anyway*, *Reset Hard*, *Drop* and *Remove* have to be clicked, as *Force Push* already was. Esc still cancels.</li>
+<li>*Undo Commit* undoes the commit only. A branch you created in the terminal while the commit was running its hooks is no longer deleted with it.</li>
+<li>**Repository ▸ Cancel Fetch, Pull or Push** (⌘.) stops a network operation, also with the status bar hidden.</li>
+<li>A squash merge that stops on conflicts is no longer an error with the files left conflicted: the conflicts open for resolving, the commit message git prepared is in the commit form, and a bar above the graph keeps *Abort Squash* at hand until the conflicts are resolved — also after reopening the repository.</li>
+<li>A pull or rebase that can't put your local changes back afterwards says so, and names the stash (“autostash”) that still holds them, instead of reporting a plain success.</li>
+<li>A pull that stops on conflicts can be undone once you finish it, like a merge or rebase started in GitLoom.</li>
+<li>*Push Rejected* marks the commits that were never on your branch — someone else's work — apart from your own commits from before a rebase, and says how many a force push would delete.</li>
+<li>Discarding works in a repository that has no commit yet.</li>
+<li>Dropping a branch or commit while HEAD is detached no longer merges or cherry-picks into the detached commit; GitLoom asks you to check out the branch first.</li>
+<li>*Remove Worktree…* offers *Stash Changes and Remove* when the worktree has uncommitted changes.</li>
+<li>Discard on a submodule row no longer claims to have discarded something; it says where a submodule's changes are discarded.</li>
+<li>Workspace ▸ *Fetch All* and *Pull All* always use the account each repository routes to.</li>
+<li>AI tools that start `gitloom-mcp` with their own temporary folder (sandboxed agents) reach the running app instead of reporting “GitLoom is not running”.</li>
+<li>Faster in large repositories: moving through the commit graph with thousands of remote branches; the working-tree list with thousands of selected files or *Group by folder*; saving files in a repository with submodules; the state of Undo after each commit in a repository with thousands of tags; the LFS list after a commit or checkout; a commit with thousands of files shown as a tree. An open blame no longer starts over each time another file changes.</li>
+<li>Messages at the top of the window stay while the pointer is on them, and a warning that offers a way out stays longer. Error alerts have *Copy Message*, and their titles and buttons are translated. So are the diff and image-diff mode pickers, the hunk buttons, confirmations in Settings and Actions, and status lines such as *Testing…* and *Key saved in the Keychain*.</li>
+<li>VoiceOver reads a branch in the sidebar with its state — current branch, ahead and behind, upstream gone — and can check it out.</li>
+<li>Settings ▸ Appearance ▸ Text size has a *Larger* step.</li>
+<li>**Stash selected lines or a hunk:** *Stash Lines…* and *Stash Hunk…* in a working-tree diff put only those changes in a new stash; what is staged, the file's other changes and other files stay. Undo puts them back exactly.</li>
+<li>**Edit Author and Date…** on a commit (graph menu and commit detail): name, email, a profile or your own identity, the author date and optionally the committer date. HEAD is amended; an older commit goes through a rebase. Message and files never change, and Undo restores the old commits.</li>
+<li>**Commands in an interactive rebase:** add an `exec` row after any commit, or *Run After Every Commit…* (like `git rebase -x`). When a command fails, the banner says which one and shows its output; Continue runs it again, Skip goes on without it.</li>
+<li>**History of selected lines** (`git log -L`): from blame, the file view or a diff, a new *Lines* tab lists the commits that changed those lines, following renames, each with its part of the diff.</li>
+<li>**GitLab pipelines** in the Actions panel: pipelines and their jobs by stage, live logs while a job runs, Retry and Cancel for a pipeline or a single job, and *Run pipeline…* with CI/CD variables.</li>
+<li>The sidebar works from the keyboard: ↑ and ↓ move through branches, tags and stashes and select them, Return checks out (or applies a stash).</li>
+<li>The commit graph updates in a fraction of the time after a commit, fetch, checkout or new branch in very large repositories (a million commits: under 0.1 s instead of about 1 s, and no longer hundreds of MB), and repositories with thousands of tags no longer reload the whole history after each commit.</li>
+<li>Fewer git processes after each change, search over all commits and the Files tab no longer hold up the window, and a process started by a hook (a dev server) is no longer stopped a moment after the hook ends.</li>
+<li>About 400 more messages, dialogs and VoiceOver labels are translated, and sentences that mixed English words into a translation are now whole sentences in every language.</li>
+<li>Code, diffs, logs, the terminal and the graph stay left to right when the interface is in Arabic.</li>
+<li>The squash bar only appears for conflicts the squash itself left (not a later stash conflict), and *Abort Squash* asks first.</li>
+<li>Branch names starting with `-` are handled safely everywhere, and tokens are no longer read from the Keychain on the main thread (no frozen window while macOS asks for access).</li>
+
+</ul>
+]]></description>
+            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.2.0/GitLoom-1.2.0.zip" length="18879775" type="application/octet-stream" sparkle:edSignature="Po5Vh6n3XRhD5dDSEUwn7Lam+t5Bop5Rw6iRu/C7BaoBNPRaxXU/80rFRejS5b0o+EENRWxR7vClzjGKgdDLBw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.2.0/GitLoom6-5.delta" sparkle:deltaFrom="5" length="4265346" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="S0peukY4FXgR4erqRRoBZ6XOJar4y8KmsVsBVCOU59Yob8ChrIuM6O25cwgATxEDYYtvpqmwx5QwZ8tTWqixBg=="/>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.2.0/GitLoom6-4.delta" sparkle:deltaFrom="4" length="4362650" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="3A4XmSsUTPqlhS+/4hbaDW5HjHanYe0VM+cgg83GZnl8NZYqqx2Gbm1KmsR0XrYujXOmSzl4Fz06KHWrMgDQDg=="/>
+                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.2.0/GitLoom6-3.delta" sparkle:deltaFrom="3" length="4383838" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="0Ou6wQ5149PKpkZkJ2KKyP6ZjD4Q/jzviH68MuOEHZxNMycSLdVB+3j9WmPkxGkUDkuMTTdiGXxvF5PACSpQAw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.1.0</title>
             <pubDate>Mon, 23 Nov 2026 20:10:37 +0700</pubDate>
             <sparkle:version>5</sparkle:version>
@@ -49,28 +125,6 @@
             <sparkle:deltas>
                 <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.2/GitLoom4-3.delta" sparkle:deltaFrom="3" length="1002554" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Phx/DKV/tbBc9I44dmNxbLu0nveCBWpbqp2yj8RnQ5FoFBlNZWN21pFRfCqOKYIBdrp10mqWrejIAy4zMYz4Dg=="/>
                 <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.2/GitLoom4-2.delta" sparkle:deltaFrom="2" length="1175442" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Ou5rxDR6CCXtN6deLwSe8T0oX0x04Aqoohldli1Ls6Gx0rUBVOE6UgPtVcj9EnKkr5H855gJzlp1uy8M0yvdCw=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.0.1</title>
-            <pubDate>Thu, 19 Nov 2026 10:38:09 +0700</pubDate>
-            <sparkle:version>3</sparkle:version>
-            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<ul>
-
-<li>Closing the last window now only hides it: clicking the Dock icon brings it back at once, with its tabs, graph and terminal, instead of loading every repository again.</li>
-<li>When the window had really been closed, the Dock icon opened an empty start page instead of your repositories.</li>
-<li>Pull requests no longer say GitHub rejected the saved sign-in when the repository's default account has an expired token but another account works: that account is skipped quietly, and accounts that need signing in are no longer picked by default.</li>
-<li>Tokens are read from the Keychain once, so a busy Keychain no longer looks like a rejected sign-in.</li>
-<li>The ⚠ next to a branch whose upstream was deleted on the remote explains itself when you hover it, and says what to do.</li>
-
-</ul>
-]]></description>
-            <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.1/GitLoom-1.0.1.zip" length="17562518" type="application/octet-stream" sparkle:edSignature="CNgWznhKPFCeVRUeEaVjeEGol0bAM8vgKP72BR838a66SFh/1oiJdxzLEB8rH5d7Ad5TKHXtaitzoCkkODPiAg=="/>
-            <sparkle:deltas>
-                <enclosure url="https://github.com/Jarvis219/gitloom-site/releases/download/v1.0.1/GitLoom3-2.delta" sparkle:deltaFrom="2" length="1025698" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="941872" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="NFDO9O4i2oXfmKxs7DVeUsi0KWnZjo2+iOWUFP9qOew9xafBkGnUVrbZ5W+wZzm1KXw+c4jrmpQm1GQuljyLBg=="/>
             </sparkle:deltas>
         </item>
     </channel>
