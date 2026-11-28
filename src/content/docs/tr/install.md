@@ -23,7 +23,7 @@ Yeterince yeni bir git bulamazsa GitLoom bunu açılışta söyler. git’i alı
 
 ## İndirme
 
-`GitLoom.dmg` dosyasını (42 MB) [en son sürümden](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg) veya Terminal’den indir:
+`GitLoom.dmg` dosyasını (46 MB) [en son sürümden](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg) veya Terminal’den indir:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

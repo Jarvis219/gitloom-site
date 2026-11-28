@@ -6,7 +6,7 @@ const cli = '<code>gitloom</code>';
 export const de: Compact = {
   title: 'GitLoom — kostenloser, nativer Git-Client für macOS, mit KI',
   description: 'Kostenloser, nativer Git-Client für macOS: schneller Commit-Graph, Merge und Rebase per Drag & Drop, Zeilen stagen, Rückgängig, KI-Commits und Reviews mit eigenem Schlüssel, GitHub, GitLab.',
-  skip: 'Zum Inhalt springen', language: 'Sprache', meta: 'macOS 14+ · Apple Silicon · 42 MB',
+  skip: 'Zum Inhalt springen', language: 'Sprache', meta: 'macOS 14+ · Apple Silicon · 46 MB',
   nav: ['Funktionen', 'Installation', 'Laden', 'Hilfe', 'Menü öffnen'],
   hero: ['Git-Client für macOS · Kostenlos', 'Sieh deine Historie. Ändere sie per Drag & Drop.', 'Ein kostenloser, nativer Git-Client für macOS: Branches ziehen, Zeilen stagen, Fehler rückgängig machen.', 'Für macOS laden', 'So funktioniert’s →',
     'GitLoom mit dem Repository atlas: Branch-Linien für main, release, dark-theme und sync-engine, rechts die Commit-Details.', 'Zieh einen Branch auf einen anderen, um zu mergen, zu rebasen oder zu cherry-picken.'],
@@ -40,14 +40,14 @@ export const de: Compact = {
   install: ['Installation', 'In drei Schritten installiert.', 'Laden und in Programme ziehen.', 'Ein 42-MB-Image von der Website, nicht aus dem App Store.', 'Einmal öffnen.', 'macOS stoppt den ersten Start, weil GitLoom noch nicht notarisiert ist. Klick auf Fertig.', '„Dennoch öffnen“ wählen.', 'Systemeinstellungen ▸ Datenschutz & Sicherheit ▸ Dennoch öffnen. Nur ein einziges Mal.',
     'Programme', '„GitLoom“ nicht geöffnet', 'Apple konnte nicht überprüfen, ob „GitLoom“ frei von Malware ist …', 'Fertig', 'Datenschutz & Sicherheit', '„GitLoom“ wurde blockiert, um deinen Mac zu schützen.', 'Dennoch öffnen',
     'GitLoom ist noch nicht notarisiert, deshalb fragt macOS einmal nach. Updates sind mit EdDSA signiert und werden vor der Installation geprüft. Kein Konto, keine Telemetrie.', 'Oder im Terminal laden', 'Kopieren', 'Kopiert'],
-  cta: ['Probier es mit deinem eigenen Repository.', 'Kostenlos, 42 MB, kein Konto.', 'Installationsanleitung →'],
+  cta: ['Probier es mit deinem eigenen Repository.', 'Kostenlos, 46 MB, kein Konto.', 'Installationsanleitung →'],
   footer: ['Produkt', 'Hilfe', 'Vertrauen', 'Projekt', 'Funktionen', 'Laden', 'Releases', 'Installationsanleitung', 'Hilfe über GitHub Issues', 'Kein Konto', 'Keine Telemetrie', 'Signierte Updates', 'Fehler melden', 'Funktion vorschlagen', 'Kostenlos · macOS 14+ · Apple Silicon'],
 };
 
 export const fr: Compact = {
   title: 'GitLoom — un client Git natif et gratuit pour macOS, avec l’IA',
   description: 'Client Git natif et gratuit pour macOS : graphe de commits rapide, merge et rebase en glissant, indexation par ligne, annulation, commits et revues par IA avec votre clé, GitHub, GitLab.',
-  skip: 'Aller au contenu', language: 'Langue', meta: 'macOS 14+ · Apple silicon · 42 Mo',
+  skip: 'Aller au contenu', language: 'Langue', meta: 'macOS 14+ · Apple silicon · 46 Mo',
   nav: ['Fonctionnalités', 'Installation', 'Télécharger', 'Assistance', 'Ouvrir le menu'],
   hero: ['Client Git pour macOS · Gratuit', 'Voyez votre historique. Modifiez-le en glissant.', 'Un client Git natif et gratuit pour macOS : glissez des branches, indexez des lignes et annulez vos erreurs.', 'Télécharger pour macOS', 'Voir en action →',
     'GitLoom avec le dépôt atlas : les lignes des branches main, release, dark-theme et sync-engine, et les détails du commit à droite.', 'Déposez une branche sur une autre pour fusionner, rebaser ou cherry-picker.'],
@@ -78,17 +78,17 @@ export const fr: Compact = {
   ],
   power: ['Pour les utilisateurs avancés', 'Le reste de Git, à portée de main.', [['Terminal', 'Intégré'], ['Éditeur de fichiers', 'Intégré'], ['Worktrees', 'Plusieurs checkouts d’un dépôt'], ['Sous-modules', 'Pris en charge'], ['Bisect', 'Trouvez le commit qui a tout cassé'], ['Git LFS', 'Pris en charge'], [cli, 'Outil en ligne de commande'], ['Serveur MCP', 'Désactivé par défaut'], ['IA', 'Votre fournisseur et votre clé. Désactivée par défaut'], ['Thèmes, disposition, raccourcis', 'À votre goût']]],
   langs: ['Langues et thèmes', 'Seize langues. Clair et sombre.', 'L’arabe se lit de droite à gauche. Thèmes, disposition et raccourcis sont à votre goût.', 'La même fenêtre en clair et en sombre.', 'La même fenêtre GitLoom en thème clair (moitié gauche) et sombre (moitié droite).'],
-  install: ['Installation', 'Installé en trois étapes.', 'Téléchargez, puis glissez dans Applications.', 'Une image disque de 42 Mo depuis le site, pas depuis l’App Store.', 'Ouvrez-le une fois.', 'macOS bloque le premier lancement car GitLoom n’est pas encore notarié. Cliquez sur Terminé.', 'Choisissez Ouvrir quand même.', 'Réglages Système ▸ Confidentialité et sécurité ▸ Ouvrir quand même. Une seule fois.',
+  install: ['Installation', 'Installé en trois étapes.', 'Téléchargez, puis glissez dans Applications.', 'Une image disque de 46 Mo depuis le site, pas depuis l’App Store.', 'Ouvrez-le une fois.', 'macOS bloque le premier lancement car GitLoom n’est pas encore notarié. Cliquez sur Terminé.', 'Choisissez Ouvrir quand même.', 'Réglages Système ▸ Confidentialité et sécurité ▸ Ouvrir quand même. Une seule fois.',
     'Applications', '« GitLoom » n’a pas été ouvert', 'Apple n’a pas pu vérifier que « GitLoom » ne contient pas de logiciel malveillant…', 'Terminé', 'Confidentialité et sécurité', '« GitLoom » a été bloqué pour protéger votre Mac.', 'Ouvrir quand même',
     'GitLoom n’est pas encore notarié, d’où la question unique de macOS. Les mises à jour sont signées EdDSA et vérifiées avant installation. Sans compte, sans télémétrie.', 'Ou téléchargez depuis le Terminal', 'Copier', 'Copié'],
-  cta: ['Essayez-le sur votre propre dépôt.', 'Gratuit, 42 Mo, sans compte.', 'Guide d’installation →'],
+  cta: ['Essayez-le sur votre propre dépôt.', 'Gratuit, 46 Mo, sans compte.', 'Guide d’installation →'],
   footer: ['Produit', 'Aide', 'Confiance', 'Projet', 'Fonctionnalités', 'Télécharger', 'Versions', 'Guide d’installation', 'Assistance sur GitHub Issues', 'Sans compte', 'Sans télémétrie', 'Mises à jour signées', 'Signaler un bug', 'Proposer une fonctionnalité', 'Gratuit · macOS 14+ · Apple silicon'],
 };
 
 export const es: Compact = {
   title: 'GitLoom — un cliente Git nativo y gratuito para macOS, con IA',
   description: 'Cliente Git nativo y gratuito para macOS: grafo de commits rápido, merge y rebase arrastrando, preparación por líneas, deshacer, commits y revisiones con IA y tu clave, GitHub y GitLab.',
-  skip: 'Ir al contenido', language: 'Idioma', meta: 'macOS 14+ · Apple silicon · 42 MB',
+  skip: 'Ir al contenido', language: 'Idioma', meta: 'macOS 14+ · Apple silicon · 46 MB',
   nav: ['Funciones', 'Instalación', 'Descargar', 'Soporte', 'Abrir menú'],
   hero: ['Cliente Git para macOS · Gratis', 'Ve tu historial. Cámbialo arrastrando.', 'Un cliente Git nativo y gratuito para macOS: arrastra ramas, prepara líneas sueltas y deshaz errores.', 'Descargar para macOS', 'Verlo en acción →',
     'GitLoom con el repositorio atlas: líneas de las ramas main, release, dark-theme y sync-engine, con los detalles del commit a la derecha.', 'Suelta una rama sobre otra para hacer merge, rebase o cherry-pick.'],
@@ -119,17 +119,17 @@ export const es: Compact = {
   ],
   power: ['Para usuarios avanzados', 'El resto de Git, a mano.', [['Terminal', 'Integrado'], ['Editor de archivos', 'Integrado'], ['Worktrees', 'Varios checkouts de un repositorio'], ['Submódulos', 'Compatibles'], ['Bisect', 'Encuentra el commit que lo rompió'], ['Git LFS', 'Compatible'], [cli, 'Herramienta de línea de comandos'], ['Servidor MCP', 'Desactivado por defecto'], ['IA', 'Tu proveedor y tu clave. Desactivada por defecto'], ['Temas, diseño, atajos', 'A tu gusto']]],
   langs: ['Idiomas y temas', 'Dieciséis idiomas. Claro y oscuro.', 'El árabe se lee de derecha a izquierda. Temas, diseño y atajos, a tu gusto.', 'La misma ventana en claro y oscuro.', 'La misma ventana de GitLoom en tema claro (mitad izquierda) y oscuro (mitad derecha).'],
-  install: ['Instalación', 'Instálalo en tres pasos.', 'Descarga y arrastra a Aplicaciones.', 'Una imagen de disco de 42 MB desde la web, no desde la App Store.', 'Ábrelo una vez.', 'macOS detiene el primer arranque porque GitLoom aún no está notarizado. Haz clic en OK.', 'Elige Abrir igualmente.', 'Ajustes del Sistema ▸ Privacidad y seguridad ▸ Abrir igualmente. Solo una vez.',
+  install: ['Instalación', 'Instálalo en tres pasos.', 'Descarga y arrastra a Aplicaciones.', 'Una imagen de disco de 46 MB desde la web, no desde la App Store.', 'Ábrelo una vez.', 'macOS detiene el primer arranque porque GitLoom aún no está notarizado. Haz clic en OK.', 'Elige Abrir igualmente.', 'Ajustes del Sistema ▸ Privacidad y seguridad ▸ Abrir igualmente. Solo una vez.',
     'Aplicaciones', 'No se ha abierto “GitLoom”', 'Apple no ha podido verificar que “GitLoom” no contenga software malicioso…', 'OK', 'Privacidad y seguridad', 'Se ha bloqueado “GitLoom” para proteger tu Mac.', 'Abrir igualmente',
     'GitLoom aún no está notarizado, por eso macOS pregunta una vez. Las actualizaciones están firmadas con EdDSA y se verifican antes de instalarse. Sin cuenta, sin telemetría.', 'O descárgalo desde Terminal', 'Copiar', 'Copiado'],
-  cta: ['Pruébalo con tu propio repositorio.', 'Gratis, 42 MB, sin cuenta.', 'Guía de instalación →'],
+  cta: ['Pruébalo con tu propio repositorio.', 'Gratis, 46 MB, sin cuenta.', 'Guía de instalación →'],
   footer: ['Producto', 'Ayuda', 'Confianza', 'Proyecto', 'Funciones', 'Descargar', 'Versiones', 'Guía de instalación', 'Soporte en GitHub Issues', 'Sin cuenta', 'Sin telemetría', 'Actualizaciones firmadas', 'Informar de un error', 'Pedir una función', 'Gratis · macOS 14+ · Apple silicon'],
 };
 
 export const it: Compact = {
   title: 'GitLoom — un client Git nativo e gratuito per macOS, con IA',
   description: 'Client Git nativo e gratuito per macOS: grafo dei commit veloce, merge e rebase trascinando, staging per righe, annulla, commit e revisioni con IA e la tua chiave, GitHub e GitLab.',
-  skip: 'Vai al contenuto', language: 'Lingua', meta: 'macOS 14+ · Apple silicon · 42 MB',
+  skip: 'Vai al contenuto', language: 'Lingua', meta: 'macOS 14+ · Apple silicon · 46 MB',
   nav: ['Funzioni', 'Installazione', 'Scarica', 'Supporto', 'Apri menu'],
   hero: ['Client Git per macOS · Gratis', 'Guarda la tua cronologia. Cambiala trascinando.', 'Un client Git nativo e gratuito per macOS: trascina i branch, metti in stage singole righe e annulla gli errori.', 'Scarica per macOS', 'Guardalo in azione →',
     'GitLoom con il repository atlas: le linee dei branch main, release, dark-theme e sync-engine, con i dettagli del commit a destra.', 'Rilascia un branch su un altro per fare merge, rebase o cherry-pick.'],
@@ -160,17 +160,17 @@ export const it: Compact = {
   ],
   power: ['Per utenti esperti', 'Il resto di Git, a portata di mano.', [['Terminale', 'Integrato'], ['Editor di file', 'Integrato'], ['Worktree', 'Più checkout di un repository'], ['Sottomoduli', 'Supportati'], ['Bisect', 'Trova il commit che l’ha rotto'], ['Git LFS', 'Supportato'], [cli, 'Strumento da riga di comando'], ['Server MCP', 'Disattivato di default'], ['IA', 'Il tuo fornitore e la tua chiave. Disattivata di default'], ['Temi, layout, scorciatoie', 'Come preferisci']]],
   langs: ['Lingue e temi', 'Sedici lingue. Chiaro e scuro.', 'L’arabo si legge da destra a sinistra. Temi, layout e scorciatoie come preferisci.', 'La stessa finestra in chiaro e in scuro.', 'La stessa finestra di GitLoom con il tema chiaro (metà sinistra) e scuro (metà destra).'],
-  install: ['Installazione', 'Installalo in tre passi.', 'Scarica, poi trascina in Applicazioni.', 'Un’immagine disco da 42 MB dal sito, non dall’App Store.', 'Aprilo una volta.', 'macOS blocca il primo avvio perché GitLoom non è ancora autenticato. Fai clic su Fine.', 'Scegli Apri comunque.', 'Impostazioni di Sistema ▸ Privacy e sicurezza ▸ Apri comunque. Una sola volta.',
+  install: ['Installazione', 'Installalo in tre passi.', 'Scarica, poi trascina in Applicazioni.', 'Un’immagine disco da 46 MB dal sito, non dall’App Store.', 'Aprilo una volta.', 'macOS blocca il primo avvio perché GitLoom non è ancora autenticato. Fai clic su Fine.', 'Scegli Apri comunque.', 'Impostazioni di Sistema ▸ Privacy e sicurezza ▸ Apri comunque. Una sola volta.',
     'Applicazioni', '“GitLoom” non è stato aperto', 'Apple non ha potuto verificare che “GitLoom” sia privo di malware…', 'Fine', 'Privacy e sicurezza', '“GitLoom” è stato bloccato per proteggere il Mac.', 'Apri comunque',
     'GitLoom non è ancora autenticato da Apple, per questo macOS chiede una volta. Gli aggiornamenti sono firmati EdDSA e verificati prima dell’installazione. Nessun account, nessuna telemetria.', 'Oppure scaricalo dal Terminale', 'Copia', 'Copiato'],
-  cta: ['Provalo sul tuo repository.', 'Gratis, 42 MB, nessun account.', 'Guida all’installazione →'],
+  cta: ['Provalo sul tuo repository.', 'Gratis, 46 MB, nessun account.', 'Guida all’installazione →'],
   footer: ['Prodotto', 'Aiuto', 'Fiducia', 'Progetto', 'Funzioni', 'Scarica', 'Versioni', 'Guida all’installazione', 'Supporto su GitHub Issues', 'Nessun account', 'Nessuna telemetria', 'Aggiornamenti firmati', 'Segnala un bug', 'Richiedi una funzione', 'Gratis · macOS 14+ · Apple silicon'],
 };
 
 export const ptBR: Compact = {
   title: 'GitLoom — um cliente Git nativo e gratuito para macOS, com IA',
   description: 'Cliente Git nativo e gratuito para macOS: grafo de commits rápido, merge e rebase arrastando, stage por linha, desfazer, commits e revisões por IA com sua chave, GitHub e GitLab.',
-  skip: 'Pular para o conteúdo', language: 'Idioma', meta: 'macOS 14+ · Apple silicon · 42 MB',
+  skip: 'Pular para o conteúdo', language: 'Idioma', meta: 'macOS 14+ · Apple silicon · 46 MB',
   nav: ['Recursos', 'Instalação', 'Baixar', 'Suporte', 'Abrir menu'],
   hero: ['Cliente Git para macOS · Grátis', 'Veja seu histórico. Mude arrastando.', 'Um cliente Git nativo e gratuito para macOS: arraste branches, faça stage de linhas e desfaça erros.', 'Baixar para macOS', 'Ver funcionando →',
     'GitLoom com o repositório atlas: linhas das branches main, release, dark-theme e sync-engine, com os detalhes do commit à direita.', 'Solte uma branch sobre outra para fazer merge, rebase ou cherry-pick.'],
@@ -201,9 +201,9 @@ export const ptBR: Compact = {
   ],
   power: ['Para usuários avançados', 'O resto do Git, à mão.', [['Terminal', 'Integrado'], ['Editor de arquivos', 'Integrado'], ['Worktrees', 'Vários checkouts de um repositório'], ['Submódulos', 'Suportados'], ['Bisect', 'Encontre o commit que quebrou'], ['Git LFS', 'Suportado'], [cli, 'Ferramenta de linha de comando'], ['Servidor MCP', 'Desativado por padrão'], ['IA', 'Seu provedor e sua chave. Desativada por padrão'], ['Temas, layout, atalhos', 'Do seu jeito']]],
   langs: ['Idiomas e temas', 'Dezesseis idiomas. Claro e escuro.', 'O árabe é lido da direita para a esquerda. Temas, layout e atalhos do seu jeito.', 'A mesma janela em claro e escuro.', 'A mesma janela do GitLoom no tema claro (metade esquerda) e escuro (metade direita).'],
-  install: ['Instalação', 'Instale em três passos.', 'Baixe e arraste para Aplicativos.', 'Uma imagem de disco de 42 MB do site, não da App Store.', 'Abra uma vez.', 'O macOS bloqueia a primeira abertura porque o GitLoom ainda não é notarizado. Clique em OK.', 'Escolha Abrir Mesmo Assim.', 'Ajustes do Sistema ▸ Privacidade e Segurança ▸ Abrir Mesmo Assim. Só uma vez.',
+  install: ['Instalação', 'Instale em três passos.', 'Baixe e arraste para Aplicativos.', 'Uma imagem de disco de 46 MB do site, não da App Store.', 'Abra uma vez.', 'O macOS bloqueia a primeira abertura porque o GitLoom ainda não é notarizado. Clique em OK.', 'Escolha Abrir Mesmo Assim.', 'Ajustes do Sistema ▸ Privacidade e Segurança ▸ Abrir Mesmo Assim. Só uma vez.',
     'Aplicativos', '“GitLoom” não foi aberto', 'A Apple não pôde verificar se “GitLoom” está livre de malware…', 'OK', 'Privacidade e Segurança', '“GitLoom” foi bloqueado para proteger seu Mac.', 'Abrir Mesmo Assim',
     'O GitLoom ainda não é notarizado, por isso o macOS pergunta uma vez. As atualizações são assinadas com EdDSA e verificadas antes de instalar. Sem conta, sem telemetria.', 'Ou baixe pelo Terminal', 'Copiar', 'Copiado'],
-  cta: ['Experimente no seu repositório.', 'Grátis, 42 MB, sem conta.', 'Guia de instalação →'],
+  cta: ['Experimente no seu repositório.', 'Grátis, 46 MB, sem conta.', 'Guia de instalação →'],
   footer: ['Produto', 'Ajuda', 'Confiança', 'Projeto', 'Recursos', 'Baixar', 'Versões', 'Guia de instalação', 'Suporte no GitHub Issues', 'Sem conta', 'Sem telemetria', 'Atualizações assinadas', 'Relatar um bug', 'Pedir um recurso', 'Grátis · macOS 14+ · Apple silicon'],
 };

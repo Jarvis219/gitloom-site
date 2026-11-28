@@ -22,7 +22,7 @@
   <img src="public/shots/graph-light.png" alt="GitLoom showing a repository: coloured branch lanes in the commit graph, the sidebar with branches and tags, and the selected commit's details.">
 </picture>
 
-GitLoom is built with Swift and AppKit, not Electron. It's a 42 MB download for Macs with Apple silicon, needs no
+GitLoom is built with Swift and AppKit, not Electron. It's a 46 MB download for Macs with Apple silicon, needs no
 account and sends no telemetry. It runs your own `git`, so your config, hooks, credentials and aliases all apply,
 and you can switch to the terminal at any moment.
 

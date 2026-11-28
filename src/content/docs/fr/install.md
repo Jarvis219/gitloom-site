@@ -23,7 +23,7 @@ GitLoom vous prévient au lancement s’il ne trouve pas de git assez récent. S
 
 ## Téléchargement
 
-Téléchargez `GitLoom.dmg` (42 Mo) depuis la [dernière version](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), ou depuis le Terminal :
+Téléchargez `GitLoom.dmg` (46 Mo) depuis la [dernière version](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), ou depuis le Terminal :
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

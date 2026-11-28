@@ -23,7 +23,7 @@ xcode-select --install
 
 ## ダウンロード
 
-[最新リリース](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg)から `GitLoom.dmg`（42 MB）をダウンロードするか、ターミナルから次を実行します:
+[最新リリース](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg)から `GitLoom.dmg`（46 MB）をダウンロードするか、ターミナルから次を実行します:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

@@ -23,7 +23,7 @@ xcode-select --install
 
 ## 下載
 
-從[最新版本](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg)下載 `GitLoom.dmg`（42 MB），或在「終端機」中下載：
+從[最新版本](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg)下載 `GitLoom.dmg`（46 MB），或在「終端機」中下載：
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

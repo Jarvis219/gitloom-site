@@ -23,7 +23,7 @@ GitLoom tells you at launch if it can't find a recent enough git. If you keep gi
 
 ## Download
 
-Download `GitLoom.dmg` (42 MB) from the [latest release](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), or from Terminal:
+Download `GitLoom.dmg` (46 MB) from the [latest release](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), or from Terminal:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

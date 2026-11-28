@@ -23,7 +23,7 @@ Khi khởi động, GitLoom sẽ báo nếu không tìm thấy git đủ mới. 
 
 ## Tải về
 
-Tải `GitLoom.dmg` (42 MB) từ [bản phát hành mới nhất](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), hoặc từ Terminal:
+Tải `GitLoom.dmg` (46 MB) từ [bản phát hành mới nhất](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), hoặc từ Terminal:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

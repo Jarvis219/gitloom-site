@@ -23,7 +23,7 @@ GitLoom meldet beim Start, wenn es kein ausreichend aktuelles git findet. Liegt 
 
 ## Laden
 
-Lade `GitLoom.dmg` (42 MB) vom [neuesten Release](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg) oder über das Terminal:
+Lade `GitLoom.dmg` (46 MB) vom [neuesten Release](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg) oder über das Terminal:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

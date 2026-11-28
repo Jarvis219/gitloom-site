@@ -23,7 +23,7 @@ Przy uruchomieniu GitLoom informuje, jeśli nie może znaleźć wystarczająco n
 
 ## Pobieranie
 
-Pobierz `GitLoom.dmg` (42 MB) z [najnowszego wydania](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg) albo w Terminalu:
+Pobierz `GitLoom.dmg` (46 MB) z [najnowszego wydania](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg) albo w Terminalu:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

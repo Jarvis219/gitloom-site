@@ -23,7 +23,7 @@ xcode-select --install
 
 ## التنزيل
 
-نزّل `GitLoom.dmg` (42 MB) من [أحدث إصدار](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg)، أو من الطرفية:
+نزّل `GitLoom.dmg` (46 MB) من [أحدث إصدار](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg)، أو من الطرفية:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg

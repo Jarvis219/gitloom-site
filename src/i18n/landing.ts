@@ -44,12 +44,12 @@ const en: LandingCopy = {
   lead: 'A free, native Git client for macOS that lets you drag branches, stage lines and undo mistakes.',
   download: 'Download for macOS',
   seeIt: 'See it work →',
-  meta: 'macOS 14+ · Apple silicon · 42 MB',
+  meta: 'macOS 14+ · Apple silicon · 46 MB',
   heroAlt: 'GitLoom showing the atlas repository: branch lanes for main, release, dark-theme and sync-engine, with commit details on the right.',
   heroCaption: 'Drop one branch onto another to merge, rebase or cherry-pick.',
   heroMenu: ['Merge feature/sync-engine into main', 'Rebase feature/sync-engine onto main', 'Cherry-pick commits onto main'],
   proofLabel: 'GitLoom in numbers',
-  figs: [['0.15 s', 'First rows of a 100,000-commit repo'], ['42 MB', 'Native Swift and AppKit, not Electron'], ['⌘Z', 'Undo for almost everything']],
+  figs: [['0.15 s', 'First rows of a 100,000-commit repo'], ['46 MB', 'Native Swift and AppKit, not Electron'], ['⌘Z', 'Undo for almost everything']],
   chapters: [
     { id: 'features', eyebrow: '01 · History', title: 'History you can read.', lead: 'Every branch keeps its own lane and colour, even in a 100,000-commit repo.',
       facts: ['Full history in about 0.7 s, using about 170 MB of memory', 'File history that follows renames', 'Blame and search across every commit'],
@@ -92,7 +92,7 @@ const en: LandingCopy = {
   install: {
     eyebrow: 'Install', title: 'Install in three steps.',
     steps: [
-      { n: 'STEP 01', title: 'Download, then drag to Applications.', text: 'One 42 MB disk image from the website, not the App Store.' },
+      { n: 'STEP 01', title: 'Download, then drag to Applications.', text: 'One 46 MB disk image from the website, not the App Store.' },
       { n: 'STEP 02', title: 'Open it once.', text: 'macOS stops the first launch because GitLoom isn’t notarized yet. Click Done.' },
       { n: 'STEP 03', title: 'Choose Open Anyway.', text: 'System Settings ▸ Privacy & Security ▸ Open Anyway. You only do this once.' },
     ],
@@ -101,7 +101,7 @@ const en: LandingCopy = {
     honest: 'GitLoom isn’t notarized yet, which is why macOS asks once. Updates are EdDSA-signed and verified before they install. No account, no telemetry.',
     terminal: 'Or download from Terminal', copy: 'Copy', copied: 'Copied',
   },
-  cta: { title: 'Try it on your own repo.', lead: 'Free, 42 MB, no account.', guide: 'Install guide →' },
+  cta: { title: 'Try it on your own repo.', lead: 'Free, 46 MB, no account.', guide: 'Install guide →' },
   footer: { product: 'Product', help: 'Help', trust: 'Trust', project: 'Project', features: 'Features', download: 'Download', releases: 'Releases',
     install: 'Install guide', support: 'Support on GitHub Issues', noAccount: 'No account', noTelemetry: 'No telemetry', signed: 'Signed updates',
     bug: 'Report a bug', feature: 'Request a feature', tagline: 'Free · macOS 14+ · Apple silicon' },

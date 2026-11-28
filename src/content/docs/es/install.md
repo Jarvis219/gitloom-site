@@ -23,7 +23,7 @@ Al arrancar, GitLoom te avisa si no encuentra una versión de git lo bastante re
 
 ## Descarga
 
-Descarga `GitLoom.dmg` (42 MB) desde la [última versión](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), o desde Terminal:
+Descarga `GitLoom.dmg` (46 MB) desde la [última versión](https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg), o desde Terminal:
 
 ```sh
 curl -LO https://github.com/Jarvis219/gitloom-site/releases/latest/download/GitLoom.dmg
